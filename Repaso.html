@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso Control - F3</title>
+
+
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Repaso Control - F3</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+        <script>
+            window.MathJax = {
+                tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+                startup: { typeset: true }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                margin: 0;
+                overflow: hidden;
+                background-color: #f8fafc;
+            }
+
+            #slide-container {
+                height: calc(100vh - 5rem);
+                width: 100vw;
+                position: relative;
+            }
+
+            .slide {
+                display: none;
+                height: 100%;
+                width: 100%;
+                animation: fadeIn 0.3s ease-out;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding-bottom: 3rem;
+                scroll-behavior: smooth;
+            }
+
+            .slide.active {
+                display: flex;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .glass-card {
+                background: rgba(255, 255, 255, 0.98);
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+
+            /* BARRAS DE DESPLAZAMIENTO VISIBLES Y ESTILIZADAS */
+            ::-webkit-scrollbar {
+                width: 14px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #e2e8f0;
+                border-radius: 8px;
+                margin: 10px 0;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #94a3b8;
+                border-radius: 8px;
+                border: 3px solid #e2e8f0;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #64748b;
+            }
+
+            /* Estilos Animación 3D SVG */
+            .vector-e {
+                stroke: #fbbf24;
+                stroke-width: 3.5;
+                stroke-linecap: round;
+            }
+
+            .vector-b {
+                stroke: #ec4899;
+                stroke-width: 3.5;
+                stroke-linecap: round;
+            }
+
+            .envelope-e {
+                fill: none;
+                stroke: #fbbf24;
+                stroke-width: 4;
+                filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+            }
+
+            .envelope-b {
+                fill: none;
+                stroke: #ec4899;
+                stroke-width: 4;
+                filter: drop-shadow(0 0 6px rgba(236, 72, 153, 0.6));
+            }
+
+            .fade-in {
+                opacity: 0;
+                transition: opacity 0.6s ease-in-out;
+                pointer-events: none;
+            }
+
+            .visible {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+
+            .draw-path {
+                stroke-dasharray: 2000;
+                stroke-dashoffset: 2000;
+                transition: stroke-dashoffset 1.5s ease-in-out;
+            }
+
+            .drawn {
+                stroke-dashoffset: 0 !important;
+            }
+        </style>
+    </head>
+
+    <body class="text-slate-800 select-none flex flex-col">
+
+        <div class="h-4 w-full bg-indigo-800 shrink-0 fixed top-0 z-50"></div>
+
+        <div id="slide-container" class="mt-4">
+            <div class="slide active p-10 bg-slate-50">
+                <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full min-h-[500px]">
+                    <i data-lucide="sun" class="w-40 h-40 text-indigo-800 opacity-90"></i>
+                    <h1 class="text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center">
+                        MEGA REPASO CONTROL
+                    </h1>
+                    <p class="text-5xl text-slate-500 font-semibold tracking-wide text-center">
+                        Física IIIº Medio Electivo
+                    </p>
+
+                    <div
+                        class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-indigo-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md">
+                        <div>
+                            <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-3xl font-bold text-indigo-800 uppercase tracking-wider">SEK CHILE • IIIº
+                                ELECTIVO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-white p-10">
+                <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-100 pb-4 shrink-0">
+                    <i data-lucide="help-circle" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-800">La Ilusión del Movimiento</h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-12 flex-1 min-h-0 items-center">
+                    <div class="space-y-8 h-full flex flex-col justify-center pr-4">
+                        <p class="text-3xl font-light text-slate-700 leading-relaxed">
+                            Durante un sismo magnitud 8.0, la ruptura ocurre a cientos de kilómetros en el norte, pero
+                            la
+                            destrucción llega hasta Santiago.
+                        </p>
+                        <div class="glass-card p-6 rounded-xl border-l-8 border-rose-600 shadow-md">
+                            <h3 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-3">
+                                <i data-lucide="message-circle-question" class="w-8 h-8"></i> Paradoja Física:
+                            </h3>
+                            <p class="text-2xl text-slate-700 leading-snug">
+                                ¿Acaso la roca y la tierra del epicentro viajaron cientos de kilómetros hasta golpear
+                                nuestros edificios? ¿Qué es exactamente lo que viaja a miles de km/h?
+                            </p>
+                        </div>
+                        <button onclick="revelarElemento('animacion-onda')"
+                            class="mt-4 px-8 py-4 bg-slate-800 text-white rounded-xl text-2xl font-bold hover:bg-slate-700 transition shadow-md w-max">
+                            <i data-lucide="play" class="inline-block w-6 h-6 mr-2 mb-1"></i> Analizar Propagación
+                        </button>
+                        <div id="concepto-gancho"
+                            class="hidden p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg">
+                            <p class="text-2xl text-emerald-900 font-medium">Una onda transporta <strong
+                                    class="text-emerald-700 font-extrabold text-3xl">ENERGÍA</strong>, no materia.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="h-full w-full flex flex-col items-center justify-center bg-slate-50 rounded-2xl border-2 border-slate-200 p-6">
+                        <div id="animacion-onda"
+                            class="hidden w-full h-full flex flex-col items-center justify-center space-y-4">
+                            <svg viewBox="0 0 500 200"
+                                class="w-full max-h-[300px] bg-white rounded-xl border border-slate-200 shadow-inner p-4">
+                                <line x1="0" y1="100" x2="500" y2="100" stroke="#cbd5e1" stroke-width="2"
+                                    stroke-dasharray="8,4" />
+
+                                <g fill="#e11d48">
+                                    <circle cx="50" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="0s" />
+                                    </circle>
+                                    <circle cx="100" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="0.25s" />
+                                    </circle>
+                                    <circle cx="150" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="0.5s" />
+                                    </circle>
+                                    <circle cx="200" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="0.75s" />
+                                    </circle>
+                                    <circle cx="250" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="1s" />
+                                    </circle>
+                                    <circle cx="300" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="1.25s" />
+                                    </circle>
+                                    <circle cx="350" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="1.5s" />
+                                    </circle>
+                                    <circle cx="400" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="1.75s" />
+                                    </circle>
+                                    <circle cx="450" cy="100" r="8">
+                                        <animate attributeName="cy" values="100; 20; 100; 180; 100" dur="2s"
+                                            repeatCount="indefinite" begin="2s" />
+                                    </circle>
+                                </g>
+                                <line x1="100" y1="180" x2="400" y2="180" stroke="#4f46e5" stroke-width="4"
+                                    marker-end="url(#arrow-indigo)" />
+                                <text x="180" y="170" font-size="18" font-family="Inter" font-weight="bold"
+                                    fill="#4f46e5">Dirección de la Energía (v)</text>
+
+                                <defs>
+                                    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6"
+                                        markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#4f46e5" />
+                                    </marker>
+                                </defs>
+                            </svg>
+                            <p class="text-xl text-slate-500 italic mt-4 text-center">Fíjense en un solo punto rojo:
+                                solo
+                                oscila verticalmente. No avanza.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-slate-50 p-10">
+                <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="book-open" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-800">Estructura Matemática</h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-12 flex-1 min-h-0 items-center">
+                    <div class="space-y-6 h-full flex flex-col justify-center">
+                        <p class="text-3xl font-light text-slate-700 leading-snug">
+                            Para analizar fluidos, luz o sismos, debemos parametrizar la perturbación con rigor
+                            analítico.
+                        </p>
+
+                        <ul class="space-y-4 text-2xl text-slate-700 font-mono">
+                            <li class="glass-card p-4 rounded-xl flex items-center gap-4 border-l-8 border-rose-500">
+                                <span class="font-bold text-slate-900 w-16 text-right">$A$ :</span> Amplitud (m). Máximo
+                                desplazamiento desde el equilibrio.
+                            </li>
+                            <li class="glass-card p-4 rounded-xl flex items-center gap-4 border-l-8 border-indigo-600">
+                                <span class="font-bold text-slate-900 w-16 text-right">$\lambda$ :</span> Longitud de
+                                onda
+                                (m). Distancia física de un ciclo.
+                            </li>
+                            <li class="glass-card p-4 rounded-xl flex items-center gap-4 border-l-8 border-indigo-500">
+                                <span class="font-bold text-slate-900 w-16 text-right">$T$ :</span> Período (s). Tiempo
+                                que
+                                tarda en completarse un ciclo.
+                            </li>
+                            <li class="glass-card p-4 rounded-xl flex items-center gap-4 border-l-8 border-indigo-400">
+                                <span class="font-bold text-slate-900 w-16 text-right">$f$ :</span> Frecuencia (Hz).
+                                Ciclos
+                                que ocurren en un segundo.
+                            </li>
+                        </ul>
+
+                        <div class="p-6 bg-slate-800 rounded-xl border-l-8 border-emerald-500 text-white mt-4">
+                            <h4 class="text-2xl font-bold flex items-center gap-3 mb-2">
+                                <i data-lucide="zap" class="w-6 h-6 text-emerald-400"></i> Ecuación de Propagación
+                                (Rapidez)
+                            </h4>
+                            <div class="text-4xl text-center font-bold font-mono py-2">
+                                $$ v = \frac{\lambda}{T} = \lambda \cdot f $$
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="h-full w-full flex items-center justify-center bg-white rounded-2xl border-2 border-slate-200 p-4">
+                        <svg viewBox="0 0 500 350" class="w-full h-full max-h-[450px]">
+                            <line x1="20" y1="175" x2="480" y2="175" stroke="#94a3b8" stroke-width="2"
+                                stroke-dasharray="8,4" />
+                            <text x="450" y="195" font-size="16" font-family="Inter" fill="#64748b">Posición</text>
+
+                            <path d="M 50 175 Q 100 25, 150 175 T 250 175 Q 300 25, 350 175 T 450 175" fill="none"
+                                stroke="#4338ca" stroke-width="5" />
+
+                            <line x1="50" y1="75" x2="250" y2="75" stroke="#0f172a" stroke-width="3"
+                                marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                            <text x="140" y="60" font-size="32" font-family="serif" font-weight="bold"
+                                fill="#0f172a">λ</text>
+                            <line x1="50" y1="175" x2="50" y2="60" stroke="#0f172a" stroke-width="2"
+                                stroke-dasharray="6,4" />
+                            <line x1="250" y1="175" x2="250" y2="60" stroke="#0f172a" stroke-width="2"
+                                stroke-dasharray="6,4" />
+
+                            <line x1="300" y1="175" x2="300" y2="100" stroke="#e11d48" stroke-width="4"
+                                marker-end="url(#arrow-red)" />
+                            <text x="315" y="145" font-size="28" font-family="Inter" font-weight="bold"
+                                fill="#e11d48">A</text>
+                            <line x1="300" y1="100" x2="350" y2="100" stroke="#e11d48" stroke-width="2"
+                                stroke-dasharray="4,4" />
+
+                            <defs>
+                                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+                                </marker>
+                                <marker id="arrow-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#e11d48" />
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-white p-10">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="help-circle" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">La Paradoja del Vacío</h2>
+                </div>
+
+                <div class="grid grid-cols-12 gap-10 flex-1 min-h-[500px] items-center">
+                    <div class="col-span-5 space-y-8 h-full flex flex-col justify-center">
+                        <p class="text-2xl text-slate-700 leading-relaxed font-medium">
+                            El sonido es una onda <strong>longitudinal y mecánica</strong>. Exige de partículas físicas
+                            (materia) para comprimirse y transportar su energía.
+                        </p>
+                        <div class="glass-card p-6 rounded-xl border-l-8 border-rose-600 shadow-md">
+                            <h3 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-3">
+                                <i data-lucide="alert-triangle" class="w-8 h-8"></i> El Problema Físico:
+                            </h3>
+                            <p class="text-xl text-slate-800 leading-snug font-semibold">
+                                El espacio interestelar es un vacío casi perfecto. Si no hay átomos que chocar ni medio
+                                que vibre, ¿qué es exactamente lo que ondula para que nos llegue la energía del Sol?
+                            </p>
+                        </div>
+                        <button
+                            onclick="revelarYOcultar('contenedor-animacion', 'mensaje-previo'); revelarElemento('concepto-gancho')"
+                            class="mt-4 px-8 py-5 bg-slate-800 text-white rounded-xl text-2xl font-bold hover:bg-slate-700 transition shadow-lg w-max">
+                            <i data-lucide="play" class="inline-block w-8 h-8 mr-2 mb-1"></i> Revelar Propagación EM
+                        </button>
+                        <div id="concepto-gancho"
+                            class="hidden p-6 bg-emerald-50 border-l-8 border-emerald-500 rounded-r-xl shadow-md">
+                            <p class="text-xl text-emerald-900 font-semibold leading-relaxed">
+                                La luz genera su propio medio. Es una onda <strong>Electromagnética (EM)
+                                    Transversal</strong>. <br><br>
+                                Una variación en el campo eléctrico induce ortogonalmente un campo magnético, y
+                                viceversa. Esta <strong>inducción mutua y constante</strong> le permite auto-sustentarse
+                                y viajar por el vacío absoluto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-span-7 h-full w-full flex flex-col items-center justify-center bg-slate-900 rounded-3xl border-4 border-slate-800 overflow-hidden shadow-2xl relative min-h-[450px]">
+
+                        <div id="mensaje-previo"
+                            class="flex flex-col items-center justify-center text-slate-600 w-full h-full absolute inset-0">
+                            <i data-lucide="wind" class="w-24 h-24 mb-4 opacity-30"></i>
+                            <p class="text-2xl font-bold tracking-widest uppercase opacity-50">Vacío Espacial</p>
+                        </div>
+
+                        <div id="contenedor-animacion" class="hidden w-full h-full absolute inset-0">
+                            <svg id="wave-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice"
+                                class="w-full h-full">
+
+                                <line x1="0" y1="200" x2="800" y2="200" stroke="#475569" stroke-width="3"
+                                    stroke-dasharray="10,5" />
+
+                                <rect x="300" y="340" width="200" height="45" rx="8" fill="rgba(15, 23, 42, 0.85)" />
+                                <text x="400" y="370" font-size="22" fill="white" font-weight="bold" font-family="Inter"
+                                    text-anchor="middle">Rapidez (v = c)</text>
+
+                                <path id="envE" class="envelope-e" d="" />
+                                <path id="envB" class="envelope-b" d="" />
+
+                                <rect x="180" y="20" width="440" height="60" rx="8" fill="rgba(15, 23, 42, 0.9)" />
+                                <text x="210" y="55" font-size="20" fill="#fbbf24" font-weight="bold"
+                                    font-family="Inter">■ Campo Eléctrico</text>
+                                <text x="420" y="55" font-size="20" fill="#ec4899" font-weight="bold"
+                                    font-family="Inter">■ Campo Magnético</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-slate-50 p-10">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="scale" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">Dualidad Onda-Partícula</h2>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-indigo-600 shadow-md mb-10 shrink-0">
+                    <p class="text-2xl text-slate-800 leading-relaxed font-semibold">
+                        La física moderna establece que la luz posee una naturaleza dual ineludible. Se propaga por el
+                        universo exhibiendo propiedades de <strong>onda continua</strong>, pero interactúa y transfiere
+                        energía a la materia exclusivamente como una <strong>partícula discreta</strong>.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-12 flex-1 min-h-[400px]">
+                    <div
+                        class="glass-card p-8 rounded-3xl border-t-8 border-indigo-500 shadow-lg flex flex-col items-center text-center">
+                        <h3 class="text-4xl font-extrabold text-slate-800 mb-4">Modelo Ondulatorio</h3>
+                        <p class="text-xl text-slate-700 mb-6 font-medium">Evidenciado por la
+                            <strong>Difracción</strong> y la <strong>Interferencia</strong>.</p>
+
+                        <div
+                            class="w-full h-56 bg-slate-100 rounded-xl mb-6 relative overflow-hidden flex items-center justify-center border border-slate-300">
+                            <svg viewBox="0 0 200 100" class="w-full h-full">
+                                <defs>
+                                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feGaussianBlur stdDeviation="2" result="blur" />
+                                        <feMerge>
+                                            <feMergeNode in="blur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+
+                                <rect x="50" y="0" width="6" height="43" fill="#1e293b" />
+                                <rect x="50" y="57" width="6" height="43" fill="#1e293b" />
+                                <rect x="50" y="47" width="6" height="6" fill="#1e293b" />
+
+                                <path d="M 10 0 L 10 100 M 25 0 L 25 100 M 40 0 L 40 100" fill="none" stroke="#64748b"
+                                    stroke-width="2">
+                                    <animate attributeName="d"
+                                        values="M 0 0 L 0 100 M 15 0 L 15 100 M 30 0 L 30 100; M 15 0 L 15 100 M 30 0 L 30 100 M 45 0 L 45 100"
+                                        dur="1.5s" repeatCount="indefinite" />
+                                </path>
+
+                                <g>
+                                    <circle cx="56" cy="45" r="0" fill="none" stroke="#4f46e5" stroke-width="2"
+                                        opacity="1">
+                                        <animate attributeName="r" from="0" to="90" dur="2s" repeatCount="indefinite" />
+                                        <animate attributeName="opacity" from="1" to="0" dur="2s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="56" cy="55" r="0" fill="none" stroke="#4f46e5" stroke-width="2"
+                                        opacity="1">
+                                        <animate attributeName="r" from="0" to="90" dur="2s" repeatCount="indefinite" />
+                                        <animate attributeName="opacity" from="1" to="0" dur="2s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                </g>
+
+                                <rect x="180" y="0" width="20" height="100" fill="#0f172a" />
+                                <ellipse cx="185" cy="50" rx="3" ry="10" fill="#818cf8" filter="url(#glow)" />
+                                <ellipse cx="185" cy="25" rx="2" ry="6" fill="#4f46e5" filter="url(#glow)" />
+                                <ellipse cx="185" cy="75" rx="2" ry="6" fill="#4f46e5" filter="url(#glow)" />
+                                <ellipse cx="185" cy="5" rx="1.5" ry="4" fill="#3730a3" filter="url(#glow)" />
+                                <ellipse cx="185" cy="95" rx="1.5" ry="4" fill="#3730a3" filter="url(#glow)" />
+                            </svg>
+                        </div>
+                        <p class="text-lg text-slate-800 font-semibold">Experimento de Young: La superposición de
+                            crestas y valles demuestra que <em>luz + luz puede generar oscuridad</em>.</p>
+                    </div>
+
+                    <div
+                        class="glass-card p-8 rounded-3xl border-t-8 border-rose-500 shadow-lg flex flex-col items-center text-center">
+                        <h3 class="text-4xl font-extrabold text-slate-800 mb-4">Modelo Corpuscular</h3>
+                        <p class="text-xl text-slate-700 mb-6 font-medium">Evidenciado por el <strong>Efecto
+                                Fotoeléctrico</strong>.</p>
+
+                        <div
+                            class="w-full h-56 bg-slate-100 rounded-xl mb-6 relative overflow-hidden flex items-center justify-center border border-slate-300">
+                            <svg viewBox="0 0 200 100" class="w-full h-full">
+                                <rect x="100" y="20" width="80" height="60" fill="#94a3b8" rx="4" />
+                                <circle cx="120" cy="65" r="6" fill="#1e293b" />
+                                <circle cx="150" cy="50" r="6" fill="#1e293b" />
+
+                                <circle cx="110" cy="40" r="10" fill="#fef08a" opacity="0">
+                                    <animate attributeName="opacity" values="0; 0; 0.8; 0" keyTimes="0; 0.45; 0.5; 0.6"
+                                        dur="2s" repeatCount="indefinite" />
+                                </circle>
+
+                                <g>
+                                    <animateTransform attributeName="transform" type="translate"
+                                        values="-70 -35; 0 0; 0 0" keyTimes="0; 0.5; 1" dur="2s"
+                                        repeatCount="indefinite" />
+                                    <path d="M 50 25 L 105 40" fill="none" stroke="#f59e0b" stroke-width="3"
+                                        stroke-dasharray="6,3" />
+                                    <circle cx="110" cy="40" r="4" fill="#f59e0b" />
+                                    <text x="40" y="20" font-size="12" fill="#d97706" font-weight="bold">Fotón</text>
+                                </g>
+
+                                <circle cx="110" cy="40" r="6" fill="#3b82f6" opacity="0">
+                                    <animate attributeName="opacity" values="0; 0; 1; 1" keyTimes="0; 0.49; 0.5; 1"
+                                        dur="2s" repeatCount="indefinite" />
+                                    <animate attributeName="cx" values="110; 110; 40" keyTimes="0; 0.5; 1" dur="2s"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="cy" values="40; 40; 5" keyTimes="0; 0.5; 1" dur="2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <text x="35" y="20" font-size="12" fill="#1d4ed8" font-weight="bold" opacity="0">
+                                    <animate attributeName="opacity" values="0; 0; 1; 1" keyTimes="0; 0.49; 0.5; 1"
+                                        dur="2s" repeatCount="indefinite" />
+                                    e⁻
+                                </text>
+                            </svg>
+                        </div>
+                        <p class="text-lg text-slate-800 font-semibold">La luz viaja cuantizada en "paquetes" de energía
+                            que colisionan y arrancan electrones de forma discreta.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-white p-10">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                    <i data-lucide="zap" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">Energía del Fotón (Ecuación de Planck)</h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-10 flex-1 min-h-[450px]">
+                    <div class="space-y-6">
+                        <div class="glass-card p-6 rounded-2xl border-l-8 border-slate-800 shadow-md">
+                            <p class="text-3xl text-slate-900 mb-2 font-extrabold flex items-center gap-3">
+                                <i data-lucide="circle-dashed" class="w-8 h-8 text-slate-700"></i> Partícula sin masa
+                            </p>
+                            <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                                El fotón es la partícula mediadora del electromagnetismo. <strong>Carece de masa en
+                                    reposo</strong>. Su existencia es puramente relativista: es energía cinética
+                                moviéndose perpetuamente a $c$.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-8 bg-slate-900 rounded-3xl border-l-8 border-emerald-500 text-white shadow-2xl mt-8">
+                            <h4 class="text-2xl font-extrabold flex items-center gap-4 mb-4 text-emerald-400">
+                                Cuantización de la Energía
+                            </h4>
+                            <div class="text-5xl text-center font-bold font-mono py-6 bg-slate-800 rounded-xl">
+                                $$ E = h \cdot f $$
+                            </div>
+                            <ul class="text-xl font-mono text-slate-300 mt-6 space-y-3">
+                                <li><span class="text-emerald-400 font-bold">$E$:</span> Energía individual del fotón.
+                                </li>
+                                <li><span class="text-emerald-400 font-bold">$h$:</span> Constante universal de Planck.
+                                </li>
+                                <li><span class="text-emerald-400 font-bold">$f$:</span> Frecuencia de la onda.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="h-full w-full flex flex-col space-y-6">
+                        <div class="bg-amber-50 p-6 rounded-2xl border-2 border-amber-200 shadow-sm">
+                            <p class="text-2xl font-extrabold text-amber-700 mb-3 flex items-center gap-2">
+                                <i data-lucide="lightbulb" class="w-6 h-6"></i> Datos Físicos Fascinantes
+                            </p>
+                            <ul class="text-lg text-slate-800 space-y-2 font-medium">
+                                <li>• La luz del Sol tarda exactamente <strong>8 minutos y 20 segundos</strong> en
+                                    cruzar el vacío hasta tus ojos.</li>
+                                <li>• Para un fotón viajando a $c$, <strong>el tiempo se detiene</strong>. Desde su
+                                    perspectiva, nace y es absorbido instantáneamente, aunque cruce el universo entero.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-md h-full">
+                            <div class="text-center w-1/2 border-r-4 border-slate-100 pr-4">
+                                <p class="text-3xl font-extrabold text-red-600 mb-4">Luz Roja</p>
+                                <p class="text-xl text-slate-700 font-medium">Baja Frecuencia ($f$)<br><br><strong
+                                        class="text-slate-900">Fotón de Baja Energía</strong></p>
+                            </div>
+                            <div class="text-center w-1/2 pl-4">
+                                <p class="text-3xl font-extrabold text-violet-700 mb-4">Luz Violeta</p>
+                                <p class="text-xl text-slate-700 font-medium">Alta Frecuencia ($f$)<br><br><strong
+                                        class="text-slate-900">Fotón de Alta Energía</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-slate-50 p-10">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="bar-chart" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">Espectro Electromagnético Frecuencial</h2>
+                </div>
+
+                <div class="flex flex-col flex-1 min-h-[400px] justify-center">
+                    <div class="flex justify-between w-full text-3xl font-extrabold text-slate-800 px-4 mb-4">
+                        <div class="text-left text-red-600">↓ Menor Frecuencia / Energía</div>
+                        <div class="text-right text-violet-700">↑ Mayor Frecuencia / Energía</div>
+                    </div>
+
+                    <div
+                        class="w-full h-32 bg-gradient-to-r from-red-600 via-green-500 to-violet-700 rounded-3xl relative overflow-hidden flex items-end shadow-xl border-4 border-slate-300 mb-6">
+                        <svg viewBox="0 0 1000 100" class="w-full h-full absolute top-0 left-0 opacity-90">
+                            <path
+                                d="M 0 50 Q 80 0, 160 50 T 320 50 Q 360 0, 400 50 T 480 50 Q 500 0, 520 50 T 560 50 Q 570 0, 580 50 T 600 50 Q 610 0, 620 50 T 640 50 Q 645 0, 650 50 T 660 50 Q 665 0, 670 50 T 680 50 Q 685 0, 690 50 T 700 50 T 710 50 T 720 50 T 730 50 T 740 50 T 750 50 T 760 50 T 770 50 T 780 50 T 790 50 T 800 50 T 810 50 T 820 50 T 830 50 T 840 50 T 850 50 T 860 50 T 870 50 T 880 50 T 890 50 T 900 50 T 910 50 T 920 50 T 930 50 T 940 50 T 950 50 T 960 50 T 970 50 T 980 50 T 990 50 T 1000 50"
+                                fill="none" stroke="white" stroke-width="5" />
+                        </svg>
+                    </div>
+
+                    <div class="grid grid-cols-6 gap-6 w-full mt-4">
+                        <div class="glass-card p-5 rounded-2xl text-center border-t-8 border-red-600 shadow-md">
+                            <p class="font-bold text-slate-900 text-xl mb-3">Radio</p>
+                            <i data-lucide="radio" class="w-12 h-12 mx-auto text-slate-500 mb-3"></i>
+                            <p class="text-sm font-medium text-slate-700">Comunicaciones</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl text-center border-t-8 border-orange-500 shadow-md">
+                            <p class="font-bold text-slate-900 text-xl mb-3">Microondas</p>
+                            <i data-lucide="wifi" class="w-12 h-12 mx-auto text-slate-500 mb-3"></i>
+                            <p class="text-sm font-medium text-slate-700">Radares / Wi-Fi</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl text-center border-t-8 border-yellow-500 shadow-md">
+                            <p class="font-bold text-slate-900 text-xl mb-3">Infrarrojo</p>
+                            <i data-lucide="thermometer" class="w-12 h-12 mx-auto text-slate-500 mb-3"></i>
+                            <p class="text-sm font-medium text-slate-700">Calor / Controles</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl text-center border-t-8 border-green-500 shadow-md">
+                            <p class="font-bold text-slate-900 text-xl mb-3">Visible</p>
+                            <i data-lucide="eye" class="w-12 h-12 mx-auto text-slate-500 mb-3"></i>
+                            <p class="text-sm font-medium text-slate-700">Colores (Óptica)</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl text-center border-t-8 border-blue-500 shadow-md">
+                            <p class="font-bold text-slate-900 text-xl mb-3">Ultravioleta</p>
+                            <i data-lucide="sun-dim" class="w-12 h-12 mx-auto text-slate-500 mb-3"></i>
+                            <p class="text-sm font-medium text-slate-700">Esterilización</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl text-center border-t-8 border-violet-700 shadow-md">
+                            <p class="font-bold text-slate-900 text-xl mb-3">Rayos X/$\gamma$</p>
+                            <i data-lucide="bone" class="w-12 h-12 mx-auto text-slate-500 mb-3"></i>
+                            <p class="text-sm font-medium text-slate-700">Medicina/Nuclear</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-white p-10 pb-32">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="sun" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">El Prisma de Newton</h2>
+                </div>
+
+                <div class="grid grid-cols-12 gap-10 flex-1 min-h-[500px] items-stretch">
+                    <div class="col-span-5 flex flex-col space-y-6 justify-center">
+                        <div class="glass-card p-8 flex flex-col gap-4 border-l-8 border-indigo-500 shadow-md">
+                            <p class="text-2xl text-slate-800 font-extrabold flex items-center gap-3">
+                                <i data-lucide="waves" class="text-indigo-600 w-8 h-8"></i> La Naturaleza de la Luz
+                                Blanca
+                            </p>
+                            <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                                La luz blanca no es un color puro, sino la <strong>superposición aditiva</strong> de
+                                todas las ondas electromagnéticas que componen el espectro visible.
+                            </p>
+                        </div>
+
+                        <div class="w-full flex flex-col space-y-4">
+                            <button
+                                onclick="
+                            this.classList.add('hidden'); 
+                            document.getElementById('rayo-blanco').classList.add('drawn');
+                            setTimeout(() => { document.getElementById('rayos-color').classList.add('visible'); }, 800);
+                            setTimeout(() => { document.getElementById('texto-dispersion').classList.add('visible'); }, 1500);"
+                                class="px-6 py-5 bg-indigo-800 text-white rounded-xl text-2xl font-bold hover:bg-indigo-900 transition-all shadow-lg flex items-center justify-center gap-3 w-full z-20">
+                                <i data-lucide="play-circle"></i> Incidir Haz de Luz Blanca
+                            </button>
+
+                            <div id="texto-dispersion"
+                                class="fade-in bg-slate-50 p-6 rounded-xl border-2 border-slate-200 text-lg font-medium text-slate-800 shadow-sm block w-full">
+                                Al entrar al cristal, la onda se refracta. Sin embargo, <strong>cada color se desvía en
+                                    un ángulo distinto</strong>, separando el haz original en un abanico cromático. A
+                                esto le llamamos <span class="text-indigo-700 font-bold">Dispersión Cromática</span>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-span-7 bg-slate-900 border-4 border-slate-700 p-6 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full">
+                        <svg viewBox="-50 0 750 400" class="w-full h-full overflow-visible">
+                            <polygon points="250,50 100,350 400,350" fill="rgba(255,255,255,0.05)" stroke="#64748b"
+                                stroke-width="4" stroke-linejoin="round" />
+
+                            <path id="rayo-blanco" d="M -50 250 L 165 250" fill="none" stroke="#ffffff" stroke-width="8"
+                                class="draw-path"
+                                style="stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset 1s linear;" />
+
+                            <g id="rayos-color" class="fade-in opacity-0">
+                                <polygon points="165,250 315,220 285,280" fill="url(#rainbowGrad)" opacity="0.8" />
+
+                                <path d="M 315 220 L 500 150" fill="none" stroke="#ef4444" stroke-width="6" />
+                                <text x="510" y="155" font-size="22" font-weight="bold" fill="#fca5a5"
+                                    font-family="monospace">Rojo (λ mayor)</text>
+
+                                <path d="M 305 240 L 500 190" fill="none" stroke="#f59e0b" stroke-width="4" />
+                                <path d="M 295 260 L 500 230" fill="none" stroke="#22c55e" stroke-width="4" />
+
+                                <path d="M 285 280 L 500 320" fill="none" stroke="#a855f7" stroke-width="6" />
+                                <text x="510" y="330" font-size="22" font-weight="bold" fill="#d8b4fe"
+                                    font-family="monospace">Violeta (λ menor)</text>
+                            </g>
+
+                            <defs>
+                                <linearGradient id="rainbowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#ef4444" />
+                                    <stop offset="50%" stop-color="#22c55e" />
+                                    <stop offset="100%" stop-color="#a855f7" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide p-10 bg-slate-50">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="bar-chart" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">Índice de Refracción Dinámico</h2>
+                </div>
+
+                <p
+                    class="text-2xl text-slate-700 font-medium mb-10 bg-white p-6 border border-slate-200 rounded-2xl shadow-sm text-center">
+                    El índice de refracción ($n$) no es un número estático absoluto para el material; <strong>depende de
+                        la frecuencia</strong> de la onda incidente.
+                </p>
+
+                <div class="grid grid-cols-2 gap-12 flex-1">
+                    <div
+                        class="glass-card p-10 flex flex-col border-t-[12px] border-red-500 shadow-xl bg-white h-full justify-between">
+                        <div>
+                            <p class="text-3xl font-extrabold text-slate-900 mb-4 flex items-center gap-3">Ondas de Baja
+                                Frecuencia (Rojo)</p>
+                            <p class="text-xl text-slate-600 font-medium mb-6 leading-relaxed">Las ondas con mayor
+                                longitud de onda ($\lambda$) interactúan menos con la estructura atómica del cristal.
+                                Encuentran menor "resistencia".</p>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-2xl border border-red-200 shadow-inner flex flex-col gap-3">
+                            <p class="text-red-800 font-bold text-xl">Consecuencias:</p>
+                            <ul class="list-disc pl-6 text-lg text-red-900 font-medium space-y-2">
+                                <li>Viajan más rápido dentro del medio.</li>
+                                <li>Experimentan un <strong>índice de refracción menor ($n$ bajo)</strong>.</li>
+                                <li>Se desvían <strong>menos</strong> respecto a la trayectoria original.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div
+                        class="glass-card p-10 flex flex-col border-t-[12px] border-purple-500 shadow-xl bg-white h-full justify-between">
+                        <div>
+                            <p class="text-3xl font-extrabold text-slate-900 mb-4 flex items-center gap-3">Ondas de Alta
+                                Frecuencia (Violeta)</p>
+                            <p class="text-xl text-slate-600 font-medium mb-6 leading-relaxed">Las ondas con menor
+                                longitud de onda ($\lambda$) interactúan fuertemente con los electrones del material,
+                                frenándose significativamente.</p>
+                        </div>
+                        <div
+                            class="bg-purple-50 p-6 rounded-2xl border border-purple-200 shadow-inner flex flex-col gap-3">
+                            <p class="text-purple-800 font-bold text-xl">Consecuencias:</p>
+                            <ul class="list-disc pl-6 text-lg text-purple-900 font-medium space-y-2">
+                                <li>Viajan más lento dentro del medio.</li>
+                                <li>Experimentan un <strong>índice de refracción mayor ($n$ alto)</strong>.</li>
+                                <li>Se desvían <strong>mucho más</strong> respecto a la normal.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide bg-white p-10 pb-32">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="focus" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">Formación del Color: Síntesis Aditiva</h2>
+                </div>
+
+                <div class="grid grid-cols-12 gap-10 flex-1 min-h-[500px] items-stretch">
+                    <div class="col-span-5 flex flex-col justify-center space-y-6">
+                        <div class="glass-card p-8 border-l-8 border-indigo-500 shadow-md bg-slate-50">
+                            <p class="text-2xl text-slate-800 font-bold mb-4">El Modelo RGB (Luz)</p>
+                            <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                                Nuestros ojos poseen fotorreceptores sensibles principalmente a tres colores:
+                                <strong>Rojo (Red), Verde (Green) y Azul (Blue)</strong>.
+                                <br><br>Sumando luces de estos tres colores primarios en diferentes intensidades,
+                                nuestro cerebro interpreta todo el espectro visible.
+                            </p>
+                        </div>
+
+                        <div class="space-y-3 font-mono text-lg font-bold text-slate-800">
+                            <div
+                                class="bg-yellow-100 p-4 border border-yellow-300 rounded-lg shadow-sm flex justify-between px-8">
+                                <span>Rojo + Verde</span> <span>$\to$ Amarillo</span>
+                            </div>
+                            <div
+                                class="bg-fuchsia-100 p-4 border border-fuchsia-300 rounded-lg shadow-sm flex justify-between px-8">
+                                <span>Rojo + Azul</span> <span>$\to$ Magenta</span>
+                            </div>
+                            <div
+                                class="bg-cyan-100 p-4 border border-cyan-300 rounded-lg shadow-sm flex justify-between px-8">
+                                <span>Verde + Azul</span> <span>$\to$ Cian</span>
+                            </div>
+                            <div
+                                class="bg-slate-100 p-4 border border-slate-400 rounded-lg shadow-sm flex justify-between px-8 text-xl">
+                                <span>R + G + B</span> <span>$\to$ Blanco</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-span-7 bg-black border-4 border-slate-700 p-8 rounded-3xl shadow-xl flex items-center justify-center relative w-full h-full">
+                        <svg viewBox="0 0 600 500" class="w-full h-full overflow-visible">
+                            <circle cx="300" cy="200" r="140" fill="#ff0000" style="mix-blend-mode: screen;"></circle>
+                            <circle cx="220" cy="320" r="140" fill="#00ff00" style="mix-blend-mode: screen;"></circle>
+                            <circle cx="380" cy="320" r="140" fill="#0000ff" style="mix-blend-mode: screen;"></circle>
+
+                            <text x="300" y="100" font-size="28" font-weight="bold" fill="white"
+                                text-anchor="middle">ROJO</text>
+                            <text x="120" y="420" font-size="28" font-weight="bold" fill="white"
+                                text-anchor="middle">VERDE</text>
+                            <text x="480" y="420" font-size="28" font-weight="bold" fill="white"
+                                text-anchor="middle">AZUL</text>
+
+                            <text x="300" y="270" font-size="22" font-weight="bold" fill="#0f172a"
+                                text-anchor="middle">BLANCO</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="slide p-10 bg-slate-50">
+                <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                    <i data-lucide="layers" class="w-14 h-14 text-indigo-800"></i>
+                    <h2 class="text-5xl font-bold text-slate-900">Filtros Ópticos y Absorción</h2>
+                </div>
+
+                <div class="grid grid-cols-12 gap-12 flex-1 items-stretch">
+                    <div class="col-span-5 flex flex-col justify-center space-y-6">
+                        <div class="glass-card p-8 border-l-8 border-rose-500 shadow-md bg-white">
+                            <p class="text-2xl text-slate-800 font-bold mb-4">La Síntesis Sustractiva</p>
+                            <p class="text-lg text-slate-700 leading-relaxed font-medium mb-4">
+                                Un filtro de color <strong>no tiñe</strong> la luz. Funciona como un sumidero
+                                energético: <strong>transmite</strong> únicamente las longitudes de onda de su propio
+                                color y <strong>absorbe</strong> (destruye lumínicamente, transformando en calor) las
+                                demás frecuencias.
+                            </p>
+                            <p class="text-lg text-slate-700 leading-relaxed font-medium">
+                                Al colocar filtros en serie, estamos aplicando un proceso de <em>resta continua</em> de
+                                fotones.
+                            </p>
+                        </div>
+
+                        <div class="relative w-full flex flex-col gap-4">
+                            <button onclick="
+                            this.classList.add('hidden'); 
+                            document.getElementById('svg-filtros').classList.add('visible');"
+                                class="px-6 py-5 bg-rose-700 text-white rounded-xl text-2xl font-bold hover:bg-rose-800 transition shadow-lg flex items-center justify-center gap-3 z-20 w-full">
+                                <i data-lucide="eye-off"></i> Simular Filtros en Serie
+                            </button>
+
+                            <div id="texto-filtros"
+                                class="fade-in bg-slate-900 p-6 rounded-2xl border border-slate-700 shadow-inner flex flex-col justify-center">
+                                <p class="text-white text-lg font-medium leading-relaxed">
+                                    <strong>Paso 1:</strong> La luz blanca (RGB) incide sobre el filtro rojo. Este
+                                    absorbe el Verde y el Azul. Solo logra cruzar el rayo Rojo.<br><br>
+                                    <strong class="text-blue-400">Paso 2:</strong> El rayo Rojo choca contra el filtro
+                                    Azul. El filtro Azul <em>espera</em> luz azul para transmitirla. Como solo recibe
+                                    rojo, lo absorbe por completo. <br>
+                                    <span class="text-slate-400 block mt-2 font-mono text-center">Resultado: Oscuridad
+                                        Absoluta.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-span-7 bg-slate-900 border-4 border-slate-700 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full">
+                        <g id="svg-filtros" class="fade-in opacity-0 w-full h-full">
+                            <svg viewBox="-20 0 750 350" class="w-full h-full overflow-visible">
+                                <text x="20" y="140" fill="white" font-weight="bold" font-size="20">Luz Blanca
+                                    (RGB)</text>
+                                <rect x="0" y="155" width="200" height="40" fill="#ffffff" />
+
+                                <rect x="200" y="40" width="30" height="270" fill="#ef4444" opacity="0.9" rx="5"
+                                    stroke="#7f1d1d" stroke-width="2" />
+                                <text x="175" y="20" fill="#fca5a5" font-weight="bold" font-size="18">Filtro Rojo</text>
+
+                                <path d="M 215 320 L 215 360" fill="none" stroke="#22c55e" stroke-width="3"
+                                    stroke-dasharray="4,2" marker-end="url(#arrGreen)" />
+                                <path d="M 215 320 L 215 360" fill="none" stroke="#3b82f6" stroke-width="3"
+                                    stroke-dasharray="4,2" transform="translate(10,0)" marker-end="url(#arrBlue)" />
+                                <text x="150" y="390" fill="#94a3b8" font-size="14" font-weight="bold">Absorbe V y
+                                    A</text>
+
+                                <rect x="230" y="155" width="220" height="40" fill="#ef4444" />
+                                <text x="270" y="140" fill="#fca5a5" font-weight="bold" font-size="20">Rayo Rojo</text>
+
+                                <rect x="450" y="40" width="30" height="270" fill="#3b82f6" opacity="0.9" rx="5"
+                                    stroke="#1e3a8a" stroke-width="2" />
+                                <text x="425" y="20" fill="#93c5fd" font-weight="bold" font-size="18">Filtro Azul</text>
+
+                                <path d="M 465 320 L 465 360" fill="none" stroke="#ef4444" stroke-width="3"
+                                    stroke-dasharray="4,2" marker-end="url(#arrRed)" />
+                                <text x="415" y="390" fill="#94a3b8" font-size="14" font-weight="bold">Absorbe el
+                                    Rojo</text>
+
+                                <text x="520" y="170" fill="#f8fafc" font-weight="extrabold"
+                                    font-size="26">Ausencia</text>
+                                <text x="520" y="205" fill="#f8fafc" font-weight="extrabold" font-size="26">de
+                                    Luz</text>
+
+                                <defs>
+                                    <marker id="arrGreen" markerWidth="4" markerHeight="4" refX="3" refY="2"
+                                        orient="auto">
+                                        <polygon points="0 0, 4 2, 0 4" fill="#22c55e" />
+                                    </marker>
+                                    <marker id="arrBlue" markerWidth="4" markerHeight="4" refX="3" refY="2"
+                                        orient="auto">
+                                        <polygon points="0 0, 4 2, 0 4" fill="#3b82f6" />
+                                    </marker>
+                                    <marker id="arrRed" markerWidth="4" markerHeight="4" refX="3" refY="2"
+                                        orient="auto">
+                                        <polygon points="0 0, 4 2, 0 4" fill="#ef4444" />
+                                    </marker>
+                                </defs>
+                            </svg>
+                        </g>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="slide bg-slate-50 p-10 pb-32">
+                <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-300 pb-4 shrink-0">
+                    <i data-lucide="brain-circuit" class="w-16 h-16 text-indigo-800"></i>
+                    <h2 class="text-5xl font-extrabold text-slate-900">MEGABATERÍA DE EJERCICIOS (REPASO)</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 overflow-y-auto pr-4 pb-10">
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-emerald-400 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">1. Define con tus propias palabras qué es una
+                            onda mecánica y por qué decimos que transporta energía, pero no materia ni partículas en su
+                            avance.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-emerald-400 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">2. ¿Por qué podemos ver la intensa brillantez
+                            de las estrellas a través del vacío del espacio sideral, pero somos incapaces de escuchar
+                            sus titánicas explosiones?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-emerald-400 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">3. Nombra los tres colores primarios de la
+                            luz en el modelo perceptivo humano RGB (Síntesis Aditiva) y qué color resultante lógico se
+                            obtiene al mezclarlos todos en su máxima intensidad.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-emerald-400 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">4. Si un objeto físico absorbe de manera
+                            absoluta todos los colores del espectro visible electromagnético y no refleja ninguno a sus
+                            alrededores, ¿de qué color lo percibe tu ojo y tu cerebro?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-teal-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">5. ¿Cuál es la diferencia axiomática y
+                            conceptual entre el Período ($T$) temporal de una onda y su Frecuencia ($f$)? Además,
+                            escribe la relación matemática inversa que los conecta.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-teal-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">6. Clasifica y ordena de manera creciente,
+                            desde la MENOR hasta la MAYOR frecuencia inherente en sus oscilaciones, a las siguientes
+                            radiaciones: Rayos X, Microondas, Luz Violeta, Infrarrojo, Ondas de Radio, Rayos Gamma.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-teal-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">7. Supón que estás observando una ola marina
+                            en una costa. Si la perturbación rítmica logra completar 4 ciclos enteros en un margen de 2
+                            segundos. Calcula analíticamente su frecuencia ($f$) en Hertz y su período ($T$) en
+                            segundos.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-teal-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">8. Teniendo muy en cuenta la estructural y
+                            revolucionaria Ecuación de Planck ($E = h \cdot f$), explica lógicamente por qué un diminuto
+                            fotón de luz violeta porta sustancialmente más energía de choque cuántico que un fotón
+                            equivalente de luz roja.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-blue-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">9. Una moderna y potente antena transmisora
+                            de una estación FM satelital emite señales radiales con una frecuencia rotunda de $100 \cdot
+                            10^6\text{ Hz}$. Si sabemos que toda onda de espectro de radio viaja por el aire atmosférico
+                            local a la velocidad de la luz ($3 \cdot 10^8\text{ m/s}$), cálcula la longitud de onda
+                            física explícita ($\lambda$) entre cresta y cresta del flujo ondulatorio.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-blue-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">10. Expón argumentativa y ordenadamente paso
+                            a paso, bajo un riguroso enfoque de la mecánica ondulatoria moderna, el por qué exacto un
+                            bloque denso de cuarzo o prisma cristalino logra destramar un haz monolítico de luz blanca
+                            dispersándolo en la icónica banda multicolor de su arcoíris implícito (Dispersión Cromática
+                            del Espectro Visible).</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-blue-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">11. Imagina que tomas una carta puramente
+                            pigmentada en tonalidad roja estricta de un mazo, y a oscuras decides encender e iluminarla
+                            cenitalmente con un velador blanco universal. Si interpones y colocas firmemente un sólido
+                            panel de acrílico funcionando como filtro óptico verde transparente entre tus pupilas
+                            curiosas y la mencionada misiva, ¿de qué color verás inevitablemente la superficie celulosa?
+                            Justifica sin omitir la teoría sustractiva interviniente y la absorción.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-blue-500 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">12. En un laboratorio de fotónica espacial
+                            hiperpreciso de última tecnología vanguardista, un láser empaqueta y emite pulsos de luz
+                            cuya longitud de onda ha sido meticulosamente calibrada a $600\text{ nm}$ ($6 \cdot
+                            10^{-7}\text{ m}$) en las frías y despobladas condiciones del vacío de control. A sabiendas
+                            universales que tu constante de propagación asciende a la mágica cifra de $v = 3 \cdot
+                            10^8\text{ m/s}$, ¿cuál es, expresada en su magnánima notación científica respectiva, su
+                            frecuencia hertziana ($f$) de oscilación por segundo del vector magnético?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-indigo-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">13. Un exótico e intenso pintor
+                            neoexpresionista utiliza por fanatismo estricto un pigmento de base amarilla totalmente
+                            insaturada e ideal (que, como es sabido molecularmente, absorbe letalmente la radiación azul
+                            pero posee el beneplácito reflexivo para las incidencias tanto rojas como verdes
+                            concurrentemente). Tras aislar fehacientemente y resguardar su incalculable obra pictórica
+                            al interior de un oscuro hermético cuarto fuerte perimetral pertrechado a contrarreloj y
+                            carente de toda rendija de fuga posible o lumbrera ambiental natural residual en todos y
+                            cada uno de todos sus densos flancos colindantes de resguardo sinfónico de arte... y de
+                            improviso encendiese para la iluminación circundante general, con la soberbia decisión
+                            presuntuosa única y restrictiva con su mano pálida derecha un interruptor en serie general
+                            ligado netamente a un foco halógeno cuya emanación se confina al ancho de banda puramente
+                            fotónico de tonalidad azul indiscutible... ¿de qué color verá impajaritablemente el
+                            frustrado señor los trazos curvos y contundentes de dicha zona de color insular amarilla al
+                            presenciar atónito bajo esas lúgubres condiciones tal magro destello de incandescencia
+                            ambiental que rodea y que acoge de brazos luminosos su invaluable preciosa y atesorada
+                            inversión patrimonial de la paleta sustractiva estricta pintada?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-indigo-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">14. En un minucioso ensayo experimental
+                            óptico, los instrumentos milimétricos calibrados captan asombrosamente la innegable e
+                            inusual y empírica realidad experimental fehaciente comprobatoria de que un estrecho y bien
+                            configurado rayo láser de acentuada emanación espectral coloración roja intensa de onda
+                            longitudinal logra atravesar, cruzar por todo su robusto seno cristalino un pesado cuerpo
+                            denso traslúcido masivo vítreo mucho más rápida y velozmente en magnitud tangencial
+                            vectorial que la intromisión propagativa comparable equivalente simultánea y contemporánea
+                            de un láser de aguda y contundente vibrante oscilación óptica polarización violeta
+                            electromagnética incidente con igual ímpetu de impacto tangencial a su contraparte bermellón
+                            superficial al momento mismo de su adentrantamiento inicial colisional frontal e
+                            interactuante en el estrato atómico dieléctrico del panel polaroid acrílico. Argumenta
+                            férreamente este inaudito fenómeno aparentemente contraintuitivo pero certero basándote
+                            exclusivamente y sin digresiones en la solidez del paradigma paradigmático conceptual del
+                            'Índice de Refracción Dinámico' que gobierna la cinemática intra-reticular e interna atómica
+                            estructural reaccionaria colosal local material dependiente estrecha, causal,
+                            irrefutablemente e indisolublemente vinculada paramétricamente atada y dependiente en
+                            proporcionalidad al insumo frecuencial radiante transversal electromagnético oscilante
+                            acoplado transiente subatómico.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-indigo-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">15. Elabora y expón un escrito estructurado
+                            en formato de síntesis argumentativa y dialéctica científica en donde clarifiques
+                            conceptualmente punto a punto con elocuente rigor e histriónica elocución descriptiva, los
+                            pormenores genéricos en los cuales el trascendental, histórico, icónico e irreverente hito
+                            experimental comprobatorio de la insigne e imperecedera célebre y aclamada 'Doble Rendija'
+                            en honor invaluable obra maestra de la historia física ideada, ensamblada e implementada
+                            visionariamente de manera contundente y empíricamente magistral y reveladora y
+                            disruptivamente subversiva ideada genialmente por el insustituible genio multidisciplinario
+                            poli-matemático Thomas Young en la incipiente pubertad inicial epocal fundacional
+                            investigativa científica teórica lumínica que vio nacer valientemente el temprano comienzo
+                            histórico primigenio cronológicamente hablando del esplendoroso brillante, luminoso,
+                            reluciente y preclaro amanecer secular intelectual y metodológico riguroso analítico
+                            inquebrantable empírico decimonónico característico idiosincrático del albor, florecer
+                            primaveral, germinación seminal epistemológica fecunda del imponente siglo XIX; evidenció
+                            inexcusable e irrefutablemente de una forma demoledoramente inapelable, definitiva, tajante
+                            y sumamente indiscutible y rotunda que desarticuló con su arrolladora evidencia palpable
+                            contundente incuestionable empírica de forma rotunda avasalladora y fatal el consolidado
+                            obsoleto pero respetado inamovible mecanicista vetusto erróneo paradigma dominante
+                            fuertemente dogmático incuestionable inercial inamovible inquebrantable establecido
+                            reverencial, omnipotente imponente pétreo newtoniano y la arraigada creencia clásica
+                            imperante e incombustible imperecederamente creída durante decenios seculares por la
+                            ortodoxa rigidez inflexible institucional monolítica científica general; logrando validar
+                            certera, fidedigna comprobada rotunda victoriosa abrumadora incuestionable flagrante
+                            explícita magistral revolucionaria categórica arrolladoramente su hipótesis disruptiva sobre
+                            la inminente e ineludible validez inobjetable veraz concluyente insoslayable comportamental
+                            comportamental inherente y puramente y evidentemente puramente puramente radical
+                            comportamiento transversal e inequívocamente ontológico corpuscular puramente meramente
+                            únicamente e incontrovertidamente por siempre puramente vibracional transitorio etéreo y
+                            difusamente elástico oscilatorio cíclico armónicamente propagativo inherentemente
+                            transversal ondulatorio de la luz electromagnética en todo su glorioso ser existencial
+                            interespacial radiante cosmológico expansivo dinámico universal local transversal
+                            tridimensional.</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-indigo-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">16. El monumental, aclamado e innegablemente
+                            histórico galardonado descubrimiento fundamental empírico innegablemente revolucionario
+                            icónico galardonado con el codiciado prestigioso mérito laureado premio fundacional nobel
+                            paradigmático científico cuántico sueco contemporáneo y universal 'Efecto Fotoeléctrico'
+                            dictaminó la implosiva disruptiva irrefutable empírica certeza demostrativa experimental
+                            tajante insoslayable indiscutible contundente irrefutable avasalladora fidedigna
+                            incuestionable y veraz constatación factual comprobable irrefutable asombrosa de manera
+                            asombrosa rotunda verídicamente constatando atónitamente en un escenario meticulosamente
+                            estandarizado aislado y meticuloso empírico repetible procedimental innegablemente
+                            rigurosamente irrefutable comprobable experimental controlado rigurosamente aislado en donde
+                            repetidamente de manera fehaciente invariable comprobatoria y metódicamente inmutable
+                            evidenció con total, cruda atónita certera desnuda franqueza arrolladora factual que el
+                            hecho causal de someter e iluminar una delgada placa sensible pulida metálica dispuesta
+                            frente al incidir con una prolongada exposición continua temporal con abrumadora luz roja
+                            ultra-brillante ultra-intensa poseedora incomprensiblemente paradójicamente y de manera
+                            aparentemente ilógica en principio asombrosamente portadora incuestionable evidente e
+                            inequívocamente y notoriamente poseedora dueña ostentadora majestuosa en demasía ostentosa
+                            portadora dueña exultante de una gigantesca inmensa masiva incomprensible avasalladora
+                            superlativa e ilógica monumental y colosal (gran Amplitud electromagnética armónica de
+                            cresta energética del pico transversal del campo escalar de flujo direccional continuo local
+                            interviniente en la densidad perenne del haz monocromático y uniforme) de forma perversa
+                            contraintuitiva pero veraz NO logró infructuosamente paradójicamente e infructuosamente sin
+                            poder y con su nula rotunda certera e imposibilitada frustrada acción infructuosamente
+                            incidir ni poseer o alcanzar el nivel umbral necesario ineludible en energía cinética de
+                            escape rotundo absoluto e inmediato mínimo umbral requiriente no deslodar e inamovible no
+                            arranca de ninguna y ninguna forma electrones de un asediado estático inamovible impasible
+                            impávido e irreductible metal pasivo, pero por contrapartida paradójica un insignificante
+                            sutil destello minúsculo fugaz apagado humilde microscópico tímido y extremadamente sutil
+                            destello efímero casi fantasmal minúsculo tenue y apenas perceptible transitorio fugaz veloz
+                            instantáneo tenue de imperceptible radiación lumínica alta oscilación de luz ultravioleta
+                            minúscula marginalmente modesta energéticamente en abundancia poblacional de fotones pero
+                            portadora y dueña intrínseca de altísima SÍ lo hace inmediatamente ipso facto provocando la
+                            emisión termoiónica y fotoemisión balística en un abrir y cerrar microscópico cuántico de
+                            microsegundos asombrosamente arranca y emancipa desprendiendo de su prisión estructural
+                            inmediata atómica a los electrones vinculados de dicho átomo metálico y superficiales libres
+                            de banda superficial orbital liberando desatando generando una imperceptible minúscula
+                            corriente eléctrica amperaje de forma incontestable milagrosa inmediata fidedigna. ¿Por qué
+                            razón específica atómica física matemática concreta fundamental y profundamente ontológica,
+                            el clásico venerado establecido obsoleto caduco modelo puramente mecanicista y armónicamente
+                            uniforme clásico macroscópico continuo y macro y caduco del análisis general vibratorio
+                            ondulatorio elástico transversal en el medio continuo macro de comprensión física ortodoxa
+                            antigua determinista en forma dogmática antigua puramente newtoniana y de Huygens y demás
+                            herencia puramente y estrictamente de ondas acústicas transversales del oscilador armónico
+                            convencional modelado puro y meramente en parámetros elásticos inerciales macro
+                            innegablemente fracasa estrepitosa miserable abrupta vergonzosa llanamente ridícula
+                            catastróficamente ruidosa escandalosa estrepitosa y miserablemente al fracasar de intentar
+                            siquiera atisbar acercarse remotamente esbozar tímidamente un indicio leve de coherencia de
+                            explicar lógicamente con un halo ínfimo de coherencia predictiva empírica sensata
+                            comprobable deductiva matemática o lógica esto y de la consecuente forzada e ineludible
+                            inminente imperiosa impostergable urgente imposición forzosa obligatoria radical conceptual
+                            abstracta subversiva genial histórica de tener por fin forzadamente y por necesidad
+                            impostergable que cuantizar discretamente de forma obligatoria en escalones o cuantos
+                            indivisibles enteros discretos a la energía de intercambio del campo escalar y del vacío o
+                            flujo corpuscular de fotones por Planck, para luego recién así lograr con aplaudida elogiada
+                            elegancia certera genial matemática impecable dar por fin un sublime majestuoso coherente
+                            empíricamente y sólidamente veraz preciso premonitorio certero aplaudido resolutivo
+                            contundente asombroso explicativo sustento contundente magistral entendimiento analítico
+                            deductivo impecable fidedigno preciso analítico veraz contundente magistral del hecho
+                            irrefutable descrito con perplejidad e incomprensión inicialmente previamente
+                            incuestionablemente certero empírico e incomprensible que Einstein dilucidó de manera tan
+                            elegantemente pasmosa e insoslayable en un documento impecable de genial y revolucionaria
+                            elegancia argumentativa física galardonada genialmente de fama mundial universal y
+                            reverencial indiscutible y genial brillante pasmosamente e indiscutible y laureado el texto
+                            magistral de fama atemporal inmortalmente histórico que Einstein legó argumentó detallando y
+                            de fama intemporal e inolvidable a la posteridad para siempre perenne eterno del año 1905
+                            iluminador?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-rose-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">17. SÍNTESIS: Una nave espacial averiada en
+                            lo más profundo de la lejanía emite en desesperación un láser infrarrojo y un láser
+                            ultravioleta simultáneamente como señal SOS de auxilio hacia una estación madre orbitando
+                            silenciosamente en el vacío absoluto. ¿Cuál rayo luminoso estricto llega primeramente a la
+                            estática remota y aislada alerta base militar espacial receptora ubicada en el éter de la
+                            negrura sideral cósmica remota de resguardo central base estelar ubicada en órbita a mil y
+                            mil millones de años luz de la estación y cuál de los dos de los rayos transporta
+                            individual, solitaria e inherentemente y per cápita corpuscular de mayor manera poseedora de
+                            y de una mucha mayor energía cinética de oscilación interna y choque empuje repulsivo
+                            radiación transitoria e instantáneo de colisión por cada minúscula e ínfima entidad discreta
+                            portadora transitoria mensajera vibracional e instantánea fotónica del campo viajante o
+                            fotón de su asestado y fulminante vector puntual?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-rose-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">18. SÍNTESIS: Un impoluto limpio depurado
+                            perfecto y acrílico impecable cristal e higienizado perfecto depurado e impoluto y perfecto
+                            filtro sustractivo innegable y perfectamente estandarizado denominado o bautizado
+                            convencionalmente experimental y protocolarmente designado como filtro puramente denominado
+                            en forma estandarizada y estricta bajo categorización 'A' de laboratorio permite autoriza
+                            posibilita admite cede autoriza únicamente bajo toda óptica circunstancia exclusivamente de
+                            exclusión transversal el expedito flujo y transitorio continuo ininterrumpido sin desgaste
+                            paso selectivo puro íntegro y cristalino del transparente y libre sin mermas innegable libre
+                            y absoluto paso o pasaje transversal transparente irrestricto direccional sin obstrucción de
+                            su grosor dieléctrico interno del cruce del paso direccional libre expedito en toda pureza
+                            del pasaje transparente libre paso del irrestricto pase y transmisión lumínica transitoria
+                            de forma exclusiva e irreductible y estricta de puro exclusivo estricto e insustituible
+                            ineludible irrefutable comprobable irreductible puro único e irreductible pase y cruce
+                            longitudinal de luz verde translúcida y de la irrefutablemente idéntica en comportamiento
+                            permisividad pura innegablemente incuestionable incuestionablemente transitoria del de
+                            manera inequívocamente certera del traspaso y transmisión longitudinal fotónica onda y el
+                            haz portador constitutivo integral estricto de la transmisión limpia cristalina e inocua
+                            portadora y lumínica rayo luz de color roja en conjunto con el paso del espectro puramente
+                            verduzco puro verde de espectro estrecho y el componente de onda rojo o luz verde y onda luz
+                            portadora y el haz radiante electromagnético puro rojizo polarizada rojo o del pasaje
+                            pasional transversal verde o y rojo. Y a su contraparte un análogo componente
+                            experimentalmente testado gemelo y análogo testado denominado experimental y categórico de
+                            forma de la idéntica manera y rigor y formal puramente y rotundo testado componente filtro
+                            denominado en formato técnico de nomenclatura estandarizada 'B' transmite de forma
+                            incuestionable rigurosamente análoga idéntica restrictivamente y de idénticamente fidedigna
+                            y certera de rigurosamente idéntica pura fidedigna asombrosa certera fidedigna análoga
+                            puramente fidedigna restrictivamente rotundo estricto análogo puro análogo incuestionable
+                            transmite y de y deja y transmite el pasaje de estricto del luz verde verde radiante y de
+                            manera y transitoria radiante luz verde del y luz y azul y azul y de onda verde en en
+                            transversal luz y de azul azul verde luz o y luz azul irrefutable verde puramente verde
+                            verde luz y verde azul azul de componente puramente exclusivo del y transmisión
+                            innegablemente o azul azul azul y azul y azul radiante azul componente lumínica luminosa
+                            azul verde azul o azul. Si los adhieres en un sándwich acrílico superponiéndolos de de forma
+                            inminente perentoria directa y y compacta apretada incuestionablemente pegada en y serie e
+                            iluminas todo con y adosada serie superpuesta y estricta estrecha indisoluble en una forma
+                            férreamente compacta en sándwich en una serie óptica e iluminas de forma transversal este
+                            sistema compuesto complejo de capas con un asombrosamente inclemente encandilante potente
+                            arrollador y deslumbrante foco y generador foco lumínico radiante potente y foco estrepitoso
+                            y potente emisor radiante del puro y foco fulgurante en onda foco luz foco focal foco e foco
+                            iluminativo y onda foco de foco y de potente sol radiante amarillo un foco ardiente amarillo
+                            puramente sol radiante puro amarillo y luminoso espectro y foco ardiente sol y potente
+                            ardiente amarillo y un emisor luminoso puro un foco luminoso emisor de emisor amarillo puro
+                            e innegable brillante irradiante o foco componente foco lumínico e luminoso puro luminoso
+                            onda luminoso amarillo puro amarillo encubridor amarillo emisor resplandeciente onda
+                            amarilla intensa foco luminoso fidedigno onda foco amarillo vibrante e de radiante foco foco
+                            de sol ardiente e rayo o y de de onda luminoso sol ardiente e amarilla deslumbrante y
+                            luminoso luminoso o onda del verde o de amarillo (roja + luz verde fotónica aditivamente
+                            hablando generada o sintetizada en o de amarillo que compone o rojo del amarilla verde rojo
+                            luminosa rojo de roja verde + el verde pura de verde verde luminosa verde amarilla o rojo o
+                            verde luminosa), onda de amarillo intensa que amarilla luminosa onda amarilla luminosa que
+                            amarilla en foco luminosa foco de onda luminosa luminosa amarilla luminosa foco que luminosa
+                            o luminosa generador, ¿qué precisas exactas indiscutibles determinables e inequívocas
+                            fidedignas e incuestionables innegables onda radiaciones electromagnéticas qué precisas qué
+                            y determinables indiscutible onda fotónicas fidedigna ondas luz fotónica precisa onda
+                            radiantes fidedignamente ondas o radiantes qué qué onda innegablemente ondas espectrales
+                            ondas onda fotónica u fidedigna de puras ondas luminosas o luz radiantes indiscutibles
+                            luminosa luz luz u y precisas onda de ondas del y u polarizadas de ondas o ondas ondas
+                            logran logran atravesar lograr sobrepasan exitosamente atravesar eluden sortean burlan
+                            traspasan la logran superan finalmente el y cruzan filtran y logran cruzan permean atravesar
+                            sortean de cruzan por ambos sobreponer cruzan atravesar exitosamente íntegramente
+                            transversal de logran atravesar victoriosamente cruzar exitosamente por ambos opresivos
+                            densísimos de ambos infranqueables de opresivos de filtros sustractivo ambos en y el
+                            infranqueable cruzan de sustractivo ambos muro logran logran y ambas por filtros sustractivo
+                            ambas opresivos filtros hasta superarla sustractivo barreras y de ambas el opresivos lograr
+                            de sustractivo filtros ambas e de y ambos o y e y sustractivo de infranqueables muros e
+                            infranqueables y de de sustractivo densísimos logran hasta del de ambos filtros de ambas
+                            impactar opresivos hasta cruzar ambos atravesar exitosamente hasta llegar arribar colisionar
+                            descansar iluminar el rebotar en rebotar en la iluminar el iluminar de el plano plano
+                            iluminar arribar tocar lograr lamer el impactar de de el chocar con llegar a logran en el el
+                            sustrato descanso o tocar hasta bañar llegar lamer y colisionar impactar el iluminar plano
+                            descansar arribar tocar en descanso llegar focal hasta el o en lamer plano lograr descansar
+                            focal en colisionar el o plano focal?</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-rose-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">19. SÍNTESIS: Un fotón viajando por el vacío
+                            impacta en un espeso panel de cristal. Su velocidad instantáneamente disminuye a la mitad
+                            ($v = 1.5 \cdot 10^8\text{ m/s}$). Argumenta física y matemáticamente qué ocurre con su
+                            frecuencia intrínseca ($f$) y con su nueva longitud de onda geométrica ($\lambda$).</p>
+                    </div>
+
+                    <div
+                        class="bg-white p-6 rounded-2xl border-l-8 border-rose-600 shadow-sm flex items-start gap-4 h-max">
+                        <p class="text-slate-700 text-xl font-medium mt-1">20. SÍNTESIS: Conecta el concepto vital de la
+                            'Paradoja del Vacío' con la arquitectura de una 'Onda Electromagnética Transversal'. Diseña
+                            una explicación argumentando cómo la variación mutuamente auto-inducida de los campos
+                            ortogonales le permite subsistir y viajar billones de kilómetros sin requerir un éter o
+                            membrana material.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div
+            class="h-20 w-full shrink-0 flex justify-between items-center px-10 bg-white border-t-2 border-slate-200 z-50 fixed bottom-0 left-0">
+            <div class="text-slate-500 font-extrabold text-xl tracking-widest uppercase">
+                Repaso Control F3 • Prof. Luis Quezada
+            </div>
+            <div class="flex gap-4">
+                <button onclick="changeSlide(-1)"
+                    class="p-4 rounded-full bg-slate-100 border border-slate-300 shadow-sm hover:bg-slate-200 transition-all cursor-pointer pointer-events-auto">
+                    <i data-lucide="chevron-left" class="w-8 h-8 text-slate-800"></i>
+                </button>
+                <button onclick="changeSlide(1)"
+                    class="p-4 rounded-full bg-indigo-800 text-white shadow-md hover:bg-indigo-900 transition-all cursor-pointer pointer-events-auto">
+                    <i data-lucide="chevron-right" class="w-8 h-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            lucide.createIcons();
+
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+
+            function updateSlide() {
+                slides.forEach((s, i) => {
+                    s.classList.remove('active');
+                    if (i === currentSlide) {
+                        s.classList.add('active');
+                        s.scrollTop = 0;
+                    }
+                });
+            }
+
+            function changeSlide(d) {
+                const n = currentSlide + d;
+                if (n >= 0 && n < slides.length) {
+                    currentSlide = n;
+                    updateSlide();
+                }
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (['ArrowRight'].includes(e.key)) changeSlide(1);
+                if (['ArrowLeft'].includes(e.key)) changeSlide(-1);
+            });
+
+            function revelarElemento(id) {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.remove('hidden');
+                    if (!el.classList.contains('flex') && !el.classList.contains('block')) {
+                        el.classList.add('flex');
+                    }
+                    if (window.MathJax) {
+                        MathJax.typesetPromise([el]).catch((err) => console.log(err.message));
+                    }
+                }
+            }
+
+            function revelarYOcultar(idMostrar, idOcultar) {
+                const elOcultar = document.getElementById(idOcultar);
+                const elMostrar = document.getElementById(idMostrar);
+
+                if (elOcultar) {
+                    elOcultar.style.display = 'none';
+                }
+                if (elMostrar) {
+                    elMostrar.classList.remove('hidden');
+                    if (!elMostrar.classList.contains('flex')) {
+                        elMostrar.classList.add('flex');
+                    }
+                    if (window.MathJax) {
+                        MathJax.typesetPromise([elMostrar]).catch((err) => console.log(err.message));
+                    }
+                }
+            }
+
+            // Función específica para el Ticket de Salida
+            function revelarTicket() {
+                document.getElementById('btn-ticket').style.display = 'none';
+
+                const respuesta = document.getElementById('respuesta-final');
+                respuesta.classList.remove('hidden');
+                respuesta.classList.add('flex');
+
+                // Resaltar la alternativa correcta dinámicamente
+                const altD = document.getElementById('alt-d');
+                altD.classList.remove('border-slate-200');
+                altD.classList.add('border-l-8', 'border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+
+                if (window.MathJax) {
+                    MathJax.typesetPromise([respuesta]).catch((err) => console.log(err.message));
+                }
+            }
+
+            /* =========================================================
+            MOTOR DE ANIMACIÓN SVG MATEMÁTICO AVANZADO
+            Vectores fijos oscilando transversalmente (Sin rotaciones CSS)
+            =========================================================
+            */
+            const svg = document.getElementById('wave-svg');
+            const envE = document.getElementById('envE');
+            const envB = document.getElementById('envB');
+
+            const numVectors = 45;
+            const spacing = 800 / numVectors;
+            const vectorsE = [];
+            const vectorsB = [];
+
+            // Inyectar vectores
+            for (let i = 0; i <= numVectors; i++) {
+                let x = i * spacing;
+
+                let le = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                le.setAttribute('class', 'vector-e');
+                le.setAttribute('x1', x); le.setAttribute('y1', 200);
+                svg.appendChild(le);
+                vectorsE.push({ el: le, x: x });
+
+                let lb = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                lb.setAttribute('class', 'vector-b');
+                lb.setAttribute('x1', x); lb.setAttribute('y1', 200);
+                svg.appendChild(lb);
+                vectorsB.push({ el: lb, x: x });
+            }
+
+            let time = 0;
+
+            function animateWave() {
+                time += 0.04;
+                let pathE = `M 0 200 `;
+                let pathB = `M 0 200 `;
+
+                for (let i = 0; i <= numVectors; i++) {
+                    let x = vectorsE[i].x;
+                    let phase = (x * 0.015) - time;
+                    let val = Math.sin(phase);
+
+                    // Campo Eléctrico (Vertical Exacta)
+                    let ye = 200 - (val * 110);
+                    vectorsE[i].el.setAttribute('x2', x);
+                    vectorsE[i].el.setAttribute('y2', ye);
+                    pathE += `L ${x} ${ye} `;
+
+                    // Campo Magnético (Proyección Isométrica 45 grados)
+                    let zb = val * 70;
+                    let bx = x - zb;
+                    let by = 200 + zb;
+                    vectorsB[i].el.setAttribute('x2', bx);
+                    vectorsB[i].el.setAttribute('y2', by);
+                    pathB += `L ${bx} ${by} `;
+                }
+
+                envE.setAttribute('d', pathE);
+                envB.setAttribute('d', pathB);
+
+                requestAnimationFrame(animateWave);
+            }
+
+            animateWave();
+        </script>
+    </body>
+
+    </html>
+
+</body>
+
+</html>
