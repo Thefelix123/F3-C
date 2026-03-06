@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>C3 F3!!!</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óptica: Dispersión y Color - F3</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            startup: { typeset: true }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+
+        #main-container {
+            width: 100vw;
+            height: calc(100vh - 6rem);
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.4s ease-out;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 2rem;
+        }
+
+        .slide.active {
+            display: flex;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            border-radius: 1.5rem;
+        }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar { width: 14px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb { background: #818cf8; border-radius: 8px; border: 3px solid #f1f5f9; }
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+        .scrollable-content::-webkit-scrollbar { width: 10px; }
+
+        /* Animations & Utilities */
+        .fade-in { opacity: 0; transition: opacity 0.6s ease-in-out; pointer-events: none; }
+        .visible { opacity: 1 !important; pointer-events: auto !important; }
+        .draw-path { stroke-dasharray: 2000; stroke-dashoffset: 2000; transition: stroke-dashoffset 1.5s ease-in-out; }
+        .drawn { stroke-dashoffset: 0 !important; }
+        
+        .shadow-text {
+            text-shadow: 4px 4px 0px #fff, -4px -4px 0px #fff, 4px -4px 0px #fff, -4px 4px 0px #fff, 0px 4px 0px #fff, 0px -4px 0px #fff, 4px 0px 0px #fff, -4px 0px 0px #fff;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none">
+
+    <div class="h-4 w-full bg-indigo-800 shrink-0 z-50 relative"></div>
+
+    <div id="main-container">
+
+        <div class="slide active p-10 bg-slate-50">
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-10 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-[0.03] z-0 flex items-center justify-center pointer-events-none">
+                    <i data-lucide="aperture" class="w-[800px] h-[800px] text-indigo-900"></i>
+                </div>
+                <div class="relative w-40 h-40 flex items-center justify-center z-10">
+                    <i data-lucide="palette" class="w-full h-full text-indigo-800 opacity-90 absolute"></i>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight z-10">
+                    Dispersión y Color
+                </h1>
+                <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center z-10">
+                    El Espectro Visible y Filtros Ópticos
+                </p>
+                <div class="mt-16 p-8 glass-card border-l-8 border-indigo-800 text-left w-full max-w-5xl flex justify-between items-end z-10 shadow-lg">
+                    <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    <p class="text-3xl font-bold text-indigo-800 uppercase tracking-wider">SEK CHILE • F3</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="sun" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">El Prisma de Newton</h2>
+            </div>
+            
+            <div class="grid grid-cols-12 gap-10 flex-1 min-h-[500px] items-stretch">
+                <div class="col-span-5 flex flex-col space-y-6 justify-center">
+                    <div class="glass-card p-8 flex flex-col gap-4 border-l-8 border-indigo-500 shadow-md">
+                        <p class="text-2xl text-slate-800 font-extrabold flex items-center gap-3">
+                            <i data-lucide="waves" class="text-indigo-600 w-8 h-8"></i> La Naturaleza de la Luz Blanca
+                        </p>
+                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                            La luz blanca no es un color puro, sino la <strong>superposición aditiva</strong> de todas las ondas electromagnéticas que componen el espectro visible.
+                        </p>
+                    </div>
+
+                    <div class="w-full flex flex-col space-y-4">
+                        <button onclick="
+                            this.classList.add('hidden'); 
+                            document.getElementById('rayo-blanco').classList.add('drawn');
+                            setTimeout(() => { document.getElementById('rayos-color').classList.add('visible'); }, 800);
+                            setTimeout(() => { document.getElementById('texto-dispersion').classList.add('visible'); }, 1500);"
+                            class="px-6 py-5 bg-indigo-800 text-white rounded-xl text-2xl font-bold hover:bg-indigo-900 transition-all shadow-lg flex items-center justify-center gap-3 w-full z-20">
+                            <i data-lucide="play-circle"></i> Incidir Haz de Luz Blanca
+                        </button>
+
+                        <div id="texto-dispersion" class="fade-in bg-slate-50 p-6 rounded-xl border-2 border-slate-200 text-lg font-medium text-slate-800 shadow-sm block w-full">
+                            Al entrar al cristal, la onda se refracta. Sin embargo, <strong>cada color se desvía en un ángulo distinto</strong>, separando el haz original en un abanico cromático. A esto le llamamos <span class="text-indigo-700 font-bold">Dispersión Cromática</span>.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-span-7 bg-slate-900 border-4 border-slate-700 p-6 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full">
+                    <svg viewBox="-50 0 750 400" class="w-full h-full overflow-visible">
+                        <polygon points="250,50 100,350 400,350" fill="rgba(255,255,255,0.05)" stroke="#64748b" stroke-width="4" stroke-linejoin="round"/>
+                        
+                        <path id="rayo-blanco" d="M -50 250 L 165 250" fill="none" stroke="#ffffff" stroke-width="8" class="draw-path" style="stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset 1s linear;" />
+                        
+                        <g id="rayos-color" class="fade-in opacity-0">
+                            <polygon points="165,250 315,220 285,280" fill="url(#rainbowGrad)" opacity="0.8"/>
+                            
+                            <path d="M 315 220 L 500 150" fill="none" stroke="#ef4444" stroke-width="6"/>
+                            <text x="510" y="155" font-size="22" font-weight="bold" fill="#fca5a5" font-family="monospace">Rojo (λ mayor)</text>
+
+                            <path d="M 305 240 L 500 190" fill="none" stroke="#f59e0b" stroke-width="4"/>
+                            <path d="M 295 260 L 500 230" fill="none" stroke="#22c55e" stroke-width="4"/>
+                            
+                            <path d="M 285 280 L 500 320" fill="none" stroke="#a855f7" stroke-width="6"/>
+                            <text x="510" y="330" font-size="22" font-weight="bold" fill="#d8b4fe" font-family="monospace">Violeta (λ menor)</text>
+                        </g>
+
+                        <defs>
+                            <linearGradient id="rainbowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ef4444" />
+                                <stop offset="50%" stop-color="#22c55e" />
+                                <stop offset="100%" stop-color="#a855f7" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide p-10 bg-slate-50">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="bar-chart" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Índice de Refracción Dinámico</h2>
+            </div>
+            
+            <p class="text-2xl text-slate-700 font-medium mb-10 bg-white p-6 border border-slate-200 rounded-2xl shadow-sm text-center">
+                El índice de refracción ($n$) no es un número estático absoluto para el material; <strong>depende de la frecuencia</strong> de la onda incidente.
+            </p>
+
+            <div class="grid grid-cols-2 gap-12 flex-1">
+                <div class="glass-card p-10 flex flex-col border-t-[12px] border-red-500 shadow-xl bg-white h-full justify-between">
+                    <div>
+                        <p class="text-3xl font-extrabold text-slate-900 mb-4 flex items-center gap-3">Ondas de Baja Frecuencia (Rojo)</p>
+                        <p class="text-xl text-slate-600 font-medium mb-6 leading-relaxed">Las ondas con mayor longitud de onda ($\lambda$) interactúan menos con la estructura atómica del cristal. Encuentran menor "resistencia".</p>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-200 shadow-inner flex flex-col gap-3">
+                        <p class="text-red-800 font-bold text-xl">Consecuencias:</p>
+                        <ul class="list-disc pl-6 text-lg text-red-900 font-medium space-y-2">
+                            <li>Viajan más rápido dentro del medio.</li>
+                            <li>Experimentan un <strong>índice de refracción menor ($n$ bajo)</strong>.</li>
+                            <li>Se desvían <strong>menos</strong> respecto a la trayectoria original.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card p-10 flex flex-col border-t-[12px] border-purple-500 shadow-xl bg-white h-full justify-between">
+                    <div>
+                        <p class="text-3xl font-extrabold text-slate-900 mb-4 flex items-center gap-3">Ondas de Alta Frecuencia (Violeta)</p>
+                        <p class="text-xl text-slate-600 font-medium mb-6 leading-relaxed">Las ondas con menor longitud de onda ($\lambda$) interactúan fuertemente con los electrones del material, frenándose significativamente.</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-2xl border border-purple-200 shadow-inner flex flex-col gap-3">
+                        <p class="text-purple-800 font-bold text-xl">Consecuencias:</p>
+                        <ul class="list-disc pl-6 text-lg text-purple-900 font-medium space-y-2">
+                            <li>Viajan más lento dentro del medio.</li>
+                            <li>Experimentan un <strong>índice de refracción mayor ($n$ alto)</strong>.</li>
+                            <li>Se desvían <strong>mucho más</strong> respecto a la normal.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="focus" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Formación del Color: Síntesis Aditiva</h2>
+            </div>
+            
+            <div class="grid grid-cols-12 gap-10 flex-1 min-h-[500px] items-stretch">
+                <div class="col-span-5 flex flex-col justify-center space-y-6">
+                    <div class="glass-card p-8 border-l-8 border-indigo-500 shadow-md bg-slate-50">
+                        <p class="text-2xl text-slate-800 font-bold mb-4">El Modelo RGB (Luz)</p>
+                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                            Nuestros ojos poseen fotorreceptores sensibles principalmente a tres colores: <strong>Rojo (Red), Verde (Green) y Azul (Blue)</strong>. 
+                            <br><br>Sumando luces de estos tres colores primarios en diferentes intensidades, nuestro cerebro interpreta todo el espectro visible.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 font-mono text-lg font-bold text-slate-800">
+                        <div class="bg-yellow-100 p-4 border border-yellow-300 rounded-lg shadow-sm flex justify-between px-8">
+                            <span>Rojo + Verde</span> <span>$\to$ Amarillo</span>
+                        </div>
+                        <div class="bg-fuchsia-100 p-4 border border-fuchsia-300 rounded-lg shadow-sm flex justify-between px-8">
+                            <span>Rojo + Azul</span> <span>$\to$ Magenta</span>
+                        </div>
+                        <div class="bg-cyan-100 p-4 border border-cyan-300 rounded-lg shadow-sm flex justify-between px-8">
+                            <span>Verde + Azul</span> <span>$\to$ Cian</span>
+                        </div>
+                        <div class="bg-slate-100 p-4 border border-slate-400 rounded-lg shadow-sm flex justify-between px-8 text-xl">
+                            <span>R + G + B</span> <span>$\to$ Blanco</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-span-7 bg-black border-4 border-slate-700 p-8 rounded-3xl shadow-xl flex items-center justify-center relative w-full h-full">
+                    <svg viewBox="0 0 600 500" class="w-full h-full overflow-visible">
+                        <circle cx="300" cy="200" r="140" fill="#ff0000" style="mix-blend-mode: screen;"></circle>
+                        <circle cx="220" cy="320" r="140" fill="#00ff00" style="mix-blend-mode: screen;"></circle>
+                        <circle cx="380" cy="320" r="140" fill="#0000ff" style="mix-blend-mode: screen;"></circle>
+
+                        <text x="300" y="100" font-size="28" font-weight="bold" fill="white" text-anchor="middle">ROJO</text>
+                        <text x="120" y="420" font-size="28" font-weight="bold" fill="white" text-anchor="middle">VERDE</text>
+                        <text x="480" y="420" font-size="28" font-weight="bold" fill="white" text-anchor="middle">AZUL</text>
+                        
+                        <text x="300" y="270" font-size="22" font-weight="bold" fill="#0f172a" text-anchor="middle">BLANCO</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide p-10 bg-slate-50">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="layers" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Filtros Ópticos y Absorción</h2>
+            </div>
+
+            <div class="grid grid-cols-12 gap-12 flex-1 items-stretch">
+                <div class="col-span-5 flex flex-col justify-center space-y-6">
+                    <div class="glass-card p-8 border-l-8 border-rose-500 shadow-md bg-white">
+                        <p class="text-2xl text-slate-800 font-bold mb-4">La Síntesis Sustractiva</p>
+                        <p class="text-lg text-slate-700 leading-relaxed font-medium mb-4">
+                            Un filtro de color <strong>no tiñe</strong> la luz. Funciona como un sumidero energético: <strong>transmite</strong> únicamente las longitudes de onda de su propio color y <strong>absorbe</strong> (destruye lumínicamente, transformando en calor) las demás frecuencias.
+                        </p>
+                        <p class="text-lg text-slate-700 leading-relaxed font-medium">
+                            Al colocar filtros en serie, estamos aplicando un proceso de <em>resta continua</em> de fotones.
+                        </p>
+                    </div>
+
+                    <div class="relative w-full flex flex-col gap-4">
+                        <button onclick="
+                            this.classList.add('hidden'); 
+                            document.getElementById('svg-filtros').classList.add('visible');"
+                            class="px-6 py-5 bg-rose-700 text-white rounded-xl text-2xl font-bold hover:bg-rose-800 transition shadow-lg flex items-center justify-center gap-3 z-20 w-full">
+                            <i data-lucide="eye-off"></i> Simular Filtros en Serie
+                        </button>
+                        
+                        <div id="texto-filtros" class="fade-in bg-slate-900 p-6 rounded-2xl border border-slate-700 shadow-inner flex flex-col justify-center">
+                            <p class="text-white text-lg font-medium leading-relaxed">
+                                <strong>Paso 1:</strong> La luz blanca (RGB) incide sobre el filtro rojo. Este absorbe el Verde y el Azul. Solo logra cruzar el rayo Rojo.<br><br>
+                                <strong class="text-blue-400">Paso 2:</strong> El rayo Rojo choca contra el filtro Azul. El filtro Azul <em>espera</em> luz azul para transmitirla. Como solo recibe rojo, lo absorbe por completo. <br>
+                                <span class="text-slate-400 block mt-2 font-mono text-center">Resultado: Oscuridad Absoluta.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-7 bg-slate-900 border-4 border-slate-700 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full">
+                    <g id="svg-filtros" class="fade-in opacity-0 w-full h-full">
+                        <svg viewBox="-20 0 750 350" class="w-full h-full overflow-visible">
+                            <text x="20" y="140" fill="white" font-weight="bold" font-size="20">Luz Blanca (RGB)</text>
+                            <rect x="0" y="155" width="200" height="40" fill="#ffffff" />
+                            
+                            <rect x="200" y="40" width="30" height="270" fill="#ef4444" opacity="0.9" rx="5" stroke="#7f1d1d" stroke-width="2"/>
+                            <text x="175" y="20" fill="#fca5a5" font-weight="bold" font-size="18">Filtro Rojo</text>
+
+                            <path d="M 215 320 L 215 360" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="4,2" marker-end="url(#arrGreen)"/>
+                            <path d="M 215 320 L 215 360" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="4,2" transform="translate(10,0)" marker-end="url(#arrBlue)"/>
+                            <text x="150" y="390" fill="#94a3b8" font-size="14" font-weight="bold">Absorbe V y A</text>
+
+                            <rect x="230" y="155" width="220" height="40" fill="#ef4444"/>
+                            <text x="270" y="140" fill="#fca5a5" font-weight="bold" font-size="20">Rayo Rojo</text>
+                            
+                            <rect x="450" y="40" width="30" height="270" fill="#3b82f6" opacity="0.9" rx="5" stroke="#1e3a8a" stroke-width="2"/>
+                            <text x="425" y="20" fill="#93c5fd" font-weight="bold" font-size="18">Filtro Azul</text>
+
+                            <path d="M 465 320 L 465 360" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="4,2" marker-end="url(#arrRed)"/>
+                            <text x="415" y="390" fill="#94a3b8" font-size="14" font-weight="bold">Absorbe el Rojo</text>
+
+                            <text x="520" y="170" fill="#f8fafc" font-weight="extrabold" font-size="26">Ausencia</text>
+                            <text x="520" y="205" fill="#f8fafc" font-weight="extrabold" font-size="26">de Luz</text>
+
+                            <defs>
+                                <marker id="arrGreen" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#22c55e" /></marker>
+                                <marker id="arrBlue" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#3b82f6" /></marker>
+                                <marker id="arrRed" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#ef4444" /></marker>
+                            </defs>
+                        </svg>
+                    </g>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="pen-tool" class="w-16 h-16 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Mecanización y Modelamiento Analítico</h2>
+            </div>
+            
+            <p class="text-2xl text-slate-600 mb-6 border-l-8 border-emerald-500 pl-6 bg-slate-50 py-4 font-medium rounded-r-xl border border-slate-200 shadow-sm">
+                Resuelva metódicamente en su cuaderno. Analice los componentes frecuenciales.
+            </p>
+
+            <div class="scrollable-content grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 overflow-y-auto pr-4 pb-10">
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-emerald-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-emerald-100 text-emerald-700 rounded-full font-bold text-xl">1</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Con base en la teoría ondulatoria, define con lenguaje técnico el fenómeno de la <strong>Dispersión Cromática</strong> al atravesar un prisma.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-emerald-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-emerald-100 text-emerald-700 rounded-full font-bold text-xl">2</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Analizando el índice de refracción dinámico, explica físicamente por qué el color <strong>rojo</strong> sufre una desviación geométrica menor que el color <strong>violeta</strong>.</p>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-amber-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-amber-100 text-amber-700 rounded-full font-bold text-xl">3</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Al pasar la luz del aire al cristal, ¿qué le ocurre a su <strong>frecuencia ($f$)</strong> y a su <strong>longitud de onda ($\lambda$)</strong>? Justifica tu respuesta.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-amber-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-amber-100 text-amber-700 rounded-full font-bold text-xl">4</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Un filtro de vidrio verde es iluminado con luz blanca pura. Indica exactamente qué colores del espectro RGB son <strong>absorbidos</strong> y cuál es <strong>transmitido</strong>.</p>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-orange-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-orange-100 text-orange-700 rounded-full font-bold text-xl">5</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Un objeto de plástico tiene pigmento azul puro. Si ingresamos este objeto a un cuarto oscuro e iluminamos exclusivamente con luz roja monocromática, ¿de qué <strong>color visual</strong> lo percibiremos? Justifica.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-orange-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-orange-100 text-orange-700 rounded-full font-bold text-xl">6</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Establece la diferencia conceptual entre la mezcla <strong>Aditiva (RGB)</strong> propia de las pantallas y luces, y la mezcla <strong>Sustractiva (CMYK)</strong> propia de los pigmentos e impresoras.</p>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-rose-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-rose-100 text-rose-700 rounded-full font-bold text-xl">7</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">El agua tiene un índice de refracción aproximado de $1.33$. Sin embargo, este es un promedio. Escribe la relación de desigualdad matemática entre $n_{rojo}$ y $n_{azul}$ en el agua.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-rose-500 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-rose-100 text-rose-700 rounded-full font-bold text-xl">8</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Observamos una bandera amarilla pura iluminada bajo la luz del sol. Si repentinamente el sol solo emitiera luz azul, ¿de qué color veríamos la bandera y por qué?</p>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-purple-600 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-bold text-xl">9</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Situamos dos filtros en serie: uno Rojo y detrás uno Verde. Disparamos un haz de luz blanca hacia ellos. Predice el resultado visual en la pantalla posterior y explica el proceso de <strong>absorción en cadena</strong>.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border-t-8 border-purple-600 shadow-md">
+                    <div class="flex justify-between mb-4"><span class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-bold text-xl">10</span></div>
+                    <p class="text-slate-700 font-medium text-xl leading-relaxed">Si sabemos que $v = c/n$, y que el índice dinámico del violeta es mayor que el del rojo en un trozo de vidrio, demuestra algebraicamente cuál de los dos fotones viaja a <strong>mayor velocidad</strong> dentro del material.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-slate-50 p-10 pb-32">
+            <div class="flex items-center mb-8 border-b-4 border-slate-200 pb-4 shrink-0 gap-6">
+                <i data-lucide="crosshair" class="w-16 h-16 text-indigo-800"></i>
+                <h2 class="text-6xl font-bold text-slate-900">Evaluación de Síntesis PAES</h2>
+            </div>
+
+            <div class="grid grid-cols-12 gap-12 flex-1 items-start relative">
+                
+                <div class="col-span-6 flex flex-col space-y-6">
+                    <div class="p-8 bg-white border-2 border-slate-200 rounded-3xl shadow-sm flex flex-col justify-center">
+                        <p class="text-2xl font-medium text-slate-800 leading-relaxed text-justify mb-4">
+                            En un laboratorio de óptica, un experimentador emite un rayo continuo de luz blanca que atraviesa dos placas rectangulares planas que actúan como filtros perfectos de color. 
+                            <br><br>
+                            El primer filtro es <strong>Amarillo</strong> (transmite Rojo y Verde). El segundo filtro situado detrás es <strong>Cian</strong> (transmite Verde y Azul).
+                        </p>
+                        <p class="text-2xl font-extrabold text-indigo-900 leading-relaxed">
+                            Analizando el proceso de síntesis sustractiva por transmisión y absorción, ¿qué color proyecta el haz de luz resultante al salir del segundo filtro?
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-xl font-bold text-slate-700">
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white hover:bg-slate-50 transition cursor-pointer">A) Color Amarillo puro.</p>
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white hover:bg-slate-50 transition cursor-pointer" id="correct-opt-paes">B) Color Verde puro.</p>
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white hover:bg-slate-50 transition cursor-pointer">C) Ausencia de luz (Negro).</p>
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white hover:bg-slate-50 transition cursor-pointer">D) Color Azul oscuro.</p>
+                    </div>
+                </div>
+
+                <div class="col-span-6 relative w-full flex flex-col space-y-6">
+                    
+                    <div class="w-full bg-slate-900 rounded-3xl border-4 border-slate-700 shadow-xl p-6 relative overflow-hidden flex items-center justify-center min-h-[250px]">
+                        <svg viewBox="0 0 600 200" class="w-full h-full overflow-visible">
+                            <text x="10" y="65" fill="white" font-weight="bold" font-size="16">Luz Blanca (R+G+B)</text>
+                            <rect x="10" y="80" width="140" height="40" fill="#ffffff" />
+                            
+                            <rect x="150" y="20" width="20" height="160" fill="#eab308" opacity="0.9" rx="4"/>
+                            <text x="110" y="200" fill="#fde047" font-weight="bold" font-size="14">Filtro Amarillo</text>
+
+                            <g id="rayo-intermedio" class="fade-in opacity-0">
+                                <rect x="170" y="80" width="180" height="40" fill="#eab308" />
+                                <text x="210" y="145" fill="#fde047" font-weight="bold" font-size="16">Queda: R + G</text>
+                            </g>
+
+                            <rect x="350" y="20" width="20" height="160" fill="#06b6d4" opacity="0.9" rx="4"/>
+                            <text x="330" y="200" fill="#67e8f9" font-weight="bold" font-size="14">Filtro Cian</text>
+
+                            <g id="rayo-final" class="fade-in opacity-0">
+                                <rect x="370" y="80" width="180" height="40" fill="#22c55e" />
+                                <text x="410" y="65" fill="#86efac" font-weight="bold" font-size="16">Queda: Verde</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="w-full flex-1 flex flex-col">
+                        <button id="btn-reveal-paes" onclick="revelarSolucionPAES()"
+                            class="w-full px-8 py-6 bg-indigo-900 text-white rounded-3xl text-2xl font-extrabold hover:bg-indigo-800 transition-all shadow-xl flex items-center justify-center gap-4 hover:scale-105 active:scale-95 border-4 border-indigo-200">
+                            <i data-lucide="shield-check" class="w-10 h-10"></i> Ejecutar Verificación Óptica
+                        </button>
+
+                        <div id="respuesta-paes" class="hidden w-full bg-white p-6 rounded-3xl border-4 border-emerald-500 flex-col justify-center text-left shadow-2xl">
+                            <p class="text-emerald-700 text-xl font-extrabold border-b-4 border-emerald-100 pb-3 mb-4 shrink-0 uppercase tracking-widest flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-8 h-8"></i> Deducción Correcta
+                            </p>
+
+                            <div class="text-lg text-slate-800 space-y-4 font-medium tracking-wide">
+                                <div class="bg-amber-50 p-4 border-l-8 border-amber-400 rounded-r-xl shadow-inner">
+                                    <span class="font-bold text-amber-700">Paso 1:</span> El filtro amarillo transmite el Rojo y Verde, pero <strong>absorbe el Azul</strong> de la luz blanca.
+                                </div>
+                                <div class="bg-cyan-50 p-4 border-l-8 border-cyan-400 rounded-r-xl shadow-inner">
+                                    <span class="font-bold text-cyan-700">Paso 2:</span> A este rayo (R+G) se le cruza el filtro cian, el cual transmite Verde y Azul. <strong>Absorbe el Rojo</strong>.
+                                </div>
+                                <div class="bg-emerald-50 p-4 border-l-8 border-emerald-500 rounded-r-xl shadow-inner font-bold text-emerald-800">
+                                    <span class="text-slate-600">Conclusión:</span> El único color que logra cruzar ambos filtros es el Verde.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 fixed bottom-0 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="text-slate-400 font-extrabold text-2xl tracking-widest uppercase truncate max-w-[60%] flex gap-4 items-center">
+            <span class="text-indigo-800">F3</span>
+            <span class="text-slate-300">|</span>
+            <span>Clase 5: Dispersión y Color</span>
+        </div>
+        <div class="flex gap-6">
+            <button onclick="changeSlide(-1)" class="p-5 rounded-full bg-slate-50 border-2 border-slate-200 shadow-sm hover:bg-slate-200 hover:border-slate-300 transition-all cursor-pointer focus:outline-none text-slate-600">
+                <i data-lucide="chevron-left" class="w-10 h-10"></i>
+            </button>
+            <button onclick="changeSlide(1)" class="p-5 rounded-full bg-indigo-900 text-white shadow-md hover:bg-indigo-800 hover:shadow-lg transition-all cursor-pointer focus:outline-none transform hover:scale-105 active:scale-95 border-2 border-indigo-900">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === currentSlide) {
+                    s.classList.add('active');
+                    s.scrollTop = 0;
+                }
+            });
+        }
+
+        function changeSlide(d) {
+            const n = currentSlide + d;
+            if (n >= 0 && n < slides.length) {
+                currentSlide = n;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (['Space', 'Enter'].includes(e.code) && document.activeElement.tagName !== 'BUTTON') {
+                e.preventDefault();
+            }
+        });
+
+        function revelarSolucionPAES() {
+            const btn = document.getElementById('btn-reveal-paes');
+            const target = document.getElementById('respuesta-paes');
+
+            btn.style.display = 'none';
+            
+            setTimeout(() => {
+                target.classList.remove('hidden');
+                target.classList.add('flex');
+            }, 50);
+
+            const correctOpt = document.getElementById('correct-opt-paes');
+            correctOpt.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'shadow-md');
+            correctOpt.classList.remove('border-slate-200', 'bg-white');
+
+            document.getElementById('rayo-intermedio').classList.add('visible');
+            setTimeout(() => {
+                document.getElementById('rayo-final').classList.add('visible');
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>
