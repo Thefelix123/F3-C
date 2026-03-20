@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>C6 reflexion avanzada</title>
+    <title>transmision c7</title>
     
 
   </head>
@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óptica: Reflexión y Fronteras - F3</title>
+    <title>Óptica: Transmisión y Difusión - F3</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -103,16 +103,16 @@
         <div class="slide active p-10 bg-slate-50">
             <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full relative overflow-hidden">
                 <div class="absolute inset-0 opacity-[0.03] z-0 flex items-center justify-center pointer-events-none">
-                    <i data-lucide="layers" class="w-[800px] h-[800px] text-indigo-900"></i>
+                    <i data-lucide="cloud-fog" class="w-[800px] h-[800px] text-indigo-900"></i>
                 </div>
                 <div class="relative w-40 h-40 flex items-center justify-center z-10">
-                    <i data-lucide="flip-vertical" class="w-full h-full text-indigo-800 opacity-90 absolute"></i>
+                    <i data-lucide="sun" class="w-full h-full text-indigo-800 opacity-90 absolute"></i>
                 </div>
                 <h1 class="text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight z-10">
-                    Óptica Avanzada
+                    Transmisión y Difusión
                 </h1>
                 <p class="text-4xl text-slate-500 font-semibold tracking-wide text-center z-10">
-                    Reflexión Direccional y Fronteras Críticas
+                    Propagación Lumínica y Esparcimiento
                 </p>
                 <div class="mt-16 p-8 glass-card border-l-8 border-indigo-800 text-left w-full max-w-5xl flex justify-between items-end z-10 shadow-lg">
                     <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
@@ -123,72 +123,89 @@
 
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="cloud-rain" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">El Fenómeno del Asfalto Mojado</h2>
+                <i data-lucide="eye-off" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">La Geometría de la Privacidad</h2>
             </div>
             
             <div class="grid grid-cols-12 gap-10 flex-1 items-stretch">
                 <div class="col-span-5 flex flex-col justify-center space-y-6">
-                    <p class="text-xl text-slate-700 leading-relaxed font-medium">
-                        Durante la conducción nocturna, un asfalto seco nos permite ver la calzada porque la luz de los focos impacta el suelo y se dispersa hacia múltiples direcciones, llegando a nuestros ojos.
+                    <p class="text-xl text-slate-700 leading-relaxed font-medium text-justify">
+                        Comparamos el ventanal de un salón (vidrio liso transparente) con el vidrio de una ventana de baño (esmerilado o texturizado). Ambos materiales permiten que ingrese exactamente la misma cantidad de luz solar a la habitación.
                     </p>
                     <div class="glass-card p-6 border-l-8 border-indigo-500 shadow-sm">
-                        <p class="text-xl text-slate-800 font-bold mb-2">La Paradoja Visual</p>
+                        <p class="text-xl text-slate-800 font-bold mb-2">La Paradoja de la Imagen</p>
                         <p class="text-lg text-slate-700 leading-relaxed font-medium">
-                            Cuando llueve intensamente, el asfalto se vuelve un "espejo" oscuro que rebota la luz de los vehículos contrarios directo a los ojos, provocando ceguera temporal. ¿Qué cambia físicamente en la frontera del pavimento?
+                            Si la luz logra cruzar ambos materiales con la misma eficiencia energética, ¿por qué el primer vidrio permite ver formas nítidas del exterior mientras el segundo oculta absolutamente todo?
                         </p>
                     </div>
 
                     <div class="relative w-full min-h-[10rem] mt-2">
                         <button onclick="
                             this.style.display='none'; 
-                            document.getElementById('gancho-res').classList.remove('hidden');
-                            document.getElementById('gancho-res').classList.add('flex', 'visible');
-                            document.getElementById('svg-difusa-asfalto').classList.replace('visible', 'hidden');
-                            document.getElementById('svg-especular-asfalto').classList.replace('hidden', 'visible');"
+                            document.getElementById('gancho-res-1').classList.remove('hidden');
+                            document.getElementById('gancho-res-1').classList.add('flex', 'visible');
+                            document.getElementById('svg-transmision-directa').classList.replace('visible', 'hidden');
+                            document.getElementById('svg-transmision-difusa').classList.replace('hidden', 'visible');"
                             class="absolute inset-0 m-auto h-max px-6 py-5 bg-slate-900 text-white rounded-xl text-2xl font-bold hover:bg-slate-800 transition shadow-xl flex items-center justify-center gap-3 w-full z-20">
-                            <i data-lucide="microscope"></i> Analizar a Nivel Microscópico
+                            <i data-lucide="microscope"></i> Analizar Estructura del Cristal
                         </button>
 
-                        <div id="gancho-res" class="hidden fade-in absolute inset-0 w-full bg-emerald-50 p-6 rounded-xl border-l-8 border-emerald-500 shadow-sm flex-col justify-center overflow-y-auto">
+                        <div id="gancho-res-1" class="hidden fade-in absolute inset-0 w-full bg-emerald-50 p-6 rounded-xl border-l-8 border-emerald-500 shadow-sm flex-col justify-center overflow-y-auto">
                             <p class="text-lg text-slate-800 leading-relaxed font-medium mb-3">
-                                El agua rellena las fisuras microscópicas de la carretera, nivelando la topología y creando una interfaz perfectamente lisa.
+                                En el vidrio esmerilado la luz logra pasar (Transmisión), pero al chocar con las micro-texturas internas, los rayos sufren una <strong class="text-emerald-800">dispersión geométrica</strong>.
                             </p>
                             <p class="text-lg text-slate-800 leading-relaxed font-medium">
-                                Esto transforma la dispersión original en una <strong>reflexión direccional</strong>, rebotando los haces de luz paralelos en un solo frente potente.
+                                Al desviarse en múltiples direcciones, se destruye la <strong>coherencia espacial</strong> del haz de luz. Al perder el orden exacto de los rayos, el ojo es incapaz de reconstruir la imagen.
                             </p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-span-7 glass-card border-4 border-slate-200 overflow-hidden shadow-xl relative w-full h-full bg-slate-900 flex items-center justify-center p-6">
-                    <svg id="svg-difusa-asfalto" viewBox="0 0 500 250" class="w-full max-h-[250px] visible">
-                        <path d="M 50 200 L 100 170 L 150 210 L 200 160 L 250 220 L 300 180 L 350 210 L 400 160 L 450 200" fill="none" stroke="#64748b" stroke-width="8" stroke-linejoin="round"/>
-                        <path d="M 80 20 L 140 190" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 180 20 L 240 205" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 280 20 L 340 195" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 140 190 L 50 110" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 240 205 L 290 80" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 340 195 L 450 140" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <text x="250" y="30" fill="#94a3b8" font-size="20" font-weight="bold" text-anchor="middle">Pavimento Seco</text>
+                    
+                    <svg id="svg-transmision-directa" viewBox="0 0 500 250" class="w-full max-h-[300px] visible">
+                        <rect x="30" y="10" width="160" height="30" fill="#1e293b" rx="5"/>
+                        <text x="110" y="30" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Haces Ordenados</text>
+
+                        <rect x="350" y="10" width="130" height="30" fill="#1e293b" rx="5"/>
+                        <text x="415" y="30" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Imagen Nítida</text>
+
+                        <rect x="230" y="40" width="40" height="180" fill="#3b82f6" opacity="0.4" stroke="#60a5fa" stroke-width="3"/>
+                        <text x="250" y="240" fill="#cbd5e1" font-size="14" font-weight="bold" text-anchor="middle">Vidrio Liso</text>
+
+                        <path d="M 50 80 L 450 80" fill="none" stroke="#facc15" stroke-width="5" marker-end="url(#arrYellow)"/>
+                        <path d="M 50 130 L 450 130" fill="none" stroke="#facc15" stroke-width="5" marker-end="url(#arrYellow)"/>
+                        <path d="M 50 180 L 450 180" fill="none" stroke="#facc15" stroke-width="5" marker-end="url(#arrYellow)"/>
                     </svg>
 
-                    <svg id="svg-especular-asfalto" viewBox="0 0 500 250" class="w-full max-h-[250px] hidden absolute inset-0 m-auto">
-                        <path d="M 50 200 L 100 170 L 150 210 L 200 160 L 250 220 L 300 180 L 350 210 L 400 160 L 450 200" fill="none" stroke="#475569" stroke-width="8" stroke-linejoin="round"/>
-                        <path d="M 40 140 L 460 140" fill="none" stroke="#3b82f6" stroke-width="6"/>
-                        <path d="M 40 140 L 40 220 L 460 220 L 460 140 Z" fill="#3b82f6" opacity="0.4"/>
-                        <path d="M 60 20 L 125 140" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 160 20 L 225 140" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 260 20 L 325 140" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 125 140 L 190 20" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 225 140 L 290 20" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 325 140 L 390 20" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <text x="250" y="30" fill="#93c5fd" font-size="20" font-weight="bold" text-anchor="middle">Pavimento Inundado</text>
+                    <svg id="svg-transmision-difusa" viewBox="0 0 500 250" class="w-full max-h-[300px] hidden absolute inset-0 m-auto">
+                        <rect x="30" y="10" width="160" height="30" fill="#1e293b" rx="5"/>
+                        <text x="110" y="30" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Haces Ordenados</text>
+
+                        <rect x="320" y="210" width="160" height="30" fill="#1e293b" rx="5"/>
+                        <text x="400" y="230" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Imagen Destruida</text>
+
+                        <rect x="230" y="40" width="40" height="180" fill="#94a3b8" opacity="0.4" stroke="#cbd5e1" stroke-width="3"/>
+                        <path d="M 230 40 L 235 60 L 225 80 L 240 110 L 225 140 L 235 160 L 225 180 L 230 220" fill="none" stroke="#f8fafc" stroke-width="2" opacity="0.8"/>
+                        <path d="M 270 40 L 265 60 L 275 80 L 260 110 L 275 140 L 265 160 L 275 180 L 270 220" fill="none" stroke="#f8fafc" stroke-width="2" opacity="0.8"/>
+                        <text x="250" y="240" fill="#cbd5e1" font-size="14" font-weight="bold" text-anchor="middle">Vidrio Esmerilado</text>
+
+                        <path d="M 50 80 L 230 80" fill="none" stroke="#facc15" stroke-width="5" marker-end="url(#arrYellow)"/>
+                        <path d="M 50 130 L 230 130" fill="none" stroke="#facc15" stroke-width="5" marker-end="url(#arrYellow)"/>
+                        <path d="M 50 180 L 230 180" fill="none" stroke="#facc15" stroke-width="5" marker-end="url(#arrYellow)"/>
+                        
+                        <path d="M 270 80 L 420 30" fill="none" stroke="#facc15" stroke-width="4" marker-end="url(#arrYellow)"/>
+                        <path d="M 270 80 L 440 90" fill="none" stroke="#facc15" stroke-width="4" marker-end="url(#arrYellow)"/>
+                        
+                        <path d="M 270 130 L 430 160" fill="none" stroke="#facc15" stroke-width="4" marker-end="url(#arrYellow)"/>
+                        <path d="M 270 130 L 450 110" fill="none" stroke="#facc15" stroke-width="4" marker-end="url(#arrYellow)"/>
+                        
+                        <path d="M 270 180 L 400 200" fill="none" stroke="#facc15" stroke-width="4" marker-end="url(#arrYellow)"/>
+                        <path d="M 270 180 L 460 140" fill="none" stroke="#facc15" stroke-width="4" marker-end="url(#arrYellow)"/>
                     </svg>
 
                     <defs>
-                        <marker id="arrYellow" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fde047" /></marker>
-                        <marker id="arrYellow2" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fbbf24" /></marker>
+                        <marker id="arrYellow" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#facc15" /></marker>
                     </defs>
                 </div>
             </div>
@@ -197,55 +214,57 @@
         <div class="slide p-10 bg-slate-50">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
                 <i data-lucide="book-open" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Tipología de la Reflexión</h2>
+                <h2 class="text-5xl font-bold text-slate-900">Transmisión de la Luz</h2>
             </div>
             
             <p class="text-xl text-slate-700 font-medium mb-8 bg-white p-5 border border-slate-200 rounded-2xl shadow-sm">
-                La ley axiomática ($\theta_{incidente} = \theta_{reflejado}$) <strong>jamás se rompe</strong>. La diferencia de los fenómenos visuales radica exclusivamente en la geometría y alineación de las Rectas Normales según la superficie.
+                La <strong>transmisión</strong> ocurre invariablemente cuando la luz atraviesa un material. Dependiendo de la estructura del objeto, esta propagación puede conservar su geometría original o ser alterada espacialmente.
             </p>
 
             <div class="grid grid-cols-2 gap-10 flex-1 items-stretch">
                 <div class="glass-card p-8 flex flex-col justify-start border-t-[12px] border-blue-500 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-4 text-center">Reflexión Especular</p>
+                    <p class="text-3xl font-extrabold text-slate-900 mb-4 text-center">Transmisión Directa</p>
                     
-                    <div class="w-full bg-slate-900 rounded-xl flex items-center justify-center p-4 border-4 border-slate-200 shadow-inner mb-6 shrink-0 h-40">
-                        <svg viewBox="0 0 300 120" class="w-full h-full overflow-visible">
-                            <path d="M 20 100 L 280 100" fill="none" stroke="#64748b" stroke-width="6"/>
-                            <line x1="80" y1="100" x2="80" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="150" y1="100" x2="150" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="220" y1="100" x2="220" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <path d="M 30 20 L 80 100 L 130 20" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
-                            <path d="M 100 20 L 150 100 L 200 20" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
-                            <path d="M 170 20 L 220 100 L 270 20" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
+                    <div class="w-full bg-slate-50 rounded-xl flex items-center justify-center p-4 border border-slate-200 shadow-inner mb-6 shrink-0 h-48">
+                        <svg viewBox="0 0 300 120" class="w-full h-full max-h-[140px] overflow-visible">
+                            <rect x="120" y="10" width="60" height="100" fill="#bae6fd" opacity="0.5" stroke="#3b82f6" stroke-width="3"/>
+                            <path d="M 20 30 L 280 30" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
+                            <path d="M 20 60 L 280 60" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
+                            <path d="M 20 90 L 280 90" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
+                            <text x="150" y="130" fill="#64748b" font-size="16" font-weight="bold" text-anchor="middle">Vidrio liso o Aire</text>
                         </svg>
                     </div>
 
-                    <ul class="space-y-3 text-lg text-slate-700 font-medium px-2">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-blue-500 shrink-0"></i> <span>Superficies pulidas (espejos, agua calma). Las normales son perfectamente paralelas.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-blue-500 shrink-0"></i> <span>Conserva la estructura espacial del haz, permitiendo la <strong>formación de imágenes virtuales</strong>.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-blue-500 shrink-0"></i> <span>Genera <strong>deslumbramiento</strong> si el observador se ubica en el ángulo exacto de salida.</span></li>
+                    <ul class="space-y-4 text-lg text-slate-700 font-medium px-4">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-7 h-7 text-blue-500 shrink-0"></i> <span>La luz atraviesa el objeto <strong>sin cambios de dirección</strong> ni alteración en la calidad de la luz.</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-7 h-7 text-blue-500 shrink-0"></i> <span>Conserva la coherencia espacial, permitiendo ver con nitidez a través del material.</span></li>
                     </ul>
                 </div>
 
                 <div class="glass-card p-8 flex flex-col justify-start border-t-[12px] border-orange-500 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-4 text-center">Reflexión Difusa</p>
+                    <p class="text-3xl font-extrabold text-slate-900 mb-4 text-center">Transmisión Difusa</p>
                     
-                    <div class="w-full bg-slate-900 rounded-xl flex items-center justify-center p-4 border-4 border-slate-200 shadow-inner mb-6 shrink-0 h-40">
-                        <svg viewBox="0 0 300 120" class="w-full h-full overflow-visible">
-                            <path d="M 20 100 L 60 80 L 100 110 L 140 70 L 180 100 L 220 80 L 260 110 L 280 90" fill="none" stroke="#64748b" stroke-width="6" stroke-linejoin="round"/>
-                            <line x1="80" y1="95" x2="100" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="160" y1="85" x2="130" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="240" y1="95" x2="270" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <path d="M 30 20 L 80 95 L 160 30" fill="none" stroke="#f97316" stroke-width="4" marker-end="url(#arrOrange)"/>
-                            <path d="M 110 10 L 160 85 L 80 20" fill="none" stroke="#f97316" stroke-width="4" marker-end="url(#arrOrange)"/>
-                            <path d="M 190 20 L 240 95 L 290 10" fill="none" stroke="#f97316" stroke-width="4" marker-end="url(#arrOrange)"/>
+                    <div class="w-full bg-slate-50 rounded-xl flex items-center justify-center p-4 border border-slate-200 shadow-inner mb-6 shrink-0 h-48">
+                        <svg viewBox="0 0 300 120" class="w-full h-full max-h-[140px] overflow-visible">
+                            <path d="M 120 10 L 180 10 L 180 110 L 120 110 Z" fill="#fed7aa" opacity="0.4" stroke="#f59e0b" stroke-width="3"/>
+                            <path d="M 180 10 L 175 30 L 185 50 L 175 70 L 185 90 L 180 110" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                            
+                            <path d="M 20 60 L 120 60" fill="none" stroke="#f97316" stroke-width="4"/>
+                            
+                            <path d="M 180 60 L 260 20" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#arrOrange)"/>
+                            <path d="M 180 60 L 280 40" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#arrOrange)"/>
+                            <path d="M 180 60 L 280 60" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#arrOrange)"/>
+                            <path d="M 180 60 L 280 80" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#arrOrange)"/>
+                            <path d="M 180 60 L 260 100" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#arrOrange)"/>
+                            
+                            <text x="150" y="130" fill="#64748b" font-size="16" font-weight="bold" text-anchor="middle">Papel manteca o texturas</text>
                         </svg>
                     </div>
 
-                    <ul class="space-y-3 text-lg text-slate-700 font-medium px-2">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-orange-500 shrink-0"></i> <span>Superficies rugosas (papel, madera, pintura mate). Cada micro-cara tiene su propia normal.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-orange-500 shrink-0"></i> <span>Destruye la estructura del haz. <strong>No forma imágenes</strong>, pero disipa la energía lumínica espacialmente.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-orange-500 shrink-0"></i> <span>Permite que los objetos sean <strong>visibles desde cualquier ángulo</strong> en el entorno.</span></li>
+                    <ul class="space-y-4 text-lg text-slate-700 font-medium px-4 overflow-y-auto">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-7 h-7 text-orange-500 shrink-0"></i> <span>Se produce al atravesar objetos con textura. La luz es desviada en múltiples direcciones.</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-7 h-7 text-orange-500 shrink-0"></i> <span>Produce una luz envolvente y suave, <strong>de mucho menor contraste e intensidad direccional</strong>.</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-7 h-7 text-orange-500 shrink-0"></i> <span>Genera sombras considerablemente más claras con transiciones suaves.</span></li>
                     </ul>
                 </div>
             </div>
@@ -261,16 +280,16 @@
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
                 <i data-lucide="monitor-play" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Análisis de Superficies Cotidianas</h2>
+                <h2 class="text-5xl font-bold text-slate-900">El Perfil de las Sombras</h2>
             </div>
 
             <div class="grid grid-cols-12 gap-12 flex-1 items-stretch">
                 <div class="col-span-6 flex flex-col justify-start space-y-6">
                     <div class="glass-card p-8 border-l-8 border-indigo-500 shadow-md bg-slate-50 shrink-0">
-                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
-                            En el aula, un proyector emite luz directamente sobre dos superficies adyacentes: la <strong>pizarra acrílica blanca</strong> y un <strong>cartel de papel</strong> pegado sobre ella.
+                        <p class="text-xl text-slate-700 leading-relaxed font-medium text-justify">
+                            En un estudio de fotografía, una ampolleta LED potente ilumina una esfera produciendo una sombra densa, negra y de bordes cortantes (contraste extremo).
                             <br><br>
-                            Desde un pupitre en el extremo izquierdo de la sala, un estudiante no logra leer la pizarra porque un brillo intenso (deslumbramiento) oculta la tinta, pero curiosamente, logra leer el cartel de papel sin ningún problema. 
+                            Para solucionar esto, el fotógrafo coloca una pantalla de "papel manteca" frente a la ampolleta. Físicamente, la luz emitida es la misma, pero la sombra de la esfera pierde sus bordes y se vuelve un gris suave.
                         </p>
                     </div>
 
@@ -281,44 +300,45 @@
                             res.classList.remove('hidden');
                             res.classList.add('flex', 'visible');"
                             class="absolute inset-0 m-auto h-max px-6 py-6 bg-slate-900 text-white rounded-xl text-2xl font-bold hover:bg-slate-800 transition shadow-lg flex items-center justify-center gap-3 w-full z-20">
-                            <i data-lucide="unlock"></i> Ejecutar Análisis Óptico
+                            <i data-lucide="unlock"></i> Ejecutar Análisis Geométrico
                         </button>
                         
                         <div id="aplicacion-1-res" class="hidden fade-in absolute inset-0 bg-white p-6 rounded-2xl border border-slate-200 shadow-inner flex-col justify-start gap-4 overflow-y-auto z-10">
                             <div class="bg-indigo-50 p-4 rounded-xl border-l-4 border-indigo-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Análisis de la Pizarra (Especular)</p>
-                                <p class="text-lg text-slate-800 font-medium">El acrílico es una superficie lisa. Direcciona casi toda la energía del proyector en un haz compacto hacia el estudiante. Ese exceso de fotones satura su retina, ocultando el contraste de la tinta.</p>
+                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Luz Directa (Sombras Duras)</p>
+                                <p class="text-lg text-slate-800 font-medium">Los rayos viajan en trayectorias rectas. Si un objeto opaco bloquea ese camino exacto, se genera una zona de total oscuridad inmediatamente detrás.</p>
                             </div>
-                            <div class="bg-emerald-50 p-4 rounded-xl border-l-4 border-emerald-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Análisis del Papel (Difusa)</p>
-                                <p class="text-lg text-slate-800 font-medium">El papel (celulosa) es microscópicamente rugoso. Dispersa la energía del proyector en 360 grados. Solo una fracción inocua de luz llega al estudiante, evitando el deslumbramiento y permitiendo leer.</p>
+                            <div class="bg-orange-50 p-4 rounded-xl border-l-4 border-orange-500 shrink-0">
+                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Transmisión Difusa (Sombras Suaves)</p>
+                                <p class="text-lg text-slate-800 font-medium">El papel manteca esparce los rayos. Ahora la luz llega al objeto desde múltiples ángulos diagonales. Estos rayos "inclinados" logran escabullirse por los costados del objeto, rellenando la sombra con fotones y reduciendo el contraste.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-span-6 glass-card border-4 border-slate-300 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full bg-slate-900">
-                    <svg viewBox="0 0 400 300" class="w-full max-h-[350px] overflow-visible">
-                        <rect x="180" y="10" width="40" height="20" fill="#cbd5e1" rx="2"/>
-                        <path d="M 200 30 L 100 150 L 300 150 Z" fill="#fde047" opacity="0.2"/>
+                <div class="col-span-6 glass-card border-4 border-slate-300 p-8 rounded-3xl flex flex-col items-center justify-center shadow-xl overflow-hidden relative w-full h-full bg-slate-900">
+                    <p class="text-xl font-bold text-white mb-6 uppercase tracking-widest z-10">Mecanismo de Relleno Óptico</p>
+                    <svg viewBox="0 0 400 250" class="w-full max-h-[280px] overflow-visible">
+                        <line x1="20" y1="220" x2="380" y2="220" stroke="#cbd5e1" stroke-width="6"/>
                         
-                        <line x1="50" y1="150" x2="350" y2="150" stroke="#f8fafc" stroke-width="6"/>
-                        <rect x="230" y="148" width="60" height="4" fill="#94a3b8"/> <path d="M 190 30 L 150 150 L 30 250" fill="none" stroke="#fde047" stroke-width="3" marker-end="url(#arrYellowA)"/>
-                        <path d="M 200 30 L 170 150 L 50 250" fill="none" stroke="#fde047" stroke-width="3" marker-end="url(#arrYellowA)"/>
+                        <rect x="150" y="20" width="30" height="200" fill="#fed7aa" opacity="0.6"/>
                         
-                        <path d="M 210 30 L 260 150" fill="none" stroke="#fde047" stroke-width="3"/>
-                        <path d="M 260 150 L 200 240" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrYellowA)"/>
-                        <path d="M 260 150 L 260 250" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrYellowA)"/>
-                        <path d="M 260 150 L 320 240" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrYellowA)"/>
+                        <rect x="135" y="0" width="60" height="20" fill="#1e293b" rx="3"/>
+                        <text x="165" y="14" font-size="12" fill="white" font-weight="bold" text-anchor="middle">Difusor</text>
+                        
+                        <circle cx="280" cy="180" r="40" fill="#334155"/>
 
-                        <path d="M 20 270 Q 40 250 60 270 Q 40 290 20 270" fill="none" stroke="#cbd5e1" stroke-width="3"/>
-                        <circle cx="40" cy="270" r="6" fill="#ef4444"/>
-
-                        <path d="M 240 270 Q 260 250 280 270 Q 260 290 240 270" fill="none" stroke="#cbd5e1" stroke-width="3"/>
-                        <circle cx="260" cy="270" r="6" fill="#3b82f6"/>
+                        <path d="M 20 180 L 240 180" fill="none" stroke="#facc15" stroke-width="4"/>
+                        <circle cx="240" cy="180" r="6" fill="#ef4444"/> <path d="M 20 60 L 150 60 L 250 150" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrOrangeA)"/>
+                        <path d="M 20 30 L 150 30 L 260 145" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrOrangeA)"/>
+                        <path d="M 20 100 L 150 100 L 280 135" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrOrangeA)"/>
+                        
+                        <rect x="310" y="217" width="60" height="6" fill="#94a3b8" opacity="0.8"/>
+                        <rect x="310" y="230" width="100" height="20" fill="#1e293b" rx="3"/>
+                        <text x="360" y="244" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Sombra Rellena</text>
 
                         <defs>
-                            <marker id="arrYellowA" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fbbf24" /></marker>
+                            <marker id="arrOrangeA" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#f97316" /></marker>
                         </defs>
                     </svg>
                 </div>
@@ -327,73 +347,86 @@
 
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="sun-dim" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">La Frontera Infranqueable</h2>
+                <i data-lucide="flashlight" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">La Luz Revelada</h2>
             </div>
             
             <div class="grid grid-cols-12 gap-10 flex-1 items-stretch">
                 <div class="col-span-5 flex flex-col justify-center">
                     <div class="space-y-6 mb-4">
-                        <p class="text-xl text-slate-700 leading-relaxed font-medium text-justify">
-                            Un buzo en el fondo de una piscina apunta un láser hacia la superficie del agua. Si apunta directamente hacia arriba (perpendicular), el láser sale al aire sin problema.
+                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                            Si enciendes un puntero láser rojo en una habitación oscura y con aire perfectamente limpio, el haz es <strong>invisible</strong> desde el costado; solo logras ver el punto rojo estrellándose en la pared final.
                         </p>
                         <div class="glass-card p-6 border-l-8 border-rose-500 shadow-sm">
-                            <p class="text-xl text-slate-800 font-bold mb-2">El Ángulo de No Retorno</p>
+                            <p class="text-xl text-slate-800 font-bold mb-2">La Materialización del Haz</p>
                             <p class="text-lg text-slate-700 leading-relaxed font-medium">
-                                A medida que inclina el láser, el rayo refractado se acuesta sobre el agua. Existe un ángulo exacto donde la luz <strong>no puede salir al aire</strong> y rebota completamente hacia el fondo, convirtiendo la superficie del agua en un espejo infranqueable.
+                                Sin embargo, si alguien sacude un borrador con tiza o enciende un poco de incienso, el trayecto entero del láser se materializa de inmediato en el aire como una línea sólida y brillante. ¿Qué ocurre físicamente?
                             </p>
                         </div>
                     </div>
 
-                    <div class="relative w-full min-h-[5rem] mt-2 flex justify-between gap-4">
-                        <button onclick="revelarEstadoRIT(1)" class="flex-1 py-4 bg-slate-200 text-slate-800 rounded-xl font-bold hover:bg-slate-300 transition border border-slate-400">1. Incidencia Menor</button>
-                        <button onclick="revelarEstadoRIT(2)" class="flex-1 py-4 bg-orange-100 text-orange-800 rounded-xl font-bold hover:bg-orange-200 transition border border-orange-400">2. Límite Crítico</button>
-                        <button onclick="revelarEstadoRIT(3)" class="flex-1 py-4 bg-rose-100 text-rose-800 rounded-xl font-bold hover:bg-rose-200 transition border border-rose-400">3. Reflexión Interna</button>
+                    <div class="relative w-full min-h-[11rem] mt-2">
+                        <button onclick="
+                            this.style.display='none'; 
+                            document.getElementById('gancho-res-2').classList.remove('hidden');
+                            document.getElementById('gancho-res-2').classList.add('flex', 'visible');
+                            document.getElementById('svg-laser-limpio').classList.replace('visible', 'hidden');
+                            document.getElementById('svg-laser-humo').classList.replace('hidden', 'visible');"
+                            class="absolute inset-0 m-auto h-max px-6 py-5 bg-rose-700 text-white rounded-xl text-2xl font-bold hover:bg-rose-800 transition shadow-xl flex items-center justify-center gap-3 w-full z-20">
+                            <i data-lucide="spray-can"></i> Esparcir Partículas en el Medio
+                        </button>
+
+                        <div id="gancho-res-2" class="hidden fade-in absolute inset-0 w-full bg-rose-50 p-6 rounded-xl border-l-8 border-rose-500 shadow-sm flex-col justify-center overflow-y-auto">
+                            <p class="text-lg text-slate-800 leading-relaxed font-medium mb-3">
+                                En aire limpio, todos los fotones viajan en línea recta hacia la pared. Ninguno gira 90° para entrar a tu ojo, por ende, no ves la luz viajando.
+                            </p>
+                            <p class="text-lg text-slate-800 leading-relaxed font-medium">
+                                Al agregar humo o polvo, el medio se llena de micro-obstáculos. Los fotones chocan contra ellos y rebotan en múltiples direcciones (<strong class="text-rose-800">Difusión</strong>), enviando fracciones de luz directamente hacia tus pupilas.
+                            </p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="col-span-7 glass-card border-4 border-slate-200 overflow-hidden shadow-xl relative w-full h-full bg-white flex items-center justify-center p-6">
-                    <svg viewBox="0 0 500 400" class="w-full max-h-[350px] overflow-visible">
-                        <rect x="0" y="0" width="500" height="200" fill="#f8fafc"/>
-                        <text x="20" y="30" font-size="20" font-weight="bold" fill="#64748b" font-family="monospace">Aire (n₂ = 1.0)</text>
+                <div class="col-span-7 glass-card border-4 border-slate-200 overflow-hidden shadow-xl relative w-full h-full bg-slate-900 flex items-center justify-center p-6">
+                    
+                    <svg id="svg-laser-limpio" viewBox="0 0 500 250" class="w-full max-h-[300px] visible">
+                        <rect x="20" y="110" width="60" height="30" fill="#cbd5e1" rx="4"/>
+                        <circle cx="80" cy="125" r="10" fill="#ef4444"/>
                         
-                        <rect x="0" y="200" width="500" height="200" fill="#e0f2fe"/>
-                        <text x="20" y="380" font-size="20" font-weight="bold" fill="#0369a1" font-family="monospace">Agua (n₁ = 1.33)</text>
-                        <line x1="0" y1="200" x2="500" y2="200" stroke="#0284c7" stroke-width="4"/>
+                        <path d="M 90 125 L 450 125" fill="none" stroke="#ef4444" stroke-width="4"/>
+                        
+                        <line x1="450" y1="50" x2="450" y2="200" stroke="#64748b" stroke-width="8"/>
+                        <circle cx="450" cy="125" r="14" fill="#ef4444" filter="blur(2px)"/>
+                        
+                        <path d="M 250 40 Q 230 20 250 0 Q 270 20 250 40" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+                        <circle cx="250" cy="20" r="5" fill="#3b82f6"/>
+                        
+                        <rect x="135" y="210" width="230" height="30" fill="#1e293b" rx="5"/>
+                        <text x="250" y="230" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Aire Limpio (Vacío de partículas)</text>
+                    </svg>
 
-                        <line x1="250" y1="50" x2="250" y2="350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8,6"/>
-                        <text x="260" y="80" font-size="16" font-weight="bold" fill="#94a3b8">Normal</text>
+                    <svg id="svg-laser-humo" viewBox="0 0 500 250" class="w-full max-h-[300px] hidden absolute inset-0 m-auto">
+                        <rect x="20" y="110" width="60" height="30" fill="#cbd5e1" rx="4"/>
+                        
+                        <path d="M 90 125 L 450 125" fill="none" stroke="#ef4444" stroke-width="12" opacity="0.7" filter="blur(2px)"/>
+                        
+                        <circle cx="150" cy="125" r="5" fill="#f8fafc"/>
+                        <path d="M 150 125 L 230 50" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS)"/>
+                        <path d="M 150 125 L 180 180" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS)"/>
+                        <circle cx="250" cy="125" r="5" fill="#f8fafc"/>
+                        <path d="M 250 125 L 250 50" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS)"/>
+                        <circle cx="350" cy="125" r="5" fill="#f8fafc"/>
+                        <path d="M 350 125 L 300 200" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS)"/>
+                        <path d="M 350 125 L 380 60" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS)"/>
 
-                        <g id="rit-state-1" class="visible">
-                            <path d="M 180 350 L 250 200" fill="none" stroke="#22c55e" stroke-width="5" marker-end="url(#arrGreenL)"/>
-                            <path d="M 250 200 L 300 50" fill="none" stroke="#22c55e" stroke-width="5" marker-end="url(#arrGreenL)"/>
-                            <path d="M 250 260 A 60 60 0 0 0 222 260" fill="none" stroke="#16a34a" stroke-width="3"/>
-                            <text x="225" y="290" font-size="18" font-weight="bold" fill="#16a34a">θ_i</text>
-                        </g>
-
-                        <g id="rit-state-2" class="hidden">
-                            <path d="M 120 350 L 250 200" fill="none" stroke="#f59e0b" stroke-width="5" marker-end="url(#arrOrangeL)"/>
-                            <path d="M 250 200 L 450 200" fill="none" stroke="#f59e0b" stroke-width="6" marker-end="url(#arrOrangeL)"/>
-                            <path d="M 250 260 A 60 60 0 0 0 198 260" fill="none" stroke="#d97706" stroke-width="3"/>
-                            <text x="195" y="295" font-size="20" font-weight="bold" fill="#d97706">θ_c</text>
-                            
-                            <path d="M 250 160 A 40 40 0 0 1 290 200" fill="none" stroke="#d97706" stroke-width="3"/>
-                            <text x="270" y="150" font-size="18" font-weight="bold" fill="#d97706">90°</text>
-                        </g>
-
-                        <g id="rit-state-3" class="hidden">
-                            <path d="M 50 350 L 250 200" fill="none" stroke="#ef4444" stroke-width="5" marker-end="url(#arrRedL)"/>
-                            <path d="M 250 200 L 450 350" fill="none" stroke="#ef4444" stroke-width="5" marker-end="url(#arrRedL)"/>
-                            <path d="M 250 260 A 60 60 0 0 0 170 260" fill="none" stroke="#dc2626" stroke-width="3"/>
-                            <text x="160" y="290" font-size="20" font-weight="bold" fill="#dc2626">θ > θ_c</text>
-                            
-                            <path d="M 250 260 A 60 60 0 0 1 330 260" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="4,4"/>
-                        </g>
+                        <line x1="450" y1="50" x2="450" y2="200" stroke="#64748b" stroke-width="8"/>
+                        
+                        <path d="M 250 40 Q 230 20 250 0 Q 270 20 250 40" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+                        <circle cx="250" cy="20" r="5" fill="#ef4444"/> <rect x="110" y="210" width="280" height="30" fill="#1e293b" rx="5"/>
+                        <text x="250" y="230" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Medio con Polvo/Humo (Difusión Activa)</text>
 
                         <defs>
-                            <marker id="arrGreenL" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#22c55e" /></marker>
-                            <marker id="arrOrangeL" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#f59e0b" /></marker>
-                            <marker id="arrRedL" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#ef4444" /></marker>
+                            <marker id="arrRedS" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fca5a5" /></marker>
                         </defs>
                     </svg>
                 </div>
@@ -403,49 +436,74 @@
         <div class="slide p-10 bg-slate-50">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
                 <i data-lucide="book-open" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Reflexión Interna Total y Límite Crítico</h2>
+                <h2 class="text-5xl font-bold text-slate-900">Difusión (Esparcimiento / Scattering)</h2>
             </div>
             
-            <div class="grid grid-cols-2 gap-12 flex-1">
-                <div class="glass-card p-10 flex flex-col justify-start border-t-[12px] border-indigo-600 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-6 text-center border-b-2 border-slate-100 pb-4">Condiciones Estrictas (RIT)</p>
-                    <p class="text-lg text-slate-700 leading-relaxed font-medium mb-6 px-4">
-                        Para que la luz quede atrapada y la frontera actúe como un espejo perfecto (0% refracción), deben cumplirse simultáneamente dos requisitos ineludibles:
-                        <br><br>1. Viajar de un medio ópticamente <strong>más denso</strong> a uno <strong>menos denso</strong> ($n_{origen} > n_{destino}$).
-                        <br>2. El ángulo de incidencia debe superar el límite matemático ($\theta_i > \theta_c$).
-                    </p>
-                    <div class="mt-auto bg-slate-50 p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                        <span class="text-indigo-700 font-bold uppercase tracking-widest text-sm">Aplicación Tecnológica</span>
-                        <p class="text-slate-800 font-medium mt-1">La fibra óptica, el brillo extremo del diamante y los espejismos se basan en este principio.</p>
+            <div class="grid grid-cols-12 gap-10 flex-1 items-stretch">
+                <div class="col-span-5 flex flex-col gap-8 h-full">
+                    <div class="glass-card p-8 flex flex-col border-t-[12px] border-emerald-500 shadow-md bg-white">
+                        <p class="text-3xl font-extrabold text-slate-900 mb-4 border-b-2 border-slate-100 pb-4">Fenómeno Físico</p>
+                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
+                            La difusión ocurre cuando un haz de luz direccional viaja por un medio con <strong>micro-partículas en suspensión</strong> (polvo, moléculas de gas, gotitas de niebla).
+                        </p>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 mt-4">
+                            <p class="text-lg text-slate-800 font-medium">
+                                Estas partículas actúan como obstáculos. Los fotones chocan contra ellas y son rebotados violentamente en <strong>todas direcciones posibles</strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col border-l-8 border-teal-600 shadow-md bg-slate-50 flex-1 justify-center">
+                        <p class="text-xl font-bold text-slate-900 mb-2">Efecto Visual Directo</p>
+                        <p class="text-lg text-slate-700 font-medium">Es el mecanismo exclusivo que nos permite ver haces de luz "sólidos" lateralmente, como los faros de los autos atravesando la niebla.</p>
                     </div>
                 </div>
 
-                <div class="glass-card p-10 flex flex-col justify-start border-t-[12px] border-rose-500 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-6 text-center border-b-2 border-slate-100 pb-4">El Ángulo Crítico ($\theta_c$)</p>
-                    <p class="text-lg text-slate-700 leading-relaxed font-medium mb-6 px-4">
-                        Se define teóricamente como el ángulo de incidencia exacto que produce un ángulo de refracción de $90^\circ$ rasante a la superficie. Su deducción proviene directamente de la Ley de Snell.
-                    </p>
-                    
-                    <div class="bg-rose-50 p-6 rounded-2xl font-mono text-[2.5rem] text-center text-rose-800 font-black border border-rose-200 shadow-inner mt-4">
-                        $$ \sin(\theta_c) = \frac{n_{destino}}{n_{origen}} $$
-                    </div>
+                <div class="col-span-7 glass-card p-8 bg-slate-900 border-4 border-slate-700 shadow-xl flex items-center justify-center relative overflow-hidden rounded-3xl">
+                    <p class="absolute top-6 left-8 text-white font-bold text-2xl tracking-widest uppercase">Esparcimiento a nivel Micro</p>
+                    <svg viewBox="0 0 500 400" class="w-full h-full max-h-[360px]">
+                        <path d="M 0 200 L 200 200" fill="none" stroke="#ef4444" stroke-width="12" opacity="0.8"/>
+                        
+                        <circle cx="200" cy="200" r="16" fill="#f8fafc"/>
+                        <path d="M 200 200 L 280 100" fill="none" stroke="#fca5a5" stroke-width="4" marker-end="url(#arrRedS2)"/>
+                        <path d="M 200 200 L 260 280" fill="none" stroke="#fca5a5" stroke-width="4" marker-end="url(#arrRedS2)"/>
+                        <path d="M 200 200 L 140 120" fill="none" stroke="#fca5a5" stroke-width="4" marker-end="url(#arrRedS2)"/>
+                        <path d="M 200 200 L 130 280" fill="none" stroke="#fca5a5" stroke-width="4" marker-end="url(#arrRedS2)"/>
+                        <path d="M 200 200 L 330 200" fill="none" stroke="#fca5a5" stroke-width="8" opacity="0.9"/> <circle cx="330" cy="200" r="12" fill="#f8fafc"/>
+                        <path d="M 330 200 L 410 140" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS2)"/>
+                        <path d="M 330 200 L 390 280" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS2)"/>
+                        <path d="M 330 200 L 280 260" fill="none" stroke="#fca5a5" stroke-width="3" marker-end="url(#arrRedS2)"/>
+                        <path d="M 330 200 L 480 200" fill="none" stroke="#fca5a5" stroke-width="5" opacity="0.6"/> <circle cx="410" cy="140" r="8" fill="#f8fafc"/>
+                        <path d="M 410 140 L 460 90" fill="none" stroke="#fca5a5" stroke-width="2" marker-end="url(#arrRedS2)"/>
+                        <path d="M 410 140 L 470 170" fill="none" stroke="#fca5a5" stroke-width="2" marker-end="url(#arrRedS2)"/>
+
+                        <rect x="25" y="160" width="120" height="30" fill="#1e293b" rx="4"/>
+                        <text x="85" y="180" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Haz Primario</text>
+
+                        <rect x="110" y="320" width="180" height="30" fill="#1e293b" rx="4"/>
+                        <text x="200" y="340" fill="white" font-size="14" font-weight="bold" text-anchor="middle">Partícula en el Medio</text>
+                        <path d="M 200 320 L 200 220" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+
+                        <defs>
+                            <marker id="arrRedS2" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fca5a5" /></marker>
+                        </defs>
+                    </svg>
                 </div>
             </div>
         </div>
 
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="calculator" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Laboratorio de Ingeniería Óptica</h2>
+                <i data-lucide="sun" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">El Filtro Atmosférico</h2>
             </div>
 
             <div class="grid grid-cols-12 gap-12 flex-1 items-stretch">
                 <div class="col-span-5 flex flex-col justify-start space-y-6">
                     <div class="glass-card p-6 border-l-8 border-indigo-500 shadow-md bg-slate-50 shrink-0">
                         <p class="text-xl text-slate-700 leading-relaxed font-medium">
-                            Retomemos el caso del buzo sumergido. El láser viaja desde el <strong>Agua ($n_1 = 1.33$)</strong> e intenta escapar hacia el <strong>Aire ($n_2 = 1.00$)</strong>.
+                            En el espacio exterior (vacío), el cielo se ve perpetuamente negro. Sin embargo, desde la superficie terrestre observamos una inmensa bóveda celeste de color azul intenso durante el día.
                             <br><br>
-                            Desarrolle algebraicamente el modelo para determinar el <strong>Ángulo Crítico ($\theta_c$)</strong> exacto del agua.
+                            Sabiendo que el Sol emite luz blanca (todos los colores), ¿cómo explica el concepto de <strong>Difusión</strong> este fenómeno cromático masivo?
                         </p>
                     </div>
 
@@ -454,48 +512,55 @@
                             this.style.display='none'; 
                             const res = document.getElementById('yo-hago-res2');
                             res.classList.remove('hidden');
-                            res.classList.add('flex', 'visible');
-                            if(window.MathJax) MathJax.typesetPromise([res]);"
-                            class="absolute inset-0 m-auto h-max w-full px-6 py-6 bg-slate-900 text-white rounded-xl text-2xl font-bold hover:bg-slate-800 transition shadow-xl flex items-center justify-center gap-3 z-20">
-                            <i data-lucide="unlock"></i> Desarrollar Modelo Analítico
+                            res.classList.add('flex', 'visible');"
+                            class="absolute inset-0 m-auto h-max w-[85%] px-6 py-6 bg-indigo-700 text-white rounded-xl text-2xl font-bold hover:bg-indigo-800 transition shadow-xl flex items-center justify-center gap-3 z-20">
+                            <i data-lucide="unlock"></i> Ejecutar Análisis Atmosférico
                         </button>
 
                         <div id="yo-hago-res2" class="hidden fade-in absolute inset-0 w-full bg-white p-6 rounded-xl border border-slate-200 shadow-inner flex-col justify-start gap-4 overflow-y-auto z-10">
-                            <div class="bg-indigo-50 p-4 rounded-xl border-l-4 border-indigo-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">1. Ecuación de Snell Adaptada</p>
-                                <p class="font-mono text-xl text-indigo-900">$$ n_{agua} \cdot \sin(\theta_c) = n_{aire} \cdot \sin(90^\circ) $$</p>
-                                <p class="font-mono text-lg text-indigo-800 mt-2">Como $\sin(90^\circ) = 1$:</p>
-                                <p class="font-mono text-xl text-indigo-900 mt-1">$$ 1.33 \cdot \sin(\theta_c) = 1.00 $$</p>
+                            <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500 shrink-0">
+                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Difusión de Rayleigh</p>
+                                <p class="text-lg text-slate-800 font-medium">La atmósfera terrestre actúa como un inmenso medio de difusión debido a las diminutas moléculas de nitrógeno y oxígeno suspendidas.</p>
                             </div>
-                            <div class="bg-emerald-50 p-4 rounded-xl border-l-4 border-emerald-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-2">2. Despeje Final e Inversa</p>
-                                <p class="font-mono text-xl text-emerald-900">$$ \theta_c = \sin^{-1}\left(\frac{1.00}{1.33}\right) \approx \mathbf{48.8^\circ} $$</p>
+                            <div class="bg-indigo-50 p-4 rounded-xl border-l-4 border-indigo-500 shrink-0">
+                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-2">Desviación Selectiva</p>
+                                <p class="text-lg text-slate-800 font-medium">Estas moléculas no rebotan bien las ondas largas (Rojo, cruza directo). Sin embargo, <strong>chocan y esparcen masivamente las ondas cortas (Azul)</strong>. Esta luz azul rebotada en todas direcciones es la que inunda el cielo hacia nuestros ojos.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-span-7 glass-card border-4 border-slate-300 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full bg-white">
-                    <svg viewBox="0 0 500 400" class="w-full max-h-[400px] overflow-visible">
-                        <rect x="0" y="0" width="500" height="200" fill="#f8fafc"/>
-                        <text x="20" y="30" font-size="20" font-weight="bold" fill="#64748b" font-family="monospace">Aire (n₂ = 1.00)</text>
+                <div class="col-span-7 glass-card border-4 border-slate-300 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full bg-slate-900">
+                    <svg viewBox="0 0 500 400" class="w-full max-h-[380px] overflow-visible">
+                        <circle cx="50" cy="50" r="30" fill="#fef08a"/>
+                        <path d="M 80 80 L 250 200" fill="none" stroke="#ffffff" stroke-width="8"/>
                         
-                        <rect x="0" y="200" width="500" height="200" fill="#e0f2fe"/>
-                        <text x="20" y="380" font-size="20" font-weight="bold" fill="#0369a1" font-family="monospace">Agua (n₁ = 1.33)</text>
-                        <line x1="0" y1="200" x2="500" y2="200" stroke="#0284c7" stroke-width="4"/>
-
-                        <line x1="250" y1="50" x2="250" y2="350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8,6"/>
+                        <rect x="90" y="80" width="160" height="25" fill="#1e293b" rx="4"/>
+                        <text x="170" y="98" fill="white" font-weight="bold" font-size="14" text-anchor="middle">Luz Blanca Solar</text>
                         
-                        <path d="M 120 350 L 250 200" fill="none" stroke="#ef4444" stroke-width="5" marker-end="url(#arrRedL2)"/>
-                        <path d="M 250 260 A 60 60 0 0 0 198 260" fill="none" stroke="#dc2626" stroke-width="3"/>
-                        <text x="180" y="300" font-size="22" font-weight="bold" fill="#dc2626">48.8°</text>
+                        <path d="M 0 400 A 300 300 0 0 0 500 400 Z" fill="#bae6fd" opacity="0.2"/>
+                        
+                        <circle cx="250" cy="200" r="10" fill="#f8fafc"/> <rect x="250" y="170" width="150" height="25" fill="#1e293b" rx="4"/>
+                        <text x="325" y="188" fill="#cbd5e1" font-size="14" font-weight="bold" text-anchor="middle">Moléculas (N₂, O₂)</text>
 
-                        <path d="M 250 200 L 450 200" fill="none" stroke="#ef4444" stroke-width="6" marker-end="url(#arrRedL2)"/>
-                        <path d="M 250 160 A 40 40 0 0 1 290 200" fill="none" stroke="#dc2626" stroke-width="3"/>
-                        <text x="270" y="150" font-size="18" font-weight="bold" fill="#dc2626">90°</text>
+                        <path d="M 250 200 L 400 300" fill="none" stroke="#ef4444" stroke-width="6" marker-end="url(#arrRedL2)"/>
+                        
+                        <rect x="300" y="275" width="160" height="25" fill="#1e293b" rx="4"/>
+                        <text x="380" y="293" fill="#fca5a5" font-size="14" font-weight="bold" text-anchor="middle">Rojo (Sigue largo)</text>
+
+                        <path d="M 250 200 L 150 280" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4,2" marker-end="url(#arrBlueD)"/>
+                        <path d="M 250 200 L 320 120" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4,2" marker-end="url(#arrBlueD)"/>
+                        <path d="M 250 200 L 350 250" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4,2" marker-end="url(#arrBlueD)"/>
+                        <path d="M 250 200 L 180 140" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4,2" marker-end="url(#arrBlueD)"/>
+                        
+                        <rect x="10" y="220" width="220" height="30" fill="#1e293b" rx="4"/>
+                        <text x="120" y="240" fill="#93c5fd" font-size="14" font-weight="bold" text-anchor="middle">Azul (Difusión masiva)</text>
+
+                        <path d="M 0 400 A 400 100 0 0 0 500 400 Z" fill="#166534"/>
 
                         <defs>
                             <marker id="arrRedL2" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#ef4444" /></marker>
+                            <marker id="arrBlueD" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#3b82f6" /></marker>
                         </defs>
                     </svg>
                 </div>
@@ -505,57 +570,57 @@
         <div class="slide bg-slate-50 p-10 pb-32">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
                 <i data-lucide="pen-tool" class="w-16 h-16 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Mecanización y Análisis de Fronteras</h2>
+                <h2 class="text-5xl font-bold text-slate-900">Mecanización y Análisis Físico</h2>
             </div>
             
             <p class="text-2xl text-slate-600 mb-6 border-l-8 border-emerald-500 pl-6 bg-white py-4 font-medium rounded-r-xl border border-slate-200 shadow-sm">
-                Resuelva metódicamente en su cuaderno, utilizando los conceptos geométricos y algebraicos revisados.
+                Resuelva metódicamente en su cuaderno, utilizando la lógica geométrica de la transmisión y difusión óptica.
             </p>
 
             <div class="scrollable-content grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 overflow-y-auto pr-4 pb-10">
                 
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-emerald-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-full font-black text-2xl shrink-0">1</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">¿Por qué un espejo de baño empañado con vapor de agua ya no refleja una imagen nítida? Analiza el caso en base a la topología microscópica y el cambio en el tipo de reflexión.</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Clasifica el material de una ventana polarizada lisa (que deja pasar luz oscura pero conserva formas nítidas) según su tipo de transmisión lumínica geométrica.</p>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-emerald-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-full font-black text-2xl shrink-0">2</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Teóricamente, ¿es posible que ocurra una Reflexión Interna Total si un rayo de luz viaja desde el Aire ($n=1.00$) e intenta ingresar a un bloque de Vidrio ($n=1.52$)? Justifica tu respuesta.</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Indica qué propiedad física fundamental del haz láser se destruye instantáneamente al atravesar una barrera de vidrio esmerilado rugoso.</p>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-emerald-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-full font-black text-2xl shrink-0">3</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Nombra las dos condiciones físicas y matemáticas obligatorias para que la luz quede atrapada dentro de un material mediante Reflexión Interna Total.</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Las nubes densas permiten que sea de día (hay luz) sin que podamos ver la esfera del Sol directamente. ¿Qué fenómeno óptico exacto ocurre dentro de las nubes con los fotones?</p>
                 </div>
 
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-amber-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-amber-50 text-amber-600 rounded-full font-black text-2xl shrink-0">4</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Calcula algebraicamente el <strong>Ángulo Crítico ($\theta_c$)</strong> para la frontera entre un bloque de Vidrio de alta densidad ($n_1 = 1.62$) y el Aire ($n_2 = 1.00$).</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Las pantallas protectoras de lámparas de escritorio (tulipas) suelen ser de materiales texturizados blancos. Justifica física y geométricamente la utilidad de este diseño para proteger la vista.</p>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-amber-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-amber-50 text-amber-600 rounded-full font-black text-2xl shrink-0">5</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Un diamante brillante tiene un índice de refracción extremo ($n_1 = 2.42$). Si cae al fondo de una piscina con agua ($n_2 = 1.33$), determina su nuevo ángulo crítico.</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">¿Por qué un foco de luz directa (Transmisión Directa) proyecta sombras extremadamente oscuras con bordes de alto contraste sobre una pared, a diferencia de la luz difusa?</p>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-amber-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-amber-50 text-amber-600 rounded-full font-black text-2xl shrink-0">6</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">El ángulo crítico para un plástico transparente desconocido rodeado de aire es exactamente $30^\circ$. Despeja la ecuación y calcula el índice de refracción ($n_1$) de dicho material.</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">El agua limpia de mar experimenta transmisión directa. ¿Por qué al agitar violentamente la arena del fondo, el agua se vuelve opaca y la luz se disipa antes de llegar a profundidad?</p>
                 </div>
 
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-orange-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full font-black text-2xl shrink-0">7</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Ingeniería: Una fibra óptica posee un núcleo central con $n_{nucleo} = 1.48$ y un revestimiento con $n_{funda} = 1.44$. ¿Cuál es el ángulo límite interno para no perder la señal?</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Durante un banco de niebla muy espesa de noche, encender las "luces altas" (directas y potentes) del auto empeora drásticamente la visión. Analiza qué rol juega la difusión en este peligroso rebote lumínico hacia el conductor.</p>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-orange-500 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full font-black text-2xl shrink-0">8</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Si una empresa novata fabrica una fibra óptica cuyo revestimiento externo tiene un índice de refracción <em>mayor</em> que el del núcleo central, ¿qué ocurrirá con el láser de datos al primer rebote?</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Al atardecer, el Sol se ve rojo en lugar de blanco. Utilizando el concepto de "Filtro Atmosférico" y Difusión, deduce por qué el rojo es la única luz que sobrevive al cruzar la gruesa capa de atmósfera horizontal.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-rose-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-rose-50 text-rose-600 rounded-full font-black text-2xl shrink-0">9</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Un rayo de luz viaja por un bloque de vidrio ($n = 1.5$) e incide sobre la pared lateral interna con un ángulo $\theta_i = 45^\circ$. Sabiendo que afuera hay aire, demuestra matemáticamente si el rayo sale o sufre RIT.</p>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-purple-600 flex gap-6">
+                    <span class="w-12 h-12 flex items-center justify-center bg-purple-50 text-purple-700 rounded-full font-black text-2xl shrink-0">9</span>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Análisis Teórico: Si la difusión esparce los fotones en todas direcciones, disminuyendo severamente la intensidad de la luz que llega hacia el frente, ¿significa esto que la cantidad de energía total de la onda luminosa desapareció? Fundamenta.</p>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-purple-600 flex gap-6">
                     <span class="w-12 h-12 flex items-center justify-center bg-purple-50 text-purple-700 rounded-full font-black text-2xl shrink-0">10</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Análisis Abstracto: Si la velocidad de la luz en un Medio A es la mitad que en el Medio B ($v_A = 0.5 v_B$), establece algebraicamente si es posible la RIT al pasar de A hacia B, y calcula $\sin(\theta_c)$.</p>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Un astronauta en la luna (sin atmósfera) observa el suelo iluminado intensamente por el sol, pero si mira al cielo estrellado a su alrededor de día, el fondo es de negrura absoluta. Explica la falta de color en el cielo lunar utilizando el concepto de scattering.</p>
                 </div>
             </div>
         </div>
@@ -571,18 +636,18 @@
                 <div class="col-span-6 flex flex-col space-y-6 h-full justify-start">
                     <div class="p-8 bg-white border-2 border-slate-200 rounded-3xl shadow-sm flex flex-col">
                         <p class="text-2xl font-medium text-slate-800 leading-relaxed text-justify mb-4">
-                            Un ingeniero diseña un cable de fibra óptica para telecomunicaciones intercontinentales. El núcleo cilíndrico por donde viaja el láser tiene un índice de refracción $n_1$, y la funda protectora externa tiene un índice $n_2$. 
+                            Un arquitecto biológico debe diseñar el techo transparente de un gran invernadero industrial. El requisito botánico es que las plantas de todo el recinto reciban la máxima cantidad de energía solar posible, pero <strong>evitando impactos lumínicos directos</strong> que generen sombras marcadas o quemen las hojas superiores.
                         </p>
                         <p class="text-2xl font-extrabold text-indigo-900 leading-relaxed">
-                            Para garantizar la transmisión ininterrumpida de datos mediante Reflexión Interna Total, ¿qué relación matemática estricta debe existir entre los medios y el ángulo de choque interno ($\theta_i$)?
+                            Bajo los principios de la óptica geométrica, ¿qué propiedad física ineludible debe exigir al material de fabricación del techo?
                         </p>
                     </div>
 
-                    <div class="space-y-4 text-xl font-bold text-slate-700 flex-1 flex flex-col justify-end font-mono">
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans">A) $n_1 < n_2 \quad\text{y}\quad \theta_i < \theta_c$</p>
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans" id="correct-opt-paes">B) $n_1 > n_2 \quad\text{y}\quad \theta_i > \theta_c$</p>
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans">C) $n_1 = n_2 \quad\text{y}\quad \theta_i = \theta_c$</p>
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans">D) $n_1 > n_2 \quad\text{y}\quad \theta_i < \theta_c$</p>
+                    <div class="space-y-4 text-xl font-bold text-slate-700 flex-1 flex flex-col justify-end font-sans">
+                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100">A) Alta capacidad de Transmisión Directa para no perder energía en la propagación.</p>
+                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100" id="correct-opt-paes">B) Transmisión Difusa severa, alterando la coherencia direccional del haz luminoso.</p>
+                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100">C) Fuerte Reflexión Difusa para proteger las plantas de la radiación nociva externa.</p>
+                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100">D) Reflexión Interna Total para atrapar la energía dentro de la estructura de vidrio.</p>
                     </div>
                 </div>
 
@@ -599,14 +664,14 @@
                         </p>
 
                         <div class="text-xl text-slate-800 space-y-6 font-medium tracking-wide">
-                            <div class="bg-indigo-50 p-5 border-l-8 border-indigo-400 rounded-r-xl shadow-inner">
-                                <span class="font-bold text-indigo-800 block mb-1">Condición de Medios ($n$):</span> Para que la luz no escape, el núcleo interno debe ser ópticamente más denso que la cubierta protectora externa. Obligatoriamente $n_1 > n_2$ (Descarta A y C).
-                            </div>
                             <div class="bg-rose-50 p-5 border-l-8 border-rose-400 rounded-r-xl shadow-inner">
-                                <span class="font-bold text-rose-800 block mb-1">Condición de Choque ($\theta_i$):</span> Si $\theta_i < \theta_c$, el rayo se refracta hacia afuera y se pierden datos (Descarta D).
+                                <span class="font-bold text-rose-800 block mb-1">Descarte Reflexión:</span> El requisito es que la luz solar <em>ingrese</em> al recinto para nutrir a las plantas. Cualquier forma de reflexión (difusa o total) bloquearía la luz hacia el exterior. (Descarta C y D).
+                            </div>
+                            <div class="bg-indigo-50 p-5 border-l-8 border-indigo-400 rounded-r-xl shadow-inner">
+                                <span class="font-bold text-indigo-800 block mb-1">Descarte Transmisión Directa:</span> Si usamos vidrio liso (directa), los rayos entrarán en paralelo intenso, quemando las copas de las plantas y generando duras sombras abajo (Incumple requisito botánico). (Descarta A).
                             </div>
                             <div class="bg-emerald-50 p-5 border-l-8 border-emerald-500 rounded-r-xl shadow-inner font-bold text-emerald-900">
-                                <span class="text-emerald-700 block mb-1">Síntesis Tecnológica (Alternativa B):</span> Para lograr el rebote interno total de la señal, se requiere el índice mayor en el núcleo y que los haces de luz reboten en ángulos superiores siempre al Ángulo Crítico ($\theta_i > \theta_c$).
+                                <span class="text-emerald-700 block mb-1">Síntesis Analítica (Alternativa B):</span> Un material con Transmisión Difusa (ej. policarbonato rugoso) permite el paso de la energía lumínica total, pero destruye el haz directo, repartiendo los fotones diagonalmente por todo el recinto para iluminar parejo y sin sombras duras.
                             </div>
                         </div>
                     </div>
@@ -620,7 +685,7 @@
         <div class="text-slate-400 font-extrabold text-2xl tracking-widest uppercase truncate max-w-[60%] flex gap-4 items-center">
             <span class="text-indigo-800">F3</span>
             <span class="text-slate-300">|</span>
-            <span>Clase 8: Reflexión Avanzada y RIT</span>
+            <span>Clase 9: Transmisión y Difusión</span>
         </div>
         <div class="flex gap-6">
             <button onclick="changeSlide(-1)" class="p-5 rounded-full bg-slate-50 border-2 border-slate-200 shadow-sm hover:bg-slate-200 hover:border-slate-300 transition-all cursor-pointer focus:outline-none text-slate-600">
@@ -682,14 +747,6 @@
             if (window.MathJax) {
                 try { MathJax.typesetPromise([target]).catch(e => console.log(e)); } catch (e) {}
             }
-        }
-
-        function revelarEstadoRIT(estado) {
-            document.getElementById('rit-state-1').classList.replace('visible', 'hidden');
-            document.getElementById('rit-state-2').classList.replace('visible', 'hidden');
-            document.getElementById('rit-state-3').classList.replace('visible', 'hidden');
-            
-            document.getElementById('rit-state-' + estado).classList.replace('hidden', 'visible');
         }
     </script>
 </body>
