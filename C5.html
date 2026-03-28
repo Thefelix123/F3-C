@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>C6 reflexion avanzada</title>
+    <title>C5 F3</title>
     
 
   </head>
@@ -15,11 +15,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óptica: Reflexión y Fronteras - F3</title>
+    <title>Efecto Doppler Lumínico - F3</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
     <script>
         window.MathJax = {
@@ -41,9 +41,9 @@
             background-color: #f8fafc;
         }
 
-        #main-container {
+        #slide-container {
+            height: calc(100vh - 5rem);
             width: 100vw;
-            height: calc(100vh - 6rem);
             position: relative;
         }
 
@@ -51,516 +51,302 @@
             display: none;
             height: 100%;
             width: 100%;
-            animation: fadeIn 0.4s ease-out;
+            animation: fadeIn 0.3s ease-out;
             flex-direction: column;
             overflow-y: auto;
             overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 2rem;
+            padding-bottom: 3rem;
+            scroll-behavior: smooth;
         }
 
         .slide.active {
             display: flex;
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.98);
             border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Scrollbars */
+        /* Barras de desplazamiento */
         ::-webkit-scrollbar { width: 14px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
-        ::-webkit-scrollbar-thumb { background: #818cf8; border-radius: 8px; border: 3px solid #f1f5f9; }
-        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
-        .scrollable-content::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 8px; margin: 10px 0; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 8px; border: 3px solid #e2e8f0; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
-        /* Utilities */
-        .fade-in { opacity: 0; transition: opacity 0.6s ease-in-out; pointer-events: none; }
-        .visible { opacity: 1 !important; pointer-events: auto !important; }
+        /* Transiciones específicas */
+        .fade-in { opacity: 0; transition: opacity 0.6s ease-in-out; pointer-events: none; display: none; }
+        .visible { opacity: 1 !important; pointer-events: auto !important; display: flex !important; }
         
-        .shadow-text {
-            text-shadow: 3px 3px 0px #fff, -3px -3px 0px #fff, 3px -3px 0px #fff, -3px 3px 0px #fff, 0px 3px 0px #fff, 0px -3px 0px #fff, 3px 0px 0px #fff, -3px 0px 0px #fff;
+        .linea-espectro {
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .shift-red {
+            /* Desplazamiento matemático hacia la izquierda (Zona Roja) */
+            transform: translateX(-320px);
         }
     </style>
 </head>
 
-<body class="text-slate-800 select-none">
+<body class="text-slate-800 select-none flex flex-col">
 
-    <div class="h-4 w-full bg-indigo-800 shrink-0 z-50 relative"></div>
+    <div class="h-4 w-full bg-indigo-800 shrink-0 fixed top-0 z-50"></div>
 
-    <div id="main-container">
+    <div id="slide-container" class="mt-4">
 
         <div class="slide active p-10 bg-slate-50">
-            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full relative overflow-hidden">
-                <div class="absolute inset-0 opacity-[0.03] z-0 flex items-center justify-center pointer-events-none">
-                    <i data-lucide="layers" class="w-[800px] h-[800px] text-indigo-900"></i>
-                </div>
-                <div class="relative w-40 h-40 flex items-center justify-center z-10">
-                    <i data-lucide="flip-vertical" class="w-full h-full text-indigo-800 opacity-90 absolute"></i>
-                </div>
-                <h1 class="text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight z-10">
-                    Óptica Avanzada
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full min-h-[500px] relative overflow-hidden">
+                <i data-lucide="radio" class="absolute w-[600px] h-[600px] text-indigo-900 opacity-[0.03] pointer-events-none"></i>
+                <i data-lucide="radar" class="w-40 h-40 text-indigo-800 opacity-90 z-10"></i>
+                <h1 class="text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center z-10">
+                    Efecto Doppler Lumínico
                 </h1>
-                <p class="text-4xl text-slate-500 font-semibold tracking-wide text-center z-10">
-                    Reflexión Direccional y Fronteras Críticas
+                <p class="text-5xl text-slate-500 font-semibold tracking-wide text-center z-10">
+                    Cinemática y Desplazamiento Espectral
                 </p>
-                <div class="mt-16 p-8 glass-card border-l-8 border-indigo-800 text-left w-full max-w-5xl flex justify-between items-end z-10 shadow-lg">
-                    <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
-                    <p class="text-3xl font-bold text-indigo-800 uppercase tracking-wider">SEK CHILE • F3</p>
+
+                <div class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-indigo-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md z-10">
+                    <div>
+                        <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-indigo-800 uppercase tracking-wider">SEK CHILE • F3</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="slide bg-white p-10 pb-32">
+        <div class="slide bg-white p-10">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="cloud-rain" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">El Fenómeno del Asfalto Mojado</h2>
+                <i data-lucide="telescope" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">La Medición del Cosmos</h2>
             </div>
-            
-            <div class="grid grid-cols-12 gap-10 flex-1 items-stretch">
-                <div class="col-span-5 flex flex-col justify-center space-y-6">
-                    <p class="text-xl text-slate-700 leading-relaxed font-medium">
-                        Durante la conducción nocturna, un asfalto seco nos permite ver la calzada porque la luz de los focos impacta el suelo y se dispersa hacia múltiples direcciones, llegando a nuestros ojos.
+
+            <div class="grid grid-cols-12 gap-10 flex-1 min-h-[500px] items-center">
+                <div class="col-span-5 space-y-8 h-full flex flex-col justify-center">
+                    <p class="text-2xl text-slate-700 leading-relaxed font-medium">
+                        Los astrónomos conocen el color exacto que emite el gas Hidrógeno al calentarse. Sin embargo, al observar galaxias lejanas, notaron que ese mismo patrón de luz llega a la Tierra con un tono alterado.
                     </p>
-                    <div class="glass-card p-6 border-l-8 border-indigo-500 shadow-sm">
-                        <p class="text-xl text-slate-800 font-bold mb-2">La Paradoja Visual</p>
-                        <p class="text-lg text-slate-700 leading-relaxed font-medium">
-                            Cuando llueve intensamente, el asfalto se vuelve un "espejo" oscuro que rebota la luz de los vehículos contrarios directo a los ojos, provocando ceguera temporal. ¿Qué cambia físicamente en la frontera del pavimento?
+                    <div class="glass-card p-6 rounded-xl border-l-8 border-rose-600 shadow-md">
+                        <p class="text-xl text-slate-800 leading-snug font-semibold">
+                            ¿Por qué la luz modifica su longitud de onda ($\lambda$) simplemente por viajar a través del espacio desde una fuente en movimiento?
                         </p>
                     </div>
-
-                    <div class="relative w-full min-h-[10rem] mt-2">
-                        <button onclick="
-                            this.style.display='none'; 
-                            document.getElementById('gancho-res').classList.remove('hidden');
-                            document.getElementById('gancho-res').classList.add('flex', 'visible');
-                            document.getElementById('svg-difusa-asfalto').classList.replace('visible', 'hidden');
-                            document.getElementById('svg-especular-asfalto').classList.replace('hidden', 'visible');"
-                            class="absolute inset-0 m-auto h-max px-6 py-5 bg-slate-900 text-white rounded-xl text-2xl font-bold hover:bg-slate-800 transition shadow-xl flex items-center justify-center gap-3 w-full z-20">
-                            <i data-lucide="microscope"></i> Analizar a Nivel Microscópico
-                        </button>
-
-                        <div id="gancho-res" class="hidden fade-in absolute inset-0 w-full bg-emerald-50 p-6 rounded-xl border-l-8 border-emerald-500 shadow-sm flex-col justify-center overflow-y-auto">
-                            <p class="text-lg text-slate-800 leading-relaxed font-medium mb-3">
-                                El agua rellena las fisuras microscópicas de la carretera, nivelando la topología y creando una interfaz perfectamente lisa.
-                            </p>
-                            <p class="text-lg text-slate-800 leading-relaxed font-medium">
-                                Esto transforma la dispersión original en una <strong>reflexión direccional</strong>, rebotando los haces de luz paralelos en un solo frente potente.
-                            </p>
-                        </div>
+                    <button onclick="activarAnimacionDoppler()" class="mt-4 px-8 py-5 bg-slate-800 text-white rounded-xl text-2xl font-bold hover:bg-slate-700 transition shadow-lg w-max">
+                        <i data-lucide="play" class="inline-block w-8 h-8 mr-2 mb-1"></i> Activar Movimiento Relativo
+                    </button>
+                    
+                    <div id="texto-vacio" class="p-6 bg-transparent border-l-8 border-transparent rounded-r-xl h-[120px]"></div>
+                    <div id="texto-explicacion" class="hidden flex-col p-6 bg-emerald-50 border-l-8 border-emerald-500 rounded-r-xl shadow-md h-[120px] justify-center">
+                        <p class="text-lg text-emerald-900 font-semibold leading-relaxed">
+                            Al moverse, la fuente "persigue" sus propias ondas hacia adelante, reduciendo la distancia entre crestas. Hacia atrás, se "aleja" de ellas, aumentando dicha distancia.
+                        </p>
                     </div>
                 </div>
-                
-                <div class="col-span-7 glass-card border-4 border-slate-200 overflow-hidden shadow-xl relative w-full h-full bg-slate-900 flex items-center justify-center p-6">
-                    <svg id="svg-difusa-asfalto" viewBox="0 0 500 250" class="w-full max-h-[250px] visible">
-                        <path d="M 50 200 L 100 170 L 150 210 L 200 160 L 250 220 L 300 180 L 350 210 L 400 160 L 450 200" fill="none" stroke="#64748b" stroke-width="8" stroke-linejoin="round"/>
-                        <path d="M 80 20 L 140 190" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 180 20 L 240 205" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 280 20 L 340 195" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 140 190 L 50 110" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 240 205 L 290 80" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 340 195 L 450 140" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <text x="250" y="30" fill="#94a3b8" font-size="20" font-weight="bold" text-anchor="middle">Pavimento Seco</text>
-                    </svg>
 
-                    <svg id="svg-especular-asfalto" viewBox="0 0 500 250" class="w-full max-h-[250px] hidden absolute inset-0 m-auto">
-                        <path d="M 50 200 L 100 170 L 150 210 L 200 160 L 250 220 L 300 180 L 350 210 L 400 160 L 450 200" fill="none" stroke="#475569" stroke-width="8" stroke-linejoin="round"/>
-                        <path d="M 40 140 L 460 140" fill="none" stroke="#3b82f6" stroke-width="6"/>
-                        <path d="M 40 140 L 40 220 L 460 220 L 460 140 Z" fill="#3b82f6" opacity="0.4"/>
-                        <path d="M 60 20 L 125 140" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 160 20 L 225 140" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 260 20 L 325 140" fill="none" stroke="#fde047" stroke-width="4" marker-end="url(#arrYellow)"/>
-                        <path d="M 125 140 L 190 20" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 225 140 L 290 20" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <path d="M 325 140 L 390 20" fill="none" stroke="#fbbf24" stroke-width="4" marker-end="url(#arrYellow2)"/>
-                        <text x="250" y="30" fill="#93c5fd" font-size="20" font-weight="bold" text-anchor="middle">Pavimento Inundado</text>
+                <div class="col-span-7 h-full w-full flex flex-col items-center justify-center bg-slate-900 rounded-3xl border-4 border-slate-800 overflow-hidden shadow-2xl relative min-h-[450px]">
+                    <svg viewBox="0 0 800 400" class="w-full h-full" id="doppler-canvas">
+                        <defs>
+                            <linearGradient id="doppler-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ef4444" /> <stop offset="50%" stop-color="#94a3b8" /> <stop offset="100%" stop-color="#3b82f6" /> </linearGradient>
+                            <marker id="arrow-yellow" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
+                                <polygon points="0 0, 4 2, 0 4" fill="#fbbf24" />
+                            </marker>
+                        </defs>
+                        
+                        <g id="wave-group"></g>
+                        
+                        <circle id="source-dot" cx="400" cy="200" r="10" fill="#ffffff" />
+                        <path id="vel-vector" d="" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#arrow-yellow)" opacity="0"/>
+                        <text id="vel-text" x="0" y="0" fill="#fbbf24" font-weight="bold" font-size="22" font-family="monospace" opacity="0">v</text>
                     </svg>
-
-                    <defs>
-                        <marker id="arrYellow" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fde047" /></marker>
-                        <marker id="arrYellow2" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fbbf24" /></marker>
-                    </defs>
                 </div>
             </div>
         </div>
 
-        <div class="slide p-10 bg-slate-50">
+        <div class="slide bg-slate-50 p-10">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="book-open" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Tipología de la Reflexión</h2>
+                <i data-lucide="git-merge" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Mecanismo de Desplazamiento</h2>
             </div>
-            
-            <p class="text-xl text-slate-700 font-medium mb-8 bg-white p-5 border border-slate-200 rounded-2xl shadow-sm">
-                La ley axiomática ($\theta_{incidente} = \theta_{reflejado}$) <strong>jamás se rompe</strong>. La diferencia de los fenómenos visuales radica exclusivamente en la geometría y alineación de las Rectas Normales según la superficie.
-            </p>
 
-            <div class="grid grid-cols-2 gap-10 flex-1 items-stretch">
-                <div class="glass-card p-8 flex flex-col justify-start border-t-[12px] border-blue-500 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-4 text-center">Reflexión Especular</p>
-                    
-                    <div class="w-full bg-slate-900 rounded-xl flex items-center justify-center p-4 border-4 border-slate-200 shadow-inner mb-6 shrink-0 h-40">
-                        <svg viewBox="0 0 300 120" class="w-full h-full overflow-visible">
-                            <path d="M 20 100 L 280 100" fill="none" stroke="#64748b" stroke-width="6"/>
-                            <line x1="80" y1="100" x2="80" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="150" y1="100" x2="150" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="220" y1="100" x2="220" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <path d="M 30 20 L 80 100 L 130 20" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
-                            <path d="M 100 20 L 150 100 L 200 20" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
-                            <path d="M 170 20 L 220 100 L 270 20" fill="none" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrBlue)"/>
-                        </svg>
+            <div class="bg-white p-6 rounded-2xl border-l-8 border-indigo-600 shadow-md mb-8 shrink-0">
+                <p class="text-2xl text-slate-800 leading-relaxed font-semibold">
+                    La alteración no es una ilusión. La distancia física entre los frentes de onda ($\lambda$) cambia en el espacio debido a la cinemática de la fuente. Como los frentes de onda deben viajar siempre a velocidad $c$, el número de crestas que golpean al observador por segundo (su Frecuencia Detectada, $f'$) debe modificarse obligatoriamente para compensar.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 flex-1 min-h-[350px]">
+                <div class="glass-card p-8 rounded-3xl border-t-8 border-red-500 shadow-lg flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-6 border-b-2 border-slate-100 pb-4">
+                        <h3 class="text-3xl font-extrabold text-slate-900">Alejamiento</h3>
+                        <span class="px-4 py-1 bg-red-100 text-red-800 font-bold rounded-lg text-xl">Redshift</span>
                     </div>
-
-                    <ul class="space-y-3 text-lg text-slate-700 font-medium px-2">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-blue-500 shrink-0"></i> <span>Superficies pulidas (espejos, agua calma). Las normales son perfectamente paralelas.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-blue-500 shrink-0"></i> <span>Conserva la estructura espacial del haz, permitiendo la <strong>formación de imágenes virtuales</strong>.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-blue-500 shrink-0"></i> <span>Genera <strong>deslumbramiento</strong> si el observador se ubica en el ángulo exacto de salida.</span></li>
+                    <ul class="text-xl text-slate-700 font-medium space-y-4 flex-1 flex flex-col justify-center">
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <i data-lucide="expand" class="w-8 h-8 text-red-500"></i>
+                            <span>La longitud de onda ($\lambda$) <strong>se estira</strong>.</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <i data-lucide="arrow-down-circle" class="w-8 h-8 text-red-500"></i>
+                            <span>La Frecuencia Detectada ($f'$) <strong>disminuye</strong>.</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="glass-card p-8 flex flex-col justify-start border-t-[12px] border-orange-500 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-4 text-center">Reflexión Difusa</p>
-                    
-                    <div class="w-full bg-slate-900 rounded-xl flex items-center justify-center p-4 border-4 border-slate-200 shadow-inner mb-6 shrink-0 h-40">
-                        <svg viewBox="0 0 300 120" class="w-full h-full overflow-visible">
-                            <path d="M 20 100 L 60 80 L 100 110 L 140 70 L 180 100 L 220 80 L 260 110 L 280 90" fill="none" stroke="#64748b" stroke-width="6" stroke-linejoin="round"/>
-                            <line x1="80" y1="95" x2="100" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="160" y1="85" x2="130" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <line x1="240" y1="95" x2="270" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
-                            <path d="M 30 20 L 80 95 L 160 30" fill="none" stroke="#f97316" stroke-width="4" marker-end="url(#arrOrange)"/>
-                            <path d="M 110 10 L 160 85 L 80 20" fill="none" stroke="#f97316" stroke-width="4" marker-end="url(#arrOrange)"/>
-                            <path d="M 190 20 L 240 95 L 290 10" fill="none" stroke="#f97316" stroke-width="4" marker-end="url(#arrOrange)"/>
-                        </svg>
+                <div class="glass-card p-8 rounded-3xl border-t-8 border-blue-500 shadow-lg flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-6 border-b-2 border-slate-100 pb-4">
+                        <h3 class="text-3xl font-extrabold text-slate-900">Acercamiento</h3>
+                        <span class="px-4 py-1 bg-blue-100 text-blue-800 font-bold rounded-lg text-xl">Blueshift</span>
                     </div>
-
-                    <ul class="space-y-3 text-lg text-slate-700 font-medium px-2">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-orange-500 shrink-0"></i> <span>Superficies rugosas (papel, madera, pintura mate). Cada micro-cara tiene su propia normal.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-orange-500 shrink-0"></i> <span>Destruye la estructura del haz. <strong>No forma imágenes</strong>, pero disipa la energía lumínica espacialmente.</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-6 h-6 text-orange-500 shrink-0"></i> <span>Permite que los objetos sean <strong>visibles desde cualquier ángulo</strong> en el entorno.</span></li>
+                    <ul class="text-xl text-slate-700 font-medium space-y-4 flex-1 flex flex-col justify-center">
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <i data-lucide="shrink" class="w-8 h-8 text-blue-500"></i>
+                            <span>La longitud de onda ($\lambda$) <strong>se comprime</strong>.</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <i data-lucide="arrow-up-circle" class="w-8 h-8 text-blue-500"></i>
+                            <span>La Frecuencia Detectada ($f'$) <strong>aumenta</strong>.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-
-            <svg style="width:0;height:0;position:absolute;">
-                <defs>
-                    <marker id="arrBlue" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#3b82f6" /></marker>
-                    <marker id="arrOrange" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#f97316" /></marker>
-                </defs>
-            </svg>
+            
+            <div class="flex justify-center mt-6">
+                <div class="bg-slate-800 text-white px-8 py-4 rounded-2xl shadow-md inline-block">
+                    <p class="text-2xl font-mono font-bold">Relación Matemática Fundamental: $$ f' = f_{emisor} \left(1 \pm \frac{v}{c}\right) $$</p>
+                </div>
+            </div>
         </div>
 
-        <div class="slide bg-white p-10 pb-32">
+        <div class="slide bg-white p-10">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="monitor-play" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Análisis de Superficies Cotidianas</h2>
+                <i data-lucide="activity" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Análisis Espectral Directo</h2>
             </div>
+            
+            <div class="flex flex-col flex-1 h-full space-y-8">
+                <div class="glass-card p-6 border-l-8 border-emerald-500 shadow-sm bg-slate-50 shrink-0">
+                    <p class="text-2xl text-slate-800 leading-relaxed font-medium">
+                        Una sonda espacial emite un láser de calibración de <strong>color Verde puro</strong> ($\lambda \approx 520\text{ nm}$). Durante su misión, la sonda acelera alejándose de la Tierra a una velocidad extrema. ¿Qué modificación registra el telescopio receptor en la Tierra?
+                    </p>
+                </div>
 
-            <div class="grid grid-cols-12 gap-12 flex-1 items-stretch">
-                <div class="col-span-6 flex flex-col justify-start space-y-6">
-                    <div class="glass-card p-8 border-l-8 border-indigo-500 shadow-md bg-slate-50 shrink-0">
-                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
-                            En el aula, un proyector emite luz directamente sobre dos superficies adyacentes: la <strong>pizarra acrílica blanca</strong> y un <strong>cartel de papel</strong> pegado sobre ella.
-                            <br><br>
-                            Desde un pupitre en el extremo izquierdo de la sala, un estudiante no logra leer la pizarra porque un brillo intenso (deslumbramiento) oculta la tinta, pero curiosamente, logra leer el cartel de papel sin ningún problema. 
-                        </p>
+                <div class="w-full h-40 bg-slate-900 rounded-3xl border-4 border-slate-300 relative overflow-hidden flex items-center shadow-inner shrink-0 p-2">
+                    <div class="w-full h-full rounded-2xl absolute inset-0 opacity-80" style="background: linear-gradient(to right, #7f1d1d, #ef4444, #f59e0b, #10b981, #3b82f6, #6d28d9, #312e81);"></div>
+                    
+                    <div class="absolute bottom-3 left-0 w-full flex justify-between px-8 text-white font-bold text-lg opacity-90 z-0">
+                        <span>Mayor $\lambda$ / Menor $f$ (Rojo)</span>
+                        <span>Menor $\lambda$ / Mayor $f$ (Violeta)</span>
                     </div>
 
-                    <div class="relative w-full flex-1 flex flex-col min-h-[16rem]">
-                        <button onclick="
-                            this.style.display='none'; 
-                            const res = document.getElementById('aplicacion-1-res');
-                            res.classList.remove('hidden');
-                            res.classList.add('flex', 'visible');"
-                            class="absolute inset-0 m-auto h-max px-6 py-6 bg-slate-900 text-white rounded-xl text-2xl font-bold hover:bg-slate-800 transition shadow-lg flex items-center justify-center gap-3 w-full z-20">
-                            <i data-lucide="unlock"></i> Ejecutar Análisis Óptico
-                        </button>
-                        
-                        <div id="aplicacion-1-res" class="hidden fade-in absolute inset-0 bg-white p-6 rounded-2xl border border-slate-200 shadow-inner flex-col justify-start gap-4 overflow-y-auto z-10">
-                            <div class="bg-indigo-50 p-4 rounded-xl border-l-4 border-indigo-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Análisis de la Pizarra (Especular)</p>
-                                <p class="text-lg text-slate-800 font-medium">El acrílico es una superficie lisa. Direcciona casi toda la energía del proyector en un haz compacto hacia el estudiante. Ese exceso de fotones satura su retina, ocultando el contraste de la tinta.</p>
-                            </div>
-                            <div class="bg-emerald-50 p-4 rounded-xl border-l-4 border-emerald-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Análisis del Papel (Difusa)</p>
-                                <p class="text-lg text-slate-800 font-medium">El papel (celulosa) es microscópicamente rugoso. Dispersa la energía del proyector en 360 grados. Solo una fracción inocua de luz llega al estudiante, evitando el deslumbramiento y permitiendo leer.</p>
-                            </div>
+                    <div id="linea-laser" class="linea-espectro absolute h-full w-3 bg-white left-[55%] top-0 shadow-[0_0_15px_4px_white] z-10 flex flex-col items-center justify-start pt-6">
+                        <div id="label-laser" class="bg-slate-900 text-white text-sm font-bold px-3 py-1.5 rounded-lg shadow-md border border-slate-500 whitespace-nowrap transition-colors duration-1000">
+                            Emisión Real (Verde)
                         </div>
                     </div>
                 </div>
 
-                <div class="col-span-6 glass-card border-4 border-slate-300 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full bg-slate-900">
-                    <svg viewBox="0 0 400 300" class="w-full max-h-[350px] overflow-visible">
-                        <rect x="180" y="10" width="40" height="20" fill="#cbd5e1" rx="2"/>
-                        <path d="M 200 30 L 100 150 L 300 150 Z" fill="#fde047" opacity="0.2"/>
-                        
-                        <line x1="50" y1="150" x2="350" y2="150" stroke="#f8fafc" stroke-width="6"/>
-                        <rect x="230" y="148" width="60" height="4" fill="#94a3b8"/> <path d="M 190 30 L 150 150 L 30 250" fill="none" stroke="#fde047" stroke-width="3" marker-end="url(#arrYellowA)"/>
-                        <path d="M 200 30 L 170 150 L 50 250" fill="none" stroke="#fde047" stroke-width="3" marker-end="url(#arrYellowA)"/>
-                        
-                        <path d="M 210 30 L 260 150" fill="none" stroke="#fde047" stroke-width="3"/>
-                        <path d="M 260 150 L 200 240" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrYellowA)"/>
-                        <path d="M 260 150 L 260 250" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrYellowA)"/>
-                        <path d="M 260 150 L 320 240" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrYellowA)"/>
-
-                        <path d="M 20 270 Q 40 250 60 270 Q 40 290 20 270" fill="none" stroke="#cbd5e1" stroke-width="3"/>
-                        <circle cx="40" cy="270" r="6" fill="#ef4444"/>
-
-                        <path d="M 240 270 Q 260 250 280 270 Q 260 290 240 270" fill="none" stroke="#cbd5e1" stroke-width="3"/>
-                        <circle cx="260" cy="270" r="6" fill="#3b82f6"/>
-
-                        <defs>
-                            <marker id="arrYellowA" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#fbbf24" /></marker>
-                        </defs>
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide bg-white p-10 pb-32">
-            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="sun-dim" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">La Frontera Infranqueable</h2>
-            </div>
-            
-            <div class="grid grid-cols-12 gap-10 flex-1 items-stretch">
-                <div class="col-span-5 flex flex-col justify-center">
-                    <div class="space-y-6 mb-4">
-                        <p class="text-xl text-slate-700 leading-relaxed font-medium text-justify">
-                            Un buzo en el fondo de una piscina apunta un láser hacia la superficie del agua. Si apunta directamente hacia arriba (perpendicular), el láser sale al aire sin problema.
-                        </p>
-                        <div class="glass-card p-6 border-l-8 border-rose-500 shadow-sm">
-                            <p class="text-xl text-slate-800 font-bold mb-2">El Ángulo de No Retorno</p>
-                            <p class="text-lg text-slate-700 leading-relaxed font-medium">
-                                A medida que inclina el láser, el rayo refractado se acuesta sobre el agua. Existe un ángulo exacto donde la luz <strong>no puede salir al aire</strong> y rebota completamente hacia el fondo, convirtiendo la superficie del agua en un espejo infranqueable.
+                <div class="grid grid-cols-12 gap-6 flex-1">
+                    <div class="col-span-4 flex items-center justify-center">
+                        <button onclick="
+                            this.style.display = 'none';
+                            document.getElementById('linea-laser').classList.add('shift-red');
+                            const label = document.getElementById('label-laser');
+                            label.innerText = 'Detección (Redshift)';
+                            label.classList.replace('bg-slate-900', 'bg-red-800');
+                            label.classList.replace('border-slate-500', 'border-red-400');
+                            document.getElementById('pasos-resolucion').classList.add('visible');"
+                            class="px-8 py-8 bg-indigo-900 text-white rounded-2xl text-3xl font-extrabold hover:bg-indigo-800 transition-all shadow-xl flex items-center justify-center gap-4 w-full h-full border-4 border-indigo-200">
+                            Modelar Detección Terrestre
+                        </button>
+                    </div>
+                    
+                    <div class="col-span-8 relative">
+                        <div id="pasos-resolucion" class="fade-in absolute inset-0 bg-white border-2 border-slate-200 rounded-2xl shadow-md p-6 flex flex-col justify-center space-y-4">
+                            <p class="text-xl text-slate-800 font-medium">
+                                <span class="font-bold text-slate-900 bg-slate-100 px-3 py-1 rounded mr-2">1. Condición Cinemática:</span> 
+                                La fuente se aleja del observador.
+                            </p>
+                            <p class="text-xl text-slate-800 font-medium border-l-4 border-red-500 pl-4">
+                                <span class="font-bold text-red-700">2. Efecto Ondulatorio:</span> 
+                                Ocurre un estiramiento topológico de la onda. $\lambda$ detectada es mayor. Por ende, la frecuencia $f'$ decae.
+                            </p>
+                            <p class="text-xl text-slate-800 font-medium border-l-4 border-red-500 pl-4">
+                                <span class="font-bold text-red-700">3. Corrimiento Espectral:</span> 
+                                La lectura se desplaza hacia las frecuencias más bajas. El verde se detectará desplazado hacia el <strong>Amarillo o Rojo</strong> (Redshift).
                             </p>
                         </div>
                     </div>
-
-                    <div class="relative w-full min-h-[5rem] mt-2 flex justify-between gap-4">
-                        <button onclick="revelarEstadoRIT(1)" class="flex-1 py-4 bg-slate-200 text-slate-800 rounded-xl font-bold hover:bg-slate-300 transition border border-slate-400">1. Incidencia Menor</button>
-                        <button onclick="revelarEstadoRIT(2)" class="flex-1 py-4 bg-orange-100 text-orange-800 rounded-xl font-bold hover:bg-orange-200 transition border border-orange-400">2. Límite Crítico</button>
-                        <button onclick="revelarEstadoRIT(3)" class="flex-1 py-4 bg-rose-100 text-rose-800 rounded-xl font-bold hover:bg-rose-200 transition border border-rose-400">3. Reflexión Interna</button>
-                    </div>
-                </div>
-                
-                <div class="col-span-7 glass-card border-4 border-slate-200 overflow-hidden shadow-xl relative w-full h-full bg-white flex items-center justify-center p-6">
-                    <svg viewBox="0 0 500 400" class="w-full max-h-[350px] overflow-visible">
-                        <rect x="0" y="0" width="500" height="200" fill="#f8fafc"/>
-                        <text x="20" y="30" font-size="20" font-weight="bold" fill="#64748b" font-family="monospace">Aire (n₂ = 1.0)</text>
-                        
-                        <rect x="0" y="200" width="500" height="200" fill="#e0f2fe"/>
-                        <text x="20" y="380" font-size="20" font-weight="bold" fill="#0369a1" font-family="monospace">Agua (n₁ = 1.33)</text>
-                        <line x1="0" y1="200" x2="500" y2="200" stroke="#0284c7" stroke-width="4"/>
-
-                        <line x1="250" y1="50" x2="250" y2="350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8,6"/>
-                        <text x="260" y="80" font-size="16" font-weight="bold" fill="#94a3b8">Normal</text>
-
-                        <g id="rit-state-1" class="visible">
-                            <path d="M 180 350 L 250 200" fill="none" stroke="#22c55e" stroke-width="5" marker-end="url(#arrGreenL)"/>
-                            <path d="M 250 200 L 300 50" fill="none" stroke="#22c55e" stroke-width="5" marker-end="url(#arrGreenL)"/>
-                            <path d="M 250 260 A 60 60 0 0 0 222 260" fill="none" stroke="#16a34a" stroke-width="3"/>
-                            <text x="225" y="290" font-size="18" font-weight="bold" fill="#16a34a">θ_i</text>
-                        </g>
-
-                        <g id="rit-state-2" class="hidden">
-                            <path d="M 120 350 L 250 200" fill="none" stroke="#f59e0b" stroke-width="5" marker-end="url(#arrOrangeL)"/>
-                            <path d="M 250 200 L 450 200" fill="none" stroke="#f59e0b" stroke-width="6" marker-end="url(#arrOrangeL)"/>
-                            <path d="M 250 260 A 60 60 0 0 0 198 260" fill="none" stroke="#d97706" stroke-width="3"/>
-                            <text x="195" y="295" font-size="20" font-weight="bold" fill="#d97706">θ_c</text>
-                            
-                            <path d="M 250 160 A 40 40 0 0 1 290 200" fill="none" stroke="#d97706" stroke-width="3"/>
-                            <text x="270" y="150" font-size="18" font-weight="bold" fill="#d97706">90°</text>
-                        </g>
-
-                        <g id="rit-state-3" class="hidden">
-                            <path d="M 50 350 L 250 200" fill="none" stroke="#ef4444" stroke-width="5" marker-end="url(#arrRedL)"/>
-                            <path d="M 250 200 L 450 350" fill="none" stroke="#ef4444" stroke-width="5" marker-end="url(#arrRedL)"/>
-                            <path d="M 250 260 A 60 60 0 0 0 170 260" fill="none" stroke="#dc2626" stroke-width="3"/>
-                            <text x="160" y="290" font-size="20" font-weight="bold" fill="#dc2626">θ > θ_c</text>
-                            
-                            <path d="M 250 260 A 60 60 0 0 1 330 260" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="4,4"/>
-                        </g>
-
-                        <defs>
-                            <marker id="arrGreenL" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#22c55e" /></marker>
-                            <marker id="arrOrangeL" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#f59e0b" /></marker>
-                            <marker id="arrRedL" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#ef4444" /></marker>
-                        </defs>
-                    </svg>
                 </div>
             </div>
         </div>
 
-        <div class="slide p-10 bg-slate-50">
-            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="book-open" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Reflexión Interna Total y Límite Crítico</h2>
+        <div class="slide bg-slate-50 p-10">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="edit-3" class="w-14 h-14 text-indigo-800"></i>
+                <h2 class="text-5xl font-bold text-slate-900">Mecanización y Análisis Físico</h2>
             </div>
-            
-            <div class="grid grid-cols-2 gap-12 flex-1">
-                <div class="glass-card p-10 flex flex-col justify-start border-t-[12px] border-indigo-600 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-6 text-center border-b-2 border-slate-100 pb-4">Condiciones Estrictas (RIT)</p>
-                    <p class="text-lg text-slate-700 leading-relaxed font-medium mb-6 px-4">
-                        Para que la luz quede atrapada y la frontera actúe como un espejo perfecto (0% refracción), deben cumplirse simultáneamente dos requisitos ineludibles:
-                        <br><br>1. Viajar de un medio ópticamente <strong>más denso</strong> a uno <strong>menos denso</strong> ($n_{origen} > n_{destino}$).
-                        <br>2. El ángulo de incidencia debe superar el límite matemático ($\theta_i > \theta_c$).
-                    </p>
-                    <div class="mt-auto bg-slate-50 p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                        <span class="text-indigo-700 font-bold uppercase tracking-widest text-sm">Aplicación Tecnológica</span>
-                        <p class="text-slate-800 font-medium mt-1">La fibra óptica, el brillo extremo del diamante y los espejismos se basan en este principio.</p>
-                    </div>
+
+            <p class="text-2xl text-slate-600 mb-6 border-l-8 border-slate-400 pl-6 bg-white py-4 font-medium rounded-r-xl border border-slate-200 shadow-sm shrink-0">
+                Resuelva formal y ordenadamente en su cuaderno. Destaque su razonamiento analítico.
+            </p>
+
+            <div class="scrollable-content grid grid-cols-1 xl:grid-cols-2 gap-6 flex-1 overflow-y-auto pr-4 pb-10">
+                
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-emerald-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-emerald-700 rounded-full font-bold text-lg">1</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Una estrella lejana muestra su espectro desplazado hacia el azul. Deduce su vector de velocidad respecto a la Tierra y explica qué ocurre con la distancia entre los frentes de onda que recibimos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-emerald-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-emerald-700 rounded-full font-bold text-lg">2</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Si la frecuencia detectada de un faro espacial es exactamente igual a la frecuencia que indica su manual de fábrica, ¿qué conclusión inmediata extraes sobre su movimiento relativo?</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-emerald-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-emerald-700 rounded-full font-bold text-lg">3</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Un conductor viaja velozmente hacia un semáforo rojo. Analiza si, físicamente hablando, es posible que el conductor perciba la luz de color verde debido al Efecto Doppler. Justifica.</p>
                 </div>
 
-                <div class="glass-card p-10 flex flex-col justify-start border-t-[12px] border-rose-500 shadow-xl bg-white h-full relative">
-                    <p class="text-3xl font-extrabold text-slate-900 mb-6 text-center border-b-2 border-slate-100 pb-4">El Ángulo Crítico ($\theta_c$)</p>
-                    <p class="text-lg text-slate-700 leading-relaxed font-medium mb-6 px-4">
-                        Se define teóricamente como el ángulo de incidencia exacto que produce un ángulo de refracción de $90^\circ$ rasante a la superficie. Su deducción proviene directamente de la Ley de Snell.
-                    </p>
-                    
-                    <div class="bg-rose-50 p-6 rounded-2xl font-mono text-[2.5rem] text-center text-rose-800 font-black border border-rose-200 shadow-inner mt-4">
-                        $$ \sin(\theta_c) = \frac{n_{destino}}{n_{origen}} $$
-                    </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-amber-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-amber-100 text-amber-700 rounded-full font-bold text-lg">4</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Integración (E=hf): Una galaxia presenta Redshift. Sabiendo que su longitud de onda ($\lambda$) detectada es mayor, deduce algebraicamente qué sucede con la energía cinética individual de cada fotón que nos llega.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-amber-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-amber-100 text-amber-700 rounded-full font-bold text-lg">5</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Si un objeto se acerca a la Tierra, la frecuencia de su luz aumenta. Un estudiante afirma que "la luz ahora viaja más rápido hacia nosotros para compensar". Corrige esta afirmación aplicando un axioma de la relatividad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-amber-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-amber-100 text-amber-700 rounded-full font-bold text-lg">6</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Compara dos estrellas. La Estrella A tiene un leve corrimiento al rojo. La Estrella B tiene un corrimiento al rojo muy pronunciado. ¿Qué deduces sobre la magnitud de la velocidad $v$ de ambas respecto a nosotros?</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-orange-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-orange-100 text-orange-700 rounded-full font-bold text-lg">7</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Conexión Refracción: Un rayo láser incide sobre un prisma de vidrio. Si el láser es acelerado bruscamente hacia el prisma (Blueshift), ¿experimentará el rayo una mayor o menor desviación angular dentro del vidrio que estando en reposo?</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-orange-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-orange-100 text-orange-700 rounded-full font-bold text-lg">8</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">¿Por qué el efecto Doppler acústico es cotidiano (ej. sirenas), pero el efecto Doppler lumínico requiere de velocidades astronómicas o instrumentos de altísima precisión para ser notado en la Tierra?</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-rose-500 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-rose-100 text-rose-700 rounded-full font-bold text-lg">9</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Proporcionalidad: Si la ecuación clásica aproxima $f' = f(1 + v/c)$, determina el valor del cociente $f'/f$ si una nave se dirige hacia un observador exactamente a la mitad de la velocidad de la luz ($v = 0.5c$).</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-purple-600 shadow-sm flex flex-col">
+                    <div class="flex items-center justify-between mb-3"><span class="w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-bold text-lg">10</span></div>
+                    <p class="text-slate-700 font-medium text-lg leading-relaxed flex-1">Análisis Abstracto: Demuestra algebraicamente, partiendo de $c = \lambda \cdot f$ y $E = h \cdot f$, que la energía del fotón detectado ($E'$) es inversamente proporcional a la longitud de onda medida ($\lambda'$). Úsalo para explicar el Blueshift.</p>
                 </div>
             </div>
         </div>
 
         <div class="slide bg-white p-10 pb-32">
-            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="calculator" class="w-14 h-14 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Laboratorio de Ingeniería Óptica</h2>
-            </div>
-
-            <div class="grid grid-cols-12 gap-12 flex-1 items-stretch">
-                <div class="col-span-5 flex flex-col justify-start space-y-6">
-                    <div class="glass-card p-6 border-l-8 border-indigo-500 shadow-md bg-slate-50 shrink-0">
-                        <p class="text-xl text-slate-700 leading-relaxed font-medium">
-                            Retomemos el caso del buzo sumergido. El láser viaja desde el <strong>Agua ($n_1 = 1.33$)</strong> e intenta escapar hacia el <strong>Aire ($n_2 = 1.00$)</strong>.
-                            <br><br>
-                            Desarrolle algebraicamente el modelo para determinar el <strong>Ángulo Crítico ($\theta_c$)</strong> exacto del agua.
-                        </p>
-                    </div>
-
-                    <div class="relative w-full flex-1 flex flex-col min-h-[16rem]">
-                        <button onclick="
-                            this.style.display='none'; 
-                            const res = document.getElementById('yo-hago-res2');
-                            res.classList.remove('hidden');
-                            res.classList.add('flex', 'visible');
-                            if(window.MathJax) MathJax.typesetPromise([res]);"
-                            class="absolute inset-0 m-auto h-max w-full px-6 py-6 bg-slate-900 text-white rounded-xl text-2xl font-bold hover:bg-slate-800 transition shadow-xl flex items-center justify-center gap-3 z-20">
-                            <i data-lucide="unlock"></i> Desarrollar Modelo Analítico
-                        </button>
-
-                        <div id="yo-hago-res2" class="hidden fade-in absolute inset-0 w-full bg-white p-6 rounded-xl border border-slate-200 shadow-inner flex-col justify-start gap-4 overflow-y-auto z-10">
-                            <div class="bg-indigo-50 p-4 rounded-xl border-l-4 border-indigo-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">1. Ecuación de Snell Adaptada</p>
-                                <p class="font-mono text-xl text-indigo-900">$$ n_{agua} \cdot \sin(\theta_c) = n_{aire} \cdot \sin(90^\circ) $$</p>
-                                <p class="font-mono text-lg text-indigo-800 mt-2">Como $\sin(90^\circ) = 1$:</p>
-                                <p class="font-mono text-xl text-indigo-900 mt-1">$$ 1.33 \cdot \sin(\theta_c) = 1.00 $$</p>
-                            </div>
-                            <div class="bg-emerald-50 p-4 rounded-xl border-l-4 border-emerald-500 shrink-0">
-                                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-2">2. Despeje Final e Inversa</p>
-                                <p class="font-mono text-xl text-emerald-900">$$ \theta_c = \sin^{-1}\left(\frac{1.00}{1.33}\right) \approx \mathbf{48.8^\circ} $$</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-span-7 glass-card border-4 border-slate-300 p-8 rounded-3xl flex items-center justify-center shadow-xl overflow-hidden relative w-full h-full bg-white">
-                    <svg viewBox="0 0 500 400" class="w-full max-h-[400px] overflow-visible">
-                        <rect x="0" y="0" width="500" height="200" fill="#f8fafc"/>
-                        <text x="20" y="30" font-size="20" font-weight="bold" fill="#64748b" font-family="monospace">Aire (n₂ = 1.00)</text>
-                        
-                        <rect x="0" y="200" width="500" height="200" fill="#e0f2fe"/>
-                        <text x="20" y="380" font-size="20" font-weight="bold" fill="#0369a1" font-family="monospace">Agua (n₁ = 1.33)</text>
-                        <line x1="0" y1="200" x2="500" y2="200" stroke="#0284c7" stroke-width="4"/>
-
-                        <line x1="250" y1="50" x2="250" y2="350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8,6"/>
-                        
-                        <path d="M 120 350 L 250 200" fill="none" stroke="#ef4444" stroke-width="5" marker-end="url(#arrRedL2)"/>
-                        <path d="M 250 260 A 60 60 0 0 0 198 260" fill="none" stroke="#dc2626" stroke-width="3"/>
-                        <text x="180" y="300" font-size="22" font-weight="bold" fill="#dc2626">48.8°</text>
-
-                        <path d="M 250 200 L 450 200" fill="none" stroke="#ef4444" stroke-width="6" marker-end="url(#arrRedL2)"/>
-                        <path d="M 250 160 A 40 40 0 0 1 290 200" fill="none" stroke="#dc2626" stroke-width="3"/>
-                        <text x="270" y="150" font-size="18" font-weight="bold" fill="#dc2626">90°</text>
-
-                        <defs>
-                            <marker id="arrRedL2" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><polygon points="0 0, 4 2, 0 4" fill="#ef4444" /></marker>
-                        </defs>
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide bg-slate-50 p-10 pb-32">
-            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
-                <i data-lucide="pen-tool" class="w-16 h-16 text-indigo-800"></i>
-                <h2 class="text-5xl font-bold text-slate-900">Mecanización y Análisis de Fronteras</h2>
-            </div>
-            
-            <p class="text-2xl text-slate-600 mb-6 border-l-8 border-emerald-500 pl-6 bg-white py-4 font-medium rounded-r-xl border border-slate-200 shadow-sm">
-                Resuelva metódicamente en su cuaderno, utilizando los conceptos geométricos y algebraicos revisados.
-            </p>
-
-            <div class="scrollable-content grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 overflow-y-auto pr-4 pb-10">
-                
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-emerald-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-full font-black text-2xl shrink-0">1</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">¿Por qué un espejo de baño empañado con vapor de agua ya no refleja una imagen nítida? Analiza el caso en base a la topología microscópica y el cambio en el tipo de reflexión.</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-emerald-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-full font-black text-2xl shrink-0">2</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Teóricamente, ¿es posible que ocurra una Reflexión Interna Total si un rayo de luz viaja desde el Aire ($n=1.00$) e intenta ingresar a un bloque de Vidrio ($n=1.52$)? Justifica tu respuesta.</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-emerald-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-full font-black text-2xl shrink-0">3</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Nombra las dos condiciones físicas y matemáticas obligatorias para que la luz quede atrapada dentro de un material mediante Reflexión Interna Total.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-amber-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-amber-50 text-amber-600 rounded-full font-black text-2xl shrink-0">4</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Calcula algebraicamente el <strong>Ángulo Crítico ($\theta_c$)</strong> para la frontera entre un bloque de Vidrio de alta densidad ($n_1 = 1.62$) y el Aire ($n_2 = 1.00$).</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-amber-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-amber-50 text-amber-600 rounded-full font-black text-2xl shrink-0">5</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Un diamante brillante tiene un índice de refracción extremo ($n_1 = 2.42$). Si cae al fondo de una piscina con agua ($n_2 = 1.33$), determina su nuevo ángulo crítico.</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-amber-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-amber-50 text-amber-600 rounded-full font-black text-2xl shrink-0">6</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">El ángulo crítico para un plástico transparente desconocido rodeado de aire es exactamente $30^\circ$. Despeja la ecuación y calcula el índice de refracción ($n_1$) de dicho material.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-orange-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full font-black text-2xl shrink-0">7</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Ingeniería: Una fibra óptica posee un núcleo central con $n_{nucleo} = 1.48$ y un revestimiento con $n_{funda} = 1.44$. ¿Cuál es el ángulo límite interno para no perder la señal?</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-orange-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full font-black text-2xl shrink-0">8</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Si una empresa novata fabrica una fibra óptica cuyo revestimiento externo tiene un índice de refracción <em>mayor</em> que el del núcleo central, ¿qué ocurrirá con el láser de datos al primer rebote?</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-rose-500 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-rose-50 text-rose-600 rounded-full font-black text-2xl shrink-0">9</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Un rayo de luz viaja por un bloque de vidrio ($n = 1.5$) e incide sobre la pared lateral interna con un ángulo $\theta_i = 45^\circ$. Sabiendo que afuera hay aire, demuestra matemáticamente si el rayo sale o sufre RIT.</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-purple-600 flex gap-6">
-                    <span class="w-12 h-12 flex items-center justify-center bg-purple-50 text-purple-700 rounded-full font-black text-2xl shrink-0">10</span>
-                    <p class="text-xl text-slate-800 font-medium leading-relaxed">Análisis Abstracto: Si la velocidad de la luz en un Medio A es la mitad que en el Medio B ($v_A = 0.5 v_B$), establece algebraicamente si es posible la RIT al pasar de A hacia B, y calcula $\sin(\theta_c)$.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide bg-slate-50 p-10 pb-32">
             <div class="flex items-center mb-8 border-b-4 border-slate-200 pb-4 shrink-0 gap-6">
                 <i data-lucide="target" class="w-16 h-16 text-indigo-800"></i>
                 <h2 class="text-6xl font-bold text-slate-900">Evaluación de Síntesis Analítica</h2>
@@ -569,44 +355,47 @@
             <div class="grid grid-cols-12 gap-12 flex-1 items-start relative h-full">
                 
                 <div class="col-span-6 flex flex-col space-y-6 h-full justify-start">
-                    <div class="p-8 bg-white border-2 border-slate-200 rounded-3xl shadow-sm flex flex-col">
+                    <div class="p-8 bg-slate-50 border-2 border-slate-200 rounded-3xl shadow-sm flex flex-col">
                         <p class="text-2xl font-medium text-slate-800 leading-relaxed text-justify mb-4">
-                            Un ingeniero diseña un cable de fibra óptica para telecomunicaciones intercontinentales. El núcleo cilíndrico por donde viaja el láser tiene un índice de refracción $n_1$, y la funda protectora externa tiene un índice $n_2$. 
+                            Una estación orbital monitorea una nave de prueba experimental. La nave emite un pulso láser calibrado con una longitud de onda específica $\lambda_0$.
+                        </p>
+                        <p class="text-2xl font-medium text-slate-800 leading-relaxed text-justify mb-6">
+                            Al encender sus propulsores principales, la nave acelera drásticamente en dirección hacia la estación receptora.
                         </p>
                         <p class="text-2xl font-extrabold text-indigo-900 leading-relaxed">
-                            Para garantizar la transmisión ininterrumpida de datos mediante Reflexión Interna Total, ¿qué relación matemática estricta debe existir entre los medios y el ángulo de choque interno ($\theta_i$)?
+                            Bajo el análisis ondulatorio y cuántico, ¿cuál de las siguientes afirmaciones describe rigurosamente la lectura obtenida por la estación?
                         </p>
                     </div>
 
-                    <div class="space-y-4 text-xl font-bold text-slate-700 flex-1 flex flex-col justify-end font-mono">
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans">A) $n_1 < n_2 \quad\text{y}\quad \theta_i < \theta_c$</p>
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans" id="correct-opt-paes">B) $n_1 > n_2 \quad\text{y}\quad \theta_i > \theta_c$</p>
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans">C) $n_1 = n_2 \quad\text{y}\quad \theta_i = \theta_c$</p>
-                        <p class="p-5 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-100 font-sans">D) $n_1 > n_2 \quad\text{y}\quad \theta_i < \theta_c$</p>
+                    <div class="space-y-4 text-xl font-bold text-slate-700 flex-1 flex flex-col justify-end">
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-50">A) El láser es detectado viajando a una velocidad mayor que $c$.</p>
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-50">B) La longitud de onda detectada aumenta, reduciendo la energía del fotón.</p>
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-50" id="correct-opt-paes">C) Se registra un aumento en la frecuencia, lo que implica mayor energía por fotón.</p>
+                        <p class="p-4 rounded-2xl border-2 border-slate-200 shadow-sm bg-white transition cursor-pointer hover:bg-slate-50">D) La onda sufre una compresión espacial que disminuye la frecuencia medida.</p>
                     </div>
                 </div>
 
-                <div class="col-span-6 relative w-full h-full flex flex-col justify-center min-h-[22rem]">
+                <div class="col-span-6 relative w-full h-full flex flex-col justify-center">
                     
                     <button id="btn-reveal-paes" onclick="revelarSolucionPAES()"
-                        class="absolute inset-0 m-auto h-max px-8 py-8 bg-indigo-900 text-white rounded-3xl text-3xl font-extrabold hover:bg-indigo-800 transition-all shadow-xl flex items-center justify-center gap-4 hover:scale-105 active:scale-95 border-4 border-indigo-200 z-20">
+                        class="w-full px-8 py-8 bg-indigo-900 text-white rounded-3xl text-3xl font-extrabold hover:bg-indigo-800 transition-all shadow-xl flex items-center justify-center gap-4 hover:scale-105 active:scale-95 border-4 border-indigo-200">
                         <i data-lucide="shield-check" class="w-12 h-12"></i> Ejecutar Verificación Lógica
                     </button>
 
-                    <div id="respuesta-paes" class="hidden fade-in absolute inset-0 w-full h-full bg-white p-8 rounded-3xl border-4 border-emerald-500 flex-col justify-center text-left shadow-2xl z-10 overflow-y-auto">
+                    <div id="respuesta-paes" class="hidden w-full bg-white p-8 rounded-3xl border-4 border-emerald-500 flex-col justify-center text-left shadow-2xl absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
                         <p class="text-emerald-700 text-3xl font-extrabold border-b-4 border-emerald-100 pb-4 mb-6 shrink-0 uppercase tracking-widest flex items-center gap-3">
                             <i data-lucide="check-circle" class="w-10 h-10"></i> Deducción Correcta
                         </p>
 
                         <div class="text-xl text-slate-800 space-y-6 font-medium tracking-wide">
                             <div class="bg-indigo-50 p-5 border-l-8 border-indigo-400 rounded-r-xl shadow-inner">
-                                <span class="font-bold text-indigo-800 block mb-1">Condición de Medios ($n$):</span> Para que la luz no escape, el núcleo interno debe ser ópticamente más denso que la cubierta protectora externa. Obligatoriamente $n_1 > n_2$ (Descarta A y C).
+                                <span class="font-bold text-indigo-800 block mb-1">Axioma $c$:</span> La velocidad de la luz no se suma a la velocidad de la nave. Sigue siendo $c$ (Descarta A).
                             </div>
-                            <div class="bg-rose-50 p-5 border-l-8 border-rose-400 rounded-r-xl shadow-inner">
-                                <span class="font-bold text-rose-800 block mb-1">Condición de Choque ($\theta_i$):</span> Si $\theta_i < \theta_c$, el rayo se refracta hacia afuera y se pierden datos (Descarta D).
+                            <div class="bg-blue-50 p-5 border-l-8 border-blue-400 rounded-r-xl shadow-inner">
+                                <span class="font-bold text-blue-800 block mb-1">Análisis Cinemático:</span> El acercamiento comprime físicamente los frentes de onda ($\lambda$ disminuye). Esto obliga a que la frecuencia medida ($f$) aumente (Descarta B y D).
                             </div>
                             <div class="bg-emerald-50 p-5 border-l-8 border-emerald-500 rounded-r-xl shadow-inner font-bold text-emerald-900">
-                                <span class="text-emerald-700 block mb-1">Síntesis Tecnológica (Alternativa B):</span> Para lograr el rebote interno total de la señal, se requiere el índice mayor en el núcleo y que los haces de luz reboten en ángulos superiores siempre al Ángulo Crítico ($\theta_i > \theta_c$).
+                                <span class="text-emerald-700 block mb-1">Corolario Cuántico (Alternativa C):</span> Un aumento en la frecuencia registrada ($f \uparrow$) es directamente proporcional a un aumento en la energía del fotón detectado ($E = h \cdot f$).
                             </div>
                         </div>
                     </div>
@@ -620,7 +409,7 @@
         <div class="text-slate-400 font-extrabold text-2xl tracking-widest uppercase truncate max-w-[60%] flex gap-4 items-center">
             <span class="text-indigo-800">F3</span>
             <span class="text-slate-300">|</span>
-            <span>Clase 8: Reflexión Avanzada y RIT</span>
+            <span>Efecto Doppler Lumínico</span>
         </div>
         <div class="flex gap-6">
             <button onclick="changeSlide(-1)" class="p-5 rounded-full bg-slate-50 border-2 border-slate-200 shadow-sm hover:bg-slate-200 hover:border-slate-300 transition-all cursor-pointer focus:outline-none text-slate-600">
@@ -664,6 +453,27 @@
             }
         });
 
+        // Utilidades de revelado genérico
+        function revelarYOcultar(idMostrar, idOcultar) {
+            const elOcultar = document.getElementById(idOcultar);
+            const elMostrar = document.getElementById(idMostrar);
+            
+            if (elOcultar) {
+                elOcultar.style.display = 'none';
+            }
+            if (elMostrar) {
+                elMostrar.classList.remove('hidden');
+                elMostrar.classList.add('visible');
+                if (!elMostrar.classList.contains('flex')) {
+                    elMostrar.classList.add('flex');
+                }
+                if (window.MathJax) {
+                    MathJax.typesetPromise([elMostrar]).catch((err) => console.log(err.message));
+                }
+            }
+        }
+
+        // Ticket de Salida
         function revelarSolucionPAES() {
             const btn = document.getElementById('btn-reveal-paes');
             const target = document.getElementById('respuesta-paes');
@@ -678,19 +488,103 @@
             const correctOpt = document.getElementById('correct-opt-paes');
             correctOpt.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'shadow-md');
             correctOpt.classList.remove('border-slate-200', 'bg-white');
-
-            if (window.MathJax) {
-                try { MathJax.typesetPromise([target]).catch(e => console.log(e)); } catch (e) {}
-            }
         }
 
-        function revelarEstadoRIT(estado) {
-            document.getElementById('rit-state-1').classList.replace('visible', 'hidden');
-            document.getElementById('rit-state-2').classList.replace('visible', 'hidden');
-            document.getElementById('rit-state-3').classList.replace('visible', 'hidden');
+        // MOTOR DE ANIMACIÓN JAVASCRIPT: Efecto Doppler Continuo
+        const waveGroup = document.getElementById('wave-group');
+        const sourceDot = document.getElementById('source-dot');
+        const velVector = document.getElementById('vel-vector');
+        const velText = document.getElementById('vel-text');
+        
+        let waves = [];
+        let frameCount = 0;
+        let isDopplerMoving = false;
+        let sX = 400; // Posición inicial X
+        const sY = 200; // Posición inicial Y
+        let sV = 0;
+        const cSpeed = 2.5; // Velocidad de expansión de la onda (c)
+        const emitRate = 20; // Emite una onda cada 20 frames
+
+        function activarAnimacionDoppler() {
+            isDopplerMoving = true;
+            // Ocultar texto vacío y mostrar explicación
+            document.getElementById('texto-vacio').style.display = 'none';
+            const expl = document.getElementById('texto-explicacion');
+            expl.classList.remove('hidden');
+            expl.classList.add('flex', 'visible');
+            if (window.MathJax) MathJax.typesetPromise([expl]);
+        }
+
+        function dopplerLoop() {
+            frameCount++;
             
-            document.getElementById('rit-state-' + estado).classList.replace('hidden', 'visible');
+            if (isDopplerMoving) {
+                sV = 1.3; // Velocidad de la fuente
+                sX += sV;
+                
+                // Si sale mucho del canvas, reiniciar posición para mantener la animación continua
+                if (sX > 650) { 
+                    sX = 150; 
+                    waveGroup.innerHTML = '';
+                    waves = [];
+                }
+                
+                // Actualizar vector velocidad
+                velVector.setAttribute('d', `M ${sX + 15} ${sY} L ${sX + 60} ${sY}`);
+                velVector.setAttribute('opacity', '1');
+                velText.setAttribute('x', sX + 70);
+                velText.setAttribute('y', sY + 7);
+                velText.setAttribute('opacity', '1');
+            } else {
+                sV = 0;
+                sX = 400;
+                velVector.setAttribute('opacity', '0');
+                velText.setAttribute('opacity', '0');
+            }
+
+            // Actualizar posición de la estrella emisora
+            sourceDot.setAttribute('cx', sX);
+
+            // Generar nuevo frente de onda periódicamente
+            if (frameCount % emitRate === 0) {
+                let w = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                w.setAttribute('cx', sX);
+                w.setAttribute('cy', sY);
+                w.setAttribute('r', 1);
+                w.setAttribute('fill', 'none');
+                w.setAttribute('stroke-width', '3');
+                waveGroup.appendChild(w);
+                waves.push({el: w, r: 1, cx: sX});
+            }
+
+            // Actualizar todas las ondas existentes
+            for (let i = waves.length - 1; i >= 0; i--) {
+                waves[i].r += cSpeed;
+                waves[i].el.setAttribute('r', waves[i].r);
+                
+                // Desvanecer a medida que crecen
+                let op = Math.max(0, 1 - (waves[i].r / 350));
+                
+                if (isDopplerMoving) {
+                    // El gradiente coloreará la parte derecha de azul y la izquierda de rojo automáticamente
+                    waves[i].el.setAttribute('stroke', 'url(#doppler-grad)');
+                } else {
+                    waves[i].el.setAttribute('stroke', '#94a3b8');
+                }
+                waves[i].el.setAttribute('stroke-opacity', op);
+
+                // Eliminar ondas que ya no se ven para optimizar rendimiento
+                if (waves[i].r > 400) {
+                    waveGroup.removeChild(waves[i].el);
+                    waves.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(dopplerLoop);
         }
+        
+        // Iniciar el bucle de animación
+        requestAnimationFrame(dopplerLoop);
     </script>
 </body>
 
